@@ -1,2 +1,3 @@
-﻿  Juego.cpp
-  Juego.vcxproj -> C:\Users\adelm\Documents\UPM\UPM 3º\6 - Informática industrial y comunicaciones\Trabajo\Juego\Juego\Juego\bin\Juego.exe
+﻿Juego.obj : error LNK2019: símbolo externo "__declspec(dllimport) struct ETSIDI::GLTexture __cdecl ETSIDI::getTexture(char const *)" (__imp_?getTexture@ETSIDI@@YA?AUGLTexture@1@PBD@Z) sin resolver al que se hace referencia en la función "void __cdecl OnDraw(void)" (?OnDraw@@YAXXZ)
+lib\ETSIDI.lib : warning LNK4272: el tipo de máquina de biblioteca 'x64' está en conflicto con el tipo de máquina de destino 'x86'
+C:\Users\adelm\Documents\UPM\UPM 3º\6 - Informática industrial y comunicaciones\Trabajo\Juego\Juego\Juego\bin\Juego.exe : fatal error LNK1120: 1 externos sin resolver

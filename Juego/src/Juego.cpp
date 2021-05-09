@@ -4,6 +4,7 @@
 
 Mundo mundo;
 
+
 //los callback, funciones que seran llamadas automaticamente por la glut
 //cuando sucedan eventos
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
@@ -34,7 +35,7 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 
 	mundo.Inicializa();
-
+	
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
 
