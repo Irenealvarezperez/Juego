@@ -2,8 +2,11 @@
 #include "Mundo.h"
 #include "ETSIDI.h"
 
-Mundo mundo;
+#define ANCHO_PANTALLA 1425
+#define ALTO_PANTALLA 810
+#define FREC 17
 
+Mundo mundo;
 
 //los callback, funciones que seran llamadas automaticamente por la glut
 //cuando sucedan eventos
@@ -17,7 +20,7 @@ int main(int argc, char* argv[])
 	//Inicializar el gestor de ventanas GLUT
 	//y crear la ventana
 	glutInit(&argc, argv);
-	glutInitWindowSize(800, 600);
+	glutInitWindowSize(ANCHO_PANTALLA, ALTO_PANTALLA);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutCreateWindow("Juego");
 
@@ -27,15 +30,15 @@ int main(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective(40.0, 800 / 600.0f, 0.1, 150);
+	gluPerspective(45, (double)ANCHO_PANTALLA / ALTO_PANTALLA, 0.1, 150);
 
 	//Registrar los callbacks
 	glutDisplayFunc(OnDraw);
-	glutTimerFunc(25, OnTimer, 0);//le decimos que dentro de 25ms llame 1 vez a la funcion OnTimer()
+	glutTimerFunc(FREC, OnTimer, 0);//le decimos que dentro de 17ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
 
 	mundo.Inicializa();
-	
+
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
 
@@ -70,6 +73,6 @@ void OnTimer(int value)
 	mundo.Mueve();
 
 	//no borrar estas lineas
-	glutTimerFunc(25, OnTimer, 0);
+	glutTimerFunc(FREC, OnTimer, 0);
 	glutPostRedisplay();
 }
