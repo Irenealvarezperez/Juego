@@ -40,8 +40,6 @@ int main(int argc, char* argv[])
 	mundo.Inicializa();
 	//ETSIDI::play("sonidos/JasonMraz93Milles.mp3");
 
-	//hola
-
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
 
