@@ -4,8 +4,8 @@
 
 void Mundo::Dibuja()
 {
-	gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-		0.0, 0, 0.0,      // hacia que punto mira  (0,0,0) 
+	gluLookAt(personaje.px, y_ojo, z_ojo,  // posicion del ojo
+		personaje.px, 0, 0.0,      // hacia que punto mira  (0,0,0) 
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
 
 	//aqui es donde hay que poner el codigo de dibujo
@@ -18,7 +18,43 @@ void Mundo::Dibuja()
 void Mundo::Mueve()
 {
 	static const double t = 0.017;
+	personaje.mueve(t);
 
+	// POSIBLE IDEA PARA INTERACCIONES ENTRE OBJETO Y PLATAFORMA
+
+	for (int i = 0; i < base.cont; i++)
+	{
+		if (personaje.py - 2.5 <= base.suelo[i].y)
+		{
+			personaje.py = base.suelo[i].y + 2.5;
+		}
+	}
+
+	for (int i = 0; i < plataforma1.cont; i++)
+	{
+		double Ix = abs(personaje.px - plataforma1.suelo[i].x);
+		double Iy = abs(personaje.py - plataforma1.suelo[i].y);
+		if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
+		{
+			if (personaje.py - 2.5 <= plataforma1.suelo[i].y)
+			{
+				personaje.py = plataforma1.suelo[i].y + 2.5;
+			}
+		}
+	}
+
+	for (int i = 0; i < plataforma2.cont; i++)
+	{
+		double Ix = abs(personaje.px - plataforma2.suelo[i].x);
+		double Iy = abs(personaje.py - plataforma2.suelo[i].y);
+		if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
+		{
+			if (personaje.py - 2.5 <= plataforma2.suelo[i].y)
+			{
+				personaje.py = plataforma2.suelo[i].y + 2.5;
+			}
+		}
+	}
 }
 
 void Mundo::Inicializa()
@@ -35,62 +71,18 @@ void Mundo::Tecla(unsigned char key)
 {
 	if (key == 'a')
 	{
-		personaje.setPos(personaje.x -= 0.3, personaje.y);
+		personaje.vx = -5;
 	}
 	if (key == 'd')
 	{
-		personaje.setPos(personaje.x += 0.3, personaje.y);
+		personaje.vx = 5;
 	}
 	if (key == 'w')
 	{
-		personaje.setPos(personaje.x, personaje.y += 0.3);
+		personaje.vy = 10;
 	}
 	if (key == 's')
 	{
-		personaje.setPos(personaje.x, personaje.y -= 0.3);
-
-		// POSIBLE IDEA PARA INTERACCIONES ENTRE OBJETO Y PLATAFORMA
-
-		/*
-			for (int i = 0; i < base.cont; i++)
-			{
-				double Ix = abs(personaje.x - base.suelo[i].x);
-				double Iy = abs(personaje.y - base.suelo[i].y);
-				if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
-				{
-					if (personaje.y - 2.5 <= base.suelo[i].y)
-					{
-						personaje.y = base.suelo[i].y + 2.5;
-					}
-				}
-			}
-			
-			for (int i = 0; i < plataforma1.cont; i++)
-			{
-				double Ix = abs(personaje.x - plataforma1.suelo[i].x);
-				double Iy = abs(personaje.y - plataforma1.suelo[i].y);
-				if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
-				{
-					if (personaje.y - 2.5 <= plataforma1.suelo[i].y)
-					{
-						personaje.y = plataforma1.suelo[i].y + 2.5;
-					}
-				}
-			}
-
-			for (int i = 0; i < plataforma2.cont; i++)
-			{
-				double Ix = abs(personaje.x - plataforma2.suelo[i].x);
-				double Iy = abs(personaje.y - plataforma2.suelo[i].y);
-				if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
-				{
-					if (personaje.y - 2.5 <= plataforma2.suelo[i].y)
-					{
-						personaje.y = plataforma2.suelo[i].y + 2.5;
-					}
-				}
-			}
-		*/
-
+		personaje.vy = -5;
 	}
 }
