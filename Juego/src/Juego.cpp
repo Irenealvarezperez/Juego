@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 
 	mundo.Inicializa();
+	ETSIDI::play("sonidos/JasonMraz93Milles.mp3");
 
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
