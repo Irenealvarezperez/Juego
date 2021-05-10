@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 
 	mundo.Inicializa();
-	ETSIDI::play("sonidos/JasonMraz93Milles.mp3");
+	//ETSIDI::play("sonidos/JasonMraz93Milles.mp3");
 
 	//hola
 
