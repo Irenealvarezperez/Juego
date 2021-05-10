@@ -24,9 +24,14 @@ void Mundo::Mueve()
 
 	for (int i = 0; i < base.cont; i++)
 	{
-		if (personaje.py - 2.5 <= base.suelo[i].y)
+		double Ix = abs(personaje.px - base.suelo[i].x);
+		double Iy = abs(personaje.py - base.suelo[i].y);
+		if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
 		{
-			personaje.py = base.suelo[i].y + 2.5;
+			if (personaje.py - 2.5 <= base.suelo[i].y)
+			{
+				personaje.py = base.suelo[i].y + 2.5;
+			}
 		}
 	}
 
