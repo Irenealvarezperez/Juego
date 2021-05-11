@@ -3,12 +3,14 @@
 #include "Plataforma.h"
 #include "Suelo.h"
 #include "Personaje.h"
+#include "Mapa.h"
 
 class Mundo
 {
 public:
-	Plataforma base;
-	Plataforma plataforma1, plataforma2;
+	Mapa nivel;
+	//Plataforma base;
+	//Plataforma plataforma1, plataforma2;
 	Personaje personaje;
 	void Tecla(unsigned char key);
 	void Inicializa();

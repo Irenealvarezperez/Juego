@@ -1,27 +1,32 @@
 #include "Mundo.h"
 #include "glut.h"
 #include <cmath>
+#include "VariablesGlobales.h"
+#include <iostream>
 
 void Mundo::Dibuja()
 {
-	gluLookAt(personaje.px, y_ojo, z_ojo,  // posicion del ojo
-		personaje.px, 0, 0.0,      // hacia que punto mira  (0,0,0) 
+	gluLookAt(personaje.px, y_ojo, z_ojo,   // posicion del ojo
+		personaje.px, ALTO_PANTALLA / 35, 0.0,       // hacia que punto mira  (0,0,0) 
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
 
 	//aqui es donde hay que poner el codigo de dibujo
-	base.dibuja();
-	plataforma1.dibuja();
-	plataforma2.dibuja();
+
 	personaje.dibuja();
+	nivel.dibuja();
 }
 
 void Mundo::Mueve()
 {
-	static const double t = 0.017;
+	static const double t = FREC / 1000.0;
+
+	printf_s("%.4lf %.4lf\n", personaje.px, personaje.py);
+
 	personaje.mueve(t);
 
 	// POSIBLE IDEA PARA INTERACCIONES ENTRE OBJETO Y PLATAFORMA
 
+	/*
 	for (int i = 0; i < base.cont; i++)
 	{
 		double Ix = abs(personaje.px - base.suelo[i].x);
@@ -60,34 +65,49 @@ void Mundo::Mueve()
 			}
 		}
 	}
+	*/
 }
 
 void Mundo::Inicializa()
 {
 	x_ojo = 0;
-	y_ojo = 0;
+	y_ojo = ALTO_PANTALLA / 35;
 	z_ojo = 60;
-	base.setPos(-40, 40, -20);
-	plataforma1.setPos(-20, -15, 10);
-	plataforma2.setPos(30, 40, 0);
+	nivel.iniciar_nivel(1);
 }
 
 void Mundo::Tecla(unsigned char key)
 {
 	if (key == 'a')
 	{
-		personaje.vx = -5;
+		personaje.vx -= 5;
+		if (personaje.vx < -5)
+		{
+			personaje.vx = -5;
+		}
 	}
 	if (key == 'd')
 	{
-		personaje.vx = 5;
+		personaje.vx += 5;
+		if (personaje.vx > 5)
+		{
+			personaje.vx = 5;
+		}
 	}
 	if (key == 'w')
 	{
-		personaje.vy = 10;
+		personaje.vy += 5;
+		if (personaje.vy > 5)
+		{
+			personaje.vy = 5;
+		}
 	}
 	if (key == 's')
 	{
-		personaje.vy = -5;
+		personaje.vy -= 5;
+		if (personaje.vy < -5)
+		{
+			personaje.vy = -5;
+		}
 	}
 }

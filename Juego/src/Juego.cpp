@@ -1,10 +1,7 @@
 #include "glut.h"
 #include "Mundo.h"
 #include "ETSIDI.h"
-
-#define ANCHO_PANTALLA 1425
-#define ALTO_PANTALLA 810
-#define FREC 17
+#include "VariablesGlobales.h"
 
 Mundo mundo;
 

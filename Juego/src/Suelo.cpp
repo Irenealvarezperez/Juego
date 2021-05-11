@@ -17,7 +17,13 @@ void Suelo::dibuja()
 	glPushMatrix();
 	glColor3ub(227, 165, 123);
 	glTranslatef(x, y, 0);
-	glutSolidCube(lado);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glVertex2f(lado / 2.0, lado / 2.0);
+	glVertex2f(lado / 2.0, -lado / 2.0);
+	glVertex2f(-lado / 2.0, -lado / 2.0);
+	glVertex2f(-lado / 2.0, lado / 2.0);
+	glEnd();
 	glPopMatrix();
 }
 

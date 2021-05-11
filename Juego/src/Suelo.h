@@ -3,7 +3,7 @@
 class Suelo
 {
 public:
-	int x = 0, y = 0, lado = 1;
+	int x = 0, y = 0, lado = 3;
 public:
 	Suelo();
 	Suelo(int x, int y);
