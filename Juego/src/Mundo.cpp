@@ -14,6 +14,7 @@ void Mundo::Dibuja()
 
 	personaje.dibuja();
 	nivel.dibuja();
+	disparos.dibuja();
 }
 
 void Mundo::Mueve()
@@ -23,6 +24,7 @@ void Mundo::Mueve()
 	printf_s("%.4lf %.4lf\n", personaje.px, personaje.py);
 
 	personaje.mueve(t);
+	disparos.mueve(t);
 
 	// POSIBLE IDEA PARA INTERACCIONES ENTRE OBJETO Y PLATAFORMA
 
@@ -111,3 +113,29 @@ void Mundo::Tecla(unsigned char key)
 		}
 	}
 }
+void Mundo::teclaEspecial(unsigned char key)
+{
+
+	switch (key)
+	{
+	case GLUT_KEY_UP:
+	{
+		Disparo* d = new Disparo();
+		d->setPos(personaje.px, personaje.py);
+		d->setVel(0, 10.0f);
+		disparos.agregar(d);
+		break;
+	}
+	case GLUT_KEY_RIGHT:
+	{
+		Disparo* d = new Disparo();
+		d->setPos(personaje.px, personaje.py);
+		d->setVel(10.0f, 0);
+		disparos.agregar(d);
+		break;
+	}
+	}
+}
+	Mundo::~Mundo() {
+		disparos.destruirContenido();
+	}

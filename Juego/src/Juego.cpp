@@ -11,6 +11,7 @@ Mundo mundo;
 void OnDraw(void); //esta funcion sera llamada para dibujar
 void OnTimer(int value); //esta funcion sera llamada cuando transcurra una temporizacion
 void OnKeyboardDown(unsigned char key, int x, int y); //cuando se pulse una tecla	
+void onSpecialKeyboardDown(int key, int x, int y);
 
 int main(int argc, char* argv[])
 {
@@ -33,6 +34,7 @@ int main(int argc, char* argv[])
 	glutDisplayFunc(OnDraw);
 	glutTimerFunc(FREC, OnTimer, 0);//le decimos que dentro de 17ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
+	glutSpecialFunc(onSpecialKeyboardDown);
 
 	mundo.Inicializa();
 	//ETSIDI::play("sonidos/JasonMraz93Milles.mp3");
@@ -61,6 +63,13 @@ void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
 	mundo.Tecla(key);
+
+	glutPostRedisplay();
+}
+
+void onSpecialKeyboardDown(int key, int x, int y)
+{
+	mundo.teclaEspecial(key);
 
 	glutPostRedisplay();
 }
