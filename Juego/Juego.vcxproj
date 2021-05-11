@@ -155,7 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Disparo.cpp" />
+    <ClCompile Include="src\Disparo.cpp" />
     <ClCompile Include="src\Juego.cpp" />
     <ClCompile Include="src\ListaDisparos.cpp" />
     <ClCompile Include="src\Mapa.cpp" />
