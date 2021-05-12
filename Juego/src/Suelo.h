@@ -1,12 +1,14 @@
 #pragma once
 
+#include "Vector2D.h"
+
 class Suelo
 {
 public:
-	int x = 0, y = 0, lado = 3;
+	Vector2D posicion;
+	int lado = 3;
 public:
 	Suelo();
-	Suelo(int x, int y);
 	void dibuja();
 	void setPos(int x, int y);
 };

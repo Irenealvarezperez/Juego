@@ -1,13 +1,16 @@
 #pragma once
 
+#include "Vector2D.h"
+
 class Personaje
 {
 private:
-	double radio = 2;
+	float radio = 2;
 public:
-	double px = 40, py = 5, pz = 0;
-	double vx = 0, vy = 0, vz = 0;
-	double ax = 0, ay = 0, az = 0;
+	Personaje();
+	Vector2D posicion;
+	Vector2D velocidad;
+	Vector2D aceleracion;
 	void dibuja();
 	void setPos(double x, double y);
 	void mueve(double t);

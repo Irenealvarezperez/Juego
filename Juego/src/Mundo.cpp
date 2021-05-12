@@ -1,14 +1,23 @@
 #include "Mundo.h"
 #include "glut.h"
-#include <cmath>
 #include "VariablesGlobales.h"
-#include <iostream>
 
 void Mundo::Dibuja()
 {
-	gluLookAt(personaje.px, y_ojo, z_ojo,   // posicion del ojo
-		personaje.px, ALTO_PANTALLA / 35, 0.0,       // hacia que punto mira  (0,0,0) 
-		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
+	float x_pto_ojo = personaje.posicion.x;
+	static const float y_pto_ojo = ALTO_PANTALLA / 35.0;
+	static const float z_pto_ojo = 0.0;
+
+	x_ojo = personaje.posicion.x;
+	if (x_ojo < 42)
+	{
+		x_ojo = 42;
+		x_pto_ojo = 42;
+	}
+
+	gluLookAt(x_ojo, y_ojo, z_ojo,   // posicion del ojo
+		x_pto_ojo, y_pto_ojo, z_pto_ojo,       // hacia que punto mira  (0,0,0) 
+		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 
 	//aqui es donde hay que poner el codigo de dibujo
 
@@ -19,62 +28,18 @@ void Mundo::Dibuja()
 
 void Mundo::Mueve()
 {
-	static const double t = FREC / 1000.0;
-
-	printf_s("%.4lf %.4lf\n", personaje.px, personaje.py);
+	static const float t = FREC / 1000.0;
 
 	personaje.mueve(t);
 	disparos.mueve(t);
-
-	// POSIBLE IDEA PARA INTERACCIONES ENTRE OBJETO Y PLATAFORMA
-
-	/*
-	for (int i = 0; i < base.cont; i++)
-	{
-		double Ix = abs(personaje.px - base.suelo[i].x);
-		double Iy = abs(personaje.py - base.suelo[i].y);
-		if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
-		{
-			if (personaje.py - 2.5 <= base.suelo[i].y)
-			{
-				personaje.py = base.suelo[i].y + 2.5;
-			}
-		}
-	}
-
-	for (int i = 0; i < plataforma1.cont; i++)
-	{
-		double Ix = abs(personaje.px - plataforma1.suelo[i].x);
-		double Iy = abs(personaje.py - plataforma1.suelo[i].y);
-		if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
-		{
-			if (personaje.py - 2.5 <= plataforma1.suelo[i].y)
-			{
-				personaje.py = plataforma1.suelo[i].y + 2.5;
-			}
-		}
-	}
-
-	for (int i = 0; i < plataforma2.cont; i++)
-	{
-		double Ix = abs(personaje.px - plataforma2.suelo[i].x);
-		double Iy = abs(personaje.py - plataforma2.suelo[i].y);
-		if (sqrt(Ix * Ix + Iy * Iy) < 2.5)
-		{
-			if (personaje.py - 2.5 <= plataforma2.suelo[i].y)
-			{
-				personaje.py = plataforma2.suelo[i].y + 2.5;
-			}
-		}
-	}
-	*/
 }
 
 void Mundo::Inicializa()
 {
 	x_ojo = 0;
-	y_ojo = ALTO_PANTALLA / 35;
+	y_ojo = ALTO_PANTALLA / 35.0;
 	z_ojo = 60;
+
 	nivel.iniciar_nivel(1);
 }
 
@@ -82,34 +47,34 @@ void Mundo::Tecla(unsigned char key)
 {
 	if (key == 'a')
 	{
-		personaje.vx -= 5;
-		if (personaje.vx < -5)
+		personaje.velocidad.x -= 5;
+		if (personaje.velocidad.x < -5)
 		{
-			personaje.vx = -5;
+			personaje.velocidad.x = -5;
 		}
 	}
 	if (key == 'd')
 	{
-		personaje.vx += 5;
-		if (personaje.vx > 5)
+		personaje.velocidad.x += 5;
+		if (personaje.velocidad.x > 5)
 		{
-			personaje.vx = 5;
+			personaje.velocidad.x = 5;
 		}
 	}
 	if (key == 'w')
 	{
-		personaje.vy += 5;
-		if (personaje.vy > 5)
+		personaje.velocidad.y += 5;
+		if (personaje.velocidad.y > 5)
 		{
-			personaje.vy = 5;
+			personaje.velocidad.y = 5;
 		}
 	}
 	if (key == 's')
 	{
-		personaje.vy -= 5;
-		if (personaje.vy < -5)
+		personaje.velocidad.y -= 5;
+		if (personaje.velocidad.y < -5)
 		{
-			personaje.vy = -5;
+			personaje.velocidad.y = -5;
 		}
 	}
 }
@@ -121,7 +86,7 @@ void Mundo::teclaEspecial(unsigned char key)
 	case GLUT_KEY_UP:
 	{
 		Disparo* d = new Disparo();
-		d->setPos(personaje.px, personaje.py);
+		d->setPos(personaje.posicion.x, personaje.posicion.y);
 		d->setVel(0, 10.0f);
 		disparos.agregar(d);
 		break;
@@ -129,7 +94,7 @@ void Mundo::teclaEspecial(unsigned char key)
 	case GLUT_KEY_RIGHT:
 	{
 		Disparo* d = new Disparo();
-		d->setPos(personaje.px, personaje.py);
+		d->setPos(personaje.posicion.x, personaje.posicion.y);
 		d->setVel(10.0f, 0);
 		disparos.agregar(d);
 		break;

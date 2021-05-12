@@ -8,7 +8,7 @@
 void Mapa::iniciar_nivel(int nivel)
 {
     char c = NULL;
-    FILE* fe;
+    FILE* fichero;
     int fila = 0;
     int columna = 0;
 
@@ -16,16 +16,16 @@ void Mapa::iniciar_nivel(int nivel)
     {
         default:
         {
-            fe = fopen("..\\src\\Nivel1.txt", "rt");
+            fichero = fopen("..\\src\\Nivel1.txt", "rt");
             break;
         }
     }
 
-    if (fe)
+    if (fichero)
     {
-        while (!feof(fe)) {
-            fscanf(fe, "%c", &c);
-            if (c != '\n' && !feof(fe))
+        while (!feof(fichero)) {
+            fscanf(fichero, "%c", &c);
+            if (c != '\n' && !feof(fichero) && columna < columna_max)
             {
                 cad[fila][columna] = c;
                 columna++;
@@ -36,7 +36,8 @@ void Mapa::iniciar_nivel(int nivel)
                 fila++;
             }
         }
-        fclose(fe);
+        fclose(fichero);
+        fichero = nullptr;
     }
     for (int i = 0; i < fila_max; i++)
     {
@@ -50,8 +51,8 @@ void Mapa::iniciar_nivel(int nivel)
 
 void Mapa::dibuja()
 {
-    double Ix = 0;
-    for (int i = fila_max-1; i >=0; i--)
+    int Ix = 0;
+    for (int i = fila_max - 1; i >= 0; i--)
     {
         for (int j = 0; j < columna_max; j++)
         {

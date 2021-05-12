@@ -1,18 +1,15 @@
 #pragma once
 
-#include "Plataforma.h"
 #include "Suelo.h"
 #include "Personaje.h"
 #include "Mapa.h"
 #include "Disparo.h"
-#include"ListaDisparos.h"
+#include "ListaDisparos.h"
 
 class Mundo
 {
 public:
 	Mapa nivel;
-	//Plataforma base;
-	//Plataforma plataforma1, plataforma2;
 	Personaje personaje;
 	Disparo disparo;
 	ListaDisparos disparos;

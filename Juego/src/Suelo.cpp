@@ -3,32 +3,27 @@
 
 Suelo::Suelo()
 {
-
-}
-
-Suelo::Suelo(int x, int y)
-{
-	this->x = x;
-	this->y = y;
+	posicion.x = 0;
+	posicion.y = 0;
 }
 
 void Suelo::dibuja()
 {
 	glPushMatrix();
 	glColor3ub(227, 165, 123);
-	glTranslatef(x, y, 0);
+	glTranslatef(posicion.x, posicion.y, 0);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
-	glVertex2f(lado / 2.0, lado / 2.0);
-	glVertex2f(lado / 2.0, -lado / 2.0);
-	glVertex2f(-lado / 2.0, -lado / 2.0);
-	glVertex2f(-lado / 2.0, lado / 2.0);
+	glVertex2f(lado / 2.0f, lado / 2.0f);
+	glVertex2f(lado / 2.0f, -lado / 2.0f);
+	glVertex2f(-lado / 2.0f, -lado / 2.0f);
+	glVertex2f(-lado / 2.0f, lado / 2.0f);
 	glEnd();
 	glPopMatrix();
 }
 
 void Suelo::setPos(int x, int y)
 {
-	this->x = x;
-	this->y = y;
+	posicion.x = x;
+	posicion.y = y;
 }
