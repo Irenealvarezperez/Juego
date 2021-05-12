@@ -161,7 +161,6 @@
     <ClCompile Include="src\Mapa.cpp" />
     <ClCompile Include="src\Mundo.cpp" />
     <ClCompile Include="src\Personaje.cpp" />
-    <ClCompile Include="src\Plataforma.cpp" />
     <ClCompile Include="src\Suelo.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
@@ -171,7 +170,6 @@
     <ClInclude Include="src\Mapa.h" />
     <ClInclude Include="src\Mundo.h" />
     <ClInclude Include="src\Personaje.h" />
-    <ClInclude Include="src\Plataforma.h" />
     <ClInclude Include="src\Suelo.h" />
     <ClInclude Include="src\VariablesGlobales.h" />
     <ClInclude Include="src\Vector2D.h" />
