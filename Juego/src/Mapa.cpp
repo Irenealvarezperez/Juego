@@ -14,6 +14,16 @@ void Mapa::iniciar_nivel(int nivel)
 
     switch (nivel)
     {
+        case 1:
+        {
+            fichero = fopen("..\\src\\Nivel1.txt", "rt");
+            break;
+        }
+        case 2:
+        {
+            fichero = fopen("..\\src\\Nivel2.txt", "rt");
+            break;
+        }
         default:
         {
             fichero = fopen("..\\src\\Nivel1.txt", "rt");

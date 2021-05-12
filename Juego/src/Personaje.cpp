@@ -7,7 +7,7 @@ Personaje::Personaje()
 	posicion.y = 4;
 }
 
-void Personaje::setPos(double x, double y)
+void Personaje::setPos(float x, float y)
 {
 	posicion.x = x;
 	posicion.y = y;
@@ -22,7 +22,7 @@ void Personaje::dibuja()
 	glPopMatrix();
 }
 
-void Personaje::mueve(double t)
+void Personaje::mueve(float t)
 {
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;

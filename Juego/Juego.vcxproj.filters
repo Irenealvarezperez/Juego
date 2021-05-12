@@ -68,5 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\Nivel1.txt" />
+    <Text Include="src\Nivel2.txt" />
   </ItemGroup>
 </Project>

@@ -32,6 +32,12 @@ void Mundo::Mueve()
 
 	personaje.mueve(t);
 	disparos.mueve(t);
+	if (personaje.posicion.x > 200)
+	{
+		nivel.iniciar_nivel(2);
+		personaje.posicion.x = 2;
+		personaje.posicion.y = 4;
+	}
 }
 
 void Mundo::Inicializa()

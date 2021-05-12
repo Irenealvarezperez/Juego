@@ -12,7 +12,7 @@ public:
 	Vector2D velocidad;
 	Vector2D aceleracion;
 	void dibuja();
-	void setPos(double x, double y);
-	void mueve(double t);
+	void setPos(float x, float y);
+	void mueve(float t);
 };
 
