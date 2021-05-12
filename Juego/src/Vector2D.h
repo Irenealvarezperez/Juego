@@ -1,9 +1,12 @@
 #pragma once
+
 class Vector2D
 {
 public:
-	virtual ~Vector2D();
 	float x, y;
+
+public:
+	virtual ~Vector2D();
 
 	Vector2D(float xv = 0.0f, float yv = 0.0f);
 	float modulo();

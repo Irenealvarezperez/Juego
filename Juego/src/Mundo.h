@@ -9,17 +9,18 @@
 class Mundo
 {
 public:
+	float x_ojo;
+	float y_ojo;
+	float z_ojo;
 	Mapa nivel;
 	Personaje personaje;
 	Disparo disparo;
 	ListaDisparos disparos;
+
+public:
 	void Tecla(unsigned char key);
 	void teclaEspecial(unsigned char key);
 	void Inicializa();
 	void Mueve();
 	void Dibuja();
-
-	float x_ojo;
-	float y_ojo;
-	float z_ojo;
 };
