@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Bonus.cpp" />
     <ClCompile Include="src\Disparo.cpp" />
     <ClCompile Include="src\Juego.cpp" />
     <ClCompile Include="src\ListaDisparos.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Bonus.h" />
     <ClInclude Include="src\Disparo.h" />
     <ClInclude Include="src\ListaDisparos.h" />
     <ClInclude Include="src\Mapa.h" />

@@ -24,6 +24,7 @@ void Mundo::Dibuja()
 	personaje.dibuja();
 	nivel.dibuja();
 	disparos.dibuja();
+	bonus.Dibuja();
 }
 
 void Mundo::Mueve()
@@ -32,6 +33,7 @@ void Mundo::Mueve()
 
 	personaje.mueve(t);
 	disparos.mueve(t);
+	bonus.Mueve(t);
 	if (personaje.posicion.x > 200)
 	{
 		nivel.iniciar_nivel(2);
