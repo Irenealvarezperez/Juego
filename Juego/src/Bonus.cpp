@@ -4,7 +4,7 @@
 
 Bonus::Bonus()
 {
-	lado = 0.5f;
+	lado = 1.5f;
 	aceleracion.y = -9.8f;
 }
 

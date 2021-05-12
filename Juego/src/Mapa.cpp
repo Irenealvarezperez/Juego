@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "VariablesGlobales.h"
+#include"Bonus.h"
 
 #pragma warning(disable : 4996)
 
@@ -70,6 +71,10 @@ void Mapa::dibuja()
             {
                 suelo[i][j].setPos(suelo[i][j].lado * j, Ix);
                 suelo[i][j].dibuja();
+            }
+            if (cad[i][j] == 'B') {
+                bonus.Dibuja();
+                bonus.setPos(suelo[i][j].lado*j, Ix);
             }
         }
         Ix += suelo[i][0].lado;

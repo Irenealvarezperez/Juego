@@ -1,12 +1,14 @@
 #pragma once
 
 #include "Suelo.h"
+#include "Bonus.h"
 
 class Mapa
 {
 private:
 
 public:
+	Bonus bonus;
 	static const int fila_max = 17;
 	static const int columna_max = 80;
 	Suelo suelo[fila_max + 1][columna_max + 1];
