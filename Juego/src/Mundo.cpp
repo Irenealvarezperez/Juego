@@ -23,7 +23,6 @@ void Mundo::Dibuja()
 
 	personaje.dibuja();
 	nivel.dibuja();
-	disparos.dibuja();
 }
 
 void Mundo::Mueve()
@@ -31,7 +30,6 @@ void Mundo::Mueve()
 	static const float t = FREC / 1000.0;
 
 	personaje.mueve(t);
-	disparos.mueve(t);
 	if (personaje.posicion.x > 200)
 	{
 		nivel.iniciar_nivel(2);
@@ -51,39 +49,47 @@ void Mundo::Inicializa()
 
 void Mundo::Tecla(unsigned char key)
 {
-	if (key == 'a')
+	switch (key)
+	{
+	case 'a':
 	{
 		personaje.velocidad.x -= 5;
 		if (personaje.velocidad.x < -5)
 		{
 			personaje.velocidad.x = -5;
 		}
+		break;
 	}
-	if (key == 'd')
+	case 'd':
 	{
 		personaje.velocidad.x += 5;
 		if (personaje.velocidad.x > 5)
 		{
 			personaje.velocidad.x = 5;
 		}
+		break;
 	}
-	if (key == 'w')
+	case 'w':
 	{
 		personaje.velocidad.y += 5;
 		if (personaje.velocidad.y > 5)
 		{
 			personaje.velocidad.y = 5;
 		}
+		break;
 	}
-	if (key == 's')
+	case 's':
 	{
 		personaje.velocidad.y -= 5;
 		if (personaje.velocidad.y < -5)
 		{
 			personaje.velocidad.y = -5;
 		}
+		break;
+	}
 	}
 }
+
 void Mundo::teclaEspecial(unsigned char key)
 {
 
@@ -91,18 +97,17 @@ void Mundo::teclaEspecial(unsigned char key)
 	{
 	case GLUT_KEY_UP:
 	{
-		Disparo* d = new Disparo();
-		d->setPos(personaje.posicion.x, personaje.posicion.y);
-		d->setVel(0, 10.0f);
-		disparos.agregar(d);
+		personaje.dispara(0, 10.0f);
 		break;
 	}
 	case GLUT_KEY_RIGHT:
 	{
-		Disparo* d = new Disparo();
-		d->setPos(personaje.posicion.x, personaje.posicion.y);
-		d->setVel(10.0f, 0);
-		disparos.agregar(d);
+		personaje.dispara(10.0f, 0);
+		break;
+	}
+	case GLUT_KEY_LEFT:
+	{
+		personaje.dispara(-10.0f, 0);
 		break;
 	}
 	}

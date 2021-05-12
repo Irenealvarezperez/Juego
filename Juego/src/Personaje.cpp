@@ -20,6 +20,8 @@ void Personaje::dibuja()
 	glTranslatef(posicion.x, posicion.y, 0);
 	glutSolidSphere(radio, 20, 2);
 	glPopMatrix();
+
+	disparos.dibuja();
 }
 
 void Personaje::mueve(float t)
@@ -39,4 +41,14 @@ void Personaje::mueve(float t)
 	{
 		posicion.y = 46;
 	}
+
+	disparos.mueve(t);
+}
+
+void Personaje::dispara(float vx, float vy)
+{
+	Disparo* d = new Disparo();
+	d->setPos(posicion.x, posicion.y);
+	d->setVel(vx, vy);
+	disparos.agregar(d);
 }
