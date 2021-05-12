@@ -5,7 +5,6 @@
 #include "Mapa.h"
 #include "Disparo.h"
 #include "ListaDisparos.h"
-#include "Bonus.h"
 
 class Mundo
 {
@@ -14,7 +13,6 @@ public:
 	Personaje personaje;
 	Disparo disparo;
 	ListaDisparos disparos;
-	Bonus bonus;
 	void Tecla(unsigned char key);
 	void teclaEspecial(unsigned char key);
 	void Inicializa();
