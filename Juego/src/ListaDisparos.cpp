@@ -30,4 +30,7 @@ void ListaDisparos::dibuja() {
 		
 	}
 }
+ListaDisparos::~ListaDisparos() {
+	destruirContenido();
+}
 

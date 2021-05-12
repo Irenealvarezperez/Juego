@@ -24,5 +24,4 @@ public:
 	float z_ojo;
 
 	
-	virtual ~Mundo();
 };

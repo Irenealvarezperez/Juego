@@ -107,6 +107,3 @@ void Mundo::teclaEspecial(unsigned char key)
 	}
 	}
 }
-	Mundo::~Mundo() {
-		disparos.destruirContenido();
-	}
