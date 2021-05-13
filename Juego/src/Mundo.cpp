@@ -34,8 +34,7 @@ void Mundo::Mueve()
 	if (personaje.posicion.x > 200)
 	{
 		nivel.iniciar_nivel(2);
-		personaje.posicion.x = 2;
-		personaje.posicion.y = 4;
+		personaje.setPos(2, 4);
 	}
 	enemigos.mueve(0.025f);
 }
