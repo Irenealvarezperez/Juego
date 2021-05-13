@@ -23,6 +23,10 @@ void Mundo::Dibuja()
 
 	personaje.dibuja();
 	nivel.dibuja();
+	for (int i = 0; i < bonus->numero; i++)
+	{
+		bonus[i].Dibuja();
+	}
 	enemigos.dibuja();
 }
 
@@ -33,10 +37,14 @@ void Mundo::Mueve()
 	personaje.mueve(t);
 	if (personaje.posicion.x > 200)
 	{
-		nivel.iniciar_nivel(2);
+		nivel.inicia(2, bonus, enemigos);
 		personaje.setPos(2, 4);
 	}
-	enemigos.mueve(0.025f);
+	for (int i = 0; i < bonus->numero; i++)
+	{
+		bonus[i].Mueve(t);
+	}
+	enemigos.mueve(t);
 }
 
 void Mundo::Inicializa()
@@ -45,15 +53,7 @@ void Mundo::Inicializa()
 	y_ojo = ALTO_PANTALLA / 35.0;
 	z_ojo = 60;
 
-	nivel.iniciar_nivel(1);
-
-	Enemigo* e1 = new Enemigo(5,26,13,7,7); // enemigo 1 (altura, x, y, vx, vy)
-	e1->setColor(255, 0, 0);
-	enemigos.agregar(e1); // enemigo 1 a la lista
-	Enemigo* e2 = new Enemigo(2,50,4,5,15); // enemigo 2
-	e2->setColor(0,255, 0);
-	enemigos.agregar(e2); // enemigo 2 a la lista
-	
+	nivel.inicia(1, bonus, enemigos);
 }
 
 void Mundo::Tecla(unsigned char key)
@@ -63,37 +63,25 @@ void Mundo::Tecla(unsigned char key)
 	case 'a':
 	{
 		personaje.velocidad.x -= 5;
-		if (personaje.velocidad.x < -5)
-		{
-			personaje.velocidad.x = -5;
-		}
+		if (personaje.velocidad.x < -5) { personaje.velocidad.x = -5; }
 		break;
 	}
 	case 'd':
 	{
 		personaje.velocidad.x += 5;
-		if (personaje.velocidad.x > 5)
-		{
-			personaje.velocidad.x = 5;
-		}
+		if (personaje.velocidad.x > 5) { personaje.velocidad.x = 5; }
 		break;
 	}
 	case 'w':
 	{
 		personaje.velocidad.y += 5;
-		if (personaje.velocidad.y > 5)
-		{
-			personaje.velocidad.y = 5;
-		}
+		if (personaje.velocidad.y > 5) { personaje.velocidad.y = 5; }
 		break;
 	}
 	case 's':
 	{
 		personaje.velocidad.y -= 5;
-		if (personaje.velocidad.y < -5)
-		{
-			personaje.velocidad.y = -5;
-		}
+		if (personaje.velocidad.y < -5) { personaje.velocidad.y = -5; }
 		break;
 	}
 	}

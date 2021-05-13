@@ -15,6 +15,8 @@ public:
 	Bonus();
 	virtual ~Bonus();
 
+	int numero = 0;
+
 	void Dibuja();
 	void Mueve(float t);
 	void setPos(float ix, float iy);
