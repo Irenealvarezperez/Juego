@@ -160,6 +160,7 @@
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
     <ClCompile Include="src\Juego.cpp" />
+    <ClCompile Include="src\ListaBonus.cpp" />
     <ClCompile Include="src\ListaDisparos.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
     <ClCompile Include="src\Mapa.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="src\Disparo.h" />
     <ClInclude Include="src\Enemigo.h" />
     <ClInclude Include="src\Interaccion.h" />
+    <ClInclude Include="src\ListaBonus.h" />
     <ClInclude Include="src\ListaDisparos.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
     <ClInclude Include="src\Mapa.h" />

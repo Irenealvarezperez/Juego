@@ -23,10 +23,7 @@ void Mundo::Dibuja()
 
 	personaje.dibuja();
 	nivel.dibuja();
-	for (int i = 0; i < bonus->numero; i++)
-	{
-		bonus[i].Dibuja();
-	}
+	bonus.dibuja();
 	enemigos.dibuja();
 }
 
@@ -39,10 +36,6 @@ void Mundo::Mueve()
 	{
 		nivel.inicia(2, bonus, enemigos);
 		personaje.setPos(2, 4);
-	}
-	for (int i = 0; i < bonus->numero; i++)
-	{
-		bonus[i].Mueve(t);
 	}
 	enemigos.mueve(t);
 }

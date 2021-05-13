@@ -5,7 +5,7 @@ using namespace ETSIDI;
 
 class Bonus
 {
-private:
+protected:
 	float lado;
 	Vector2D posicion;
 	Vector2D velocidad;

@@ -4,8 +4,7 @@
 #include "Personaje.h"
 #include "Mapa.h"
 #include "ListaEnemigos.h"
-
-#define max_bonus 10
+#include "ListaBonus.h"
 
 class Mundo
 {
@@ -15,7 +14,8 @@ public:
 	float z_ojo;
 	Mapa nivel;
 	Personaje personaje;
-	Bonus bonus[max_bonus];
+	//Bonus bonus[max_bonus];
+	ListaBonus bonus;
 	ListaEnemigos enemigos;
 
 public:

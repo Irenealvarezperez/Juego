@@ -3,6 +3,7 @@
 #include "Suelo.h"
 #include "Bonus.h"
 #include "ListaEnemigos.h"
+#include "ListaBonus.h"
 
 class Mapa
 {
@@ -13,6 +14,6 @@ public:
 	char cad[fila_max + 1][columna_max + 1] = { 0 };
 
 public:
-	void inicia(int nivel, Bonus bonus[], ListaEnemigos &enemigos);
+	void inicia(int nivel, ListaBonus& bonus, ListaEnemigos &enemigos);
 	void dibuja();
 };

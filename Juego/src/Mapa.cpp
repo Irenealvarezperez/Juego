@@ -5,7 +5,7 @@
 
 #pragma warning(disable : 4996)
 
-void Mapa::inicia(int nivel, Bonus bonus[], ListaEnemigos &enemigos)
+void Mapa::inicia(int nivel, ListaBonus& bonus, ListaEnemigos &enemigos)
 {
     char c = NULL;
     FILE* fichero;
@@ -44,7 +44,7 @@ void Mapa::inicia(int nivel, Bonus bonus[], ListaEnemigos &enemigos)
         fclose(fichero);
         fichero = nullptr;
     }
-    bonus->numero = cont_bonus;
+    //bonus.numero = cont_bonus;
 
     int Iy = 0;
     for (int i = fila_max - 1; i >= 0; i--)
@@ -54,7 +54,7 @@ void Mapa::inicia(int nivel, Bonus bonus[], ListaEnemigos &enemigos)
             switch (cad[i][j])
             {
             case '#': {suelo[i][j].setPos(suelo[i][j].lado * j, Iy); break; }
-            case 'B': {bonus[--cont_bonus].setPos(suelo[i][j].lado * j, Iy); break; }
+            case 'B': {bonus.agregar(bonus.setBonus("imagenes/mascarilla.png", suelo[i][j].lado * j, Iy)); break; }
             case 'E': {enemigos.agregar(new Enemigo(5, suelo[i][j].lado * j, Iy, 0, 0)); break; }
             }
         }

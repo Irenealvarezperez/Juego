@@ -4,8 +4,8 @@
 
 Bonus::Bonus(const char* path)
 {
-	bonus = new Sprite(path, posicion.x, posicion.y, 6, 6);
-	bonus->setPos(posicion.x, posicion.y);
+	bonus = new Sprite(path, posicion.x, posicion.y, 5, 4);
+	bonus->setPos(5, 5);
 	bonus->setVel(0, 0);
 }
 
@@ -24,6 +24,5 @@ void Bonus::Mueve(float t)
 
 void Bonus::setPos(float ix, float iy)
 {
-	posicion.x = ix;
-	posicion.y = iy;
+	bonus->setPos(ix, iy);
 }
