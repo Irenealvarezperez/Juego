@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ListaDisparos.h"
 #include"ETSIDI.h"
 using namespace ETSIDI;
@@ -6,6 +7,7 @@ using namespace ETSIDI;
 
 class Enemigo
 {
+public:
 	int vida = 1;
 	unsigned char rojo;
 	unsigned char verde;
@@ -16,6 +18,7 @@ class Enemigo
 	Vector2D velocidad;
 	Vector2D aceleracion;
 	ListaDisparos disparos;
+
 public:
 	Enemigo();
 	Enemigo(float altura = 5.0, float x = 0.0, float y = 0.0, float vx = 0.0, float vy = 0.0);
@@ -28,4 +31,3 @@ public:
 
 	friend class Interaccion;
 };
-
