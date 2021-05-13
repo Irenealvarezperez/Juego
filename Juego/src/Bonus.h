@@ -10,9 +10,11 @@ private:
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
+public:
+	Sprite* bonus;
 
 public:
-	Bonus();
+	Bonus(const char* path);
 	virtual ~Bonus();
 
 	int numero = 0;

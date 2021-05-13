@@ -2,23 +2,18 @@
 #include <stdlib.h>
 #include "freeglut.h"
 
-Bonus::Bonus()
+Bonus::Bonus(const char* path)
 {
-	lado = 1.5f;
-	aceleracion.y = 0;
+	bonus = new Sprite(path, posicion.x, posicion.y, 6, 6);
+	bonus->setPos(posicion.x, posicion.y);
+	bonus->setVel(0, 0);
 }
 
 Bonus::~Bonus() {}
 
 void Bonus::Dibuja()
 {
-	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y, 0);
-	glRotatef(30, 1, 1, 1);
-	glColor3f(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX,
-		rand() / (float)RAND_MAX);
-	glutSolidCube(lado);
-	glPopMatrix();
+	bonus->draw();
 }
 
 void Bonus::Mueve(float t)
