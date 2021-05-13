@@ -3,12 +3,14 @@
 
 Suelo::Suelo()
 {
-	posicion.x = 0;
-	posicion.y = 0;
+	sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	sprite->setPos(0, 0);
 }
 
 void Suelo::dibuja()
 {
+	sprite->draw();
+	/*
 	glPushMatrix();
 	glColor3ub(227, 165, 123);
 	glTranslatef(posicion.x, posicion.y, 0);
@@ -20,12 +22,12 @@ void Suelo::dibuja()
 	glVertex2f(-lado / 2.0f, lado / 2.0f);
 	glEnd();
 	glPopMatrix();
+	*/
 }
 
 void Suelo::setPos(int x, int y)
 {
-	posicion.x = x;
-	posicion.y = y;
+	sprite->setPos(x, y);
 }
 
 float Suelo::distancia(Vector2D punto, Vector2D* direccion)

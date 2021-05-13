@@ -7,7 +7,6 @@ Personaje::Personaje()
 	sprite->setPos(2, 4);
 	sprite->setVel(0, 0);
 	aceleracion.y = 0;
-	
 }
 
 void Personaje::setPos(float x, float y)
