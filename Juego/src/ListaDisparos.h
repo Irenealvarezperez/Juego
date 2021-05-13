@@ -13,7 +13,7 @@ public:
 	ListaDisparos();
 	virtual ~ListaDisparos();
 
-	bool agregar(Disparo* d);
+	bool agregar(Disparo* d, float flip);
 	void destruirContenido();
 	void mueve(float t);
 	void dibuja();

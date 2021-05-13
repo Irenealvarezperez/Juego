@@ -13,6 +13,7 @@ private:
 	Vector2D origen;
 
 public:
+	Sprite* sprite_disparo;
 	Disparo();
 	virtual ~Disparo();
 

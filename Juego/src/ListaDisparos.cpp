@@ -8,9 +8,12 @@ ListaDisparos::ListaDisparos() {
 	}
 }
 
-bool ListaDisparos::agregar(Disparo* d) {
-	if (numero < MAX_DISPAROS)
+bool ListaDisparos::agregar(Disparo* d, float flip) {
+	if (numero < MAX_DISPAROS) {
 		lista[numero++] = d;
+		if (flip != 0)
+			d->sprite_disparo->setAngle(flip);
+	}
 	else return false;
 	return true;
 }

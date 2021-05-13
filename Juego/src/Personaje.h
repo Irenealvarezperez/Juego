@@ -23,5 +23,5 @@ public:
 	void dibuja();
 	void setPos(float x, float y);
 	void mueve(float t);
-	void dispara(float vx, float vy);
+	void dispara(float vx, float vy, float flip);
 };

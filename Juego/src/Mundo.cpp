@@ -94,17 +94,17 @@ void Mundo::teclaEspecial(unsigned char key)
 	{
 	case GLUT_KEY_UP:
 	{
-		personaje.dispara(0, 10.0f);
+		personaje.dispara(0, 10.0f, 0);
 		break;
 	}
 	case GLUT_KEY_RIGHT:
 	{
-		personaje.dispara(10.0f, 0);
+		personaje.dispara(10.0f, 0, 270);
 		break;
 	}
 	case GLUT_KEY_LEFT:
 	{
-		personaje.dispara(-10.0f, 0);
+		personaje.dispara(-10.0f, 0,90);
 		break;
 	}
 	}

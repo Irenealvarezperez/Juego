@@ -53,11 +53,11 @@ void Personaje::mueve(float t)
 	disparos.mueve(t);
 }
 
-void Personaje::dispara(float vx, float vy)
+void Personaje::dispara(float vx, float vy, float flip)
 {
 	Disparo* d = new Disparo();
 
 	d->setPos(posicion.x, posicion.y);
 	d->setVel(vx, vy);
-	disparos.agregar(d);
+	disparos.agregar(d, flip);
 }
