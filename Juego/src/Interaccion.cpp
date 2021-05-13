@@ -10,6 +10,19 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 	if (p.posicion.x < xmin)p.posicion.x = xmin;
 	if (p.posicion.y > ymax)p.posicion.y = ymax;
 	if (p.posicion.y < ymin)p.posicion.y = ymin;
+
+	/*
+	Posible forma de detectar colision con pared
+	int px = (int)p.posicion.x;//conversion de posicion a entero para aproximar la posicion al pixel del mapa donde se encuentra
+	int py = (int)p.posicion.y;
+	if (m.cad[px][py] == '#')//en un futuro se deberia hacer funcion bool 'colision' que devuelva si el personaje colisiona o no
+	{
+		p.posicion.x = px;
+		p.posicion.y = py;
+		p.velocidad={0,0}
+		p.aceleracion={0,0}
+	}
+	*/
 }
 
 bool Interaccion::rebote(Enemigo& e, Personaje p)
@@ -37,20 +50,20 @@ bool Interaccion::rebote(Enemigo& enem1, Enemigo& enem2)
 {
 	//Vector que une los centros
 	Vector2D dif = enem2.posicion - enem1.posicion;
-	float d = dif.modulo();
+	float d = dif.module();
 	float dentro1 = d - (enem1.altura + enem2.altura);//choque en vertical
 	float dentro2 = d - (enem1.ancho + enem2.ancho);//choque en horizontal
 
 	if (dentro1 < 0.0f|| dentro2<0.0f)//si hay colision
 	{
 		//Cálculo módulos y argumentos velocidades ambas bolas
-		float vel1 = enem1.velocidad.modulo();
-		float angulo1 = enem1.velocidad.argumento();
-		float vel2 = enem2.velocidad.modulo();
-		float angulo2 = enem2.velocidad.argumento();
+		float vel1 = enem1.velocidad.module();
+		float angulo1 = enem1.velocidad.argument();
+		float vel2 = enem2.velocidad.module();
+		float angulo2 = enem2.velocidad.argument();
 
 		//el argumento del vector que une los centros
-		float angd = dif.argumento();
+		float angd = dif.argument();
 
 		//Separamos los enemigos, lo que se han incrustado
 		//la mitad cada una

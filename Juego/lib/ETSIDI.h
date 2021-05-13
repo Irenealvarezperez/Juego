@@ -116,7 +116,8 @@ using namespace std;
 		bool isFlippedH() const;
 		bool isFlippedV() const;
 		void setAngle(double angle);
-		double getAngle() const; 
+		double getAngle() const;
+		Vector2D getPos() const;
 		ETSIDI_API bool collides(const Sprite &s) const;
 	
 	protected:
@@ -179,8 +180,10 @@ using namespace std;
 	}
 	inline double Sprite::getAngle() const {return _angle;}
 	inline void Sprite::setPos(float x, float y){pos.x=x;pos.y=y;}
+	inline void Sprite::setVel(float vx, float vy) { vel.x = vx; vel.y = vy; }
 	inline void Sprite::setCenter(float cx, float cy){anchor.x=cx; anchor.y=cy;} 
 	inline void Sprite::flip(bool h,bool v){horizontal_flip=h; vertical_flip=v;}
 	inline bool Sprite::isFlippedH() const{return horizontal_flip;}
 	inline bool Sprite::isFlippedV() const{return vertical_flip;}
+	inline Vector2D Sprite::getPos() const { return pos; }
 }//ETSIDI
