@@ -60,4 +60,5 @@ void Personaje::dispara(float vx, float vy, float flip)
 	d->setPos(posicion.x, posicion.y);
 	d->setVel(vx, vy);
 	disparos.agregar(d, flip);
+	
 }
