@@ -27,3 +27,27 @@ void Suelo::setPos(int x, int y)
 	posicion.x = x;
 	posicion.y = y;
 }
+
+float Suelo::distancia(Vector2D punto, Vector2D* direccion)
+{
+	//Calculo de distancia de una pared a un punto, adicionalmente
+//se modifica el valor de un vector direccion opcional que contendrá
+//el vector unitario saliente que indica la direccion de la
+//recta más corta entre el punto y el suelo.
+	Vector2D u = (punto - );
+	Vector2D v = (limite2 - limite1).unitario();
+	float longitud = (limite1 - limite2).modulo();
+	Vector2D dir;
+	float valor = u * v;
+	float distancia = 0;
+	if (valor < 0)
+		dir = u;
+	else if (valor > longitud)
+		dir = (punto - limite2);
+	else
+		dir = u - v * valor;
+	distancia = dir.modulo();
+	if (direccion != 0) //si nos dan un vector…
+		*direccion = dir.unitario();
+	return distancia;
+}

@@ -23,7 +23,7 @@ void Mundo::Dibuja()
 
 	personaje.dibuja();
 	nivel.dibuja();
-	enemigo.dibuja();
+	enemigos.dibuja();
 }
 
 void Mundo::Mueve()
@@ -37,7 +37,7 @@ void Mundo::Mueve()
 		personaje.posicion.x = 2;
 		personaje.posicion.y = 4;
 	}
-	enemigo.mueve(0.025f);
+	enemigos.mueve(0.025f);
 }
 
 void Mundo::Inicializa()
@@ -47,6 +47,14 @@ void Mundo::Inicializa()
 	z_ojo = 60;
 
 	nivel.iniciar_nivel(1);
+
+	Enemigo* e1 = new Enemigo(5,26,13,7,7); // enemigo 1 (altura, x, y, vx, vy)
+	e1->setColor(255, 0, 0);
+	enemigos.agregar(e1); // enemigo 1 a la lista
+	Enemigo* e2 = new Enemigo(2,50,4,5,15); // enemigo 2
+	e2->setColor(0,255, 0);
+	enemigos.agregar(e2); // enemigo 2 a la lista
+	
 }
 
 void Mundo::Tecla(unsigned char key)

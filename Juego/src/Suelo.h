@@ -13,4 +13,7 @@ public:
 
 	void dibuja();
 	void setPos(int x, int y);
+	float distancia(Vector2D punto, Vector2D* direccion = 0);
+
+	friend class Interaccion;
 };

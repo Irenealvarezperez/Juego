@@ -1,16 +1,17 @@
 #pragma once
 #include "Personaje.h"
 #include "Enemigo.h"
-#include "Suelo.h"
+#include "Mapa.h"
+#include<math.h>
 
 class Interaccion
 {
 public:
-	static void rebote(Personaje& p, Suelo s);
+	static void rebote(Personaje& p, Mapa m);
 	static bool rebote(Enemigo& e, Personaje p);
-	static void rebote(Enemigo& e, Suelo s);
-	static bool rebote(Enemigo& esfera1, Enemigo& esfera2);
+	static bool rebote(Enemigo& e, Suelo s);
+	static bool rebote(Enemigo& enem1, Enemigo& enem2);
 	
 };
-};
+
 

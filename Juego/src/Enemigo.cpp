@@ -8,19 +8,38 @@ Enemigo::Enemigo()
 	velocidad.y = 5.0f;
 	aceleracion.x = 3.0f;
 	aceleracion.y = -9.8f;
-	altura = 5.5f;
+	altura=ancho = 5.5f;
 }
 
 void Enemigo::dibuja()
 {
 	glTranslatef(posicion.x, posicion.y, 0);
-	glutSolidCube (altura);
+	glutSolidCube(altura);
 	glTranslatef(-posicion.x, -posicion.y, 0);
 }
 
 void Enemigo::mueve(float t)
 {
-	velocidad = velocidad + aceleracion * t;
-	posicion = posicion + velocidad * t * 0.5 * aceleracion * t * t;
-	
+	posicion = posicion - velocidad * t + aceleracion * (0.5f * t * t);
+	velocidad = velocidad - aceleracion * t;
+}
+
+void Enemigo::setColor(unsigned char r, unsigned char v, unsigned char a)
+{
+	rojo = r;
+	verde = v;
+	azul = a;
+}
+
+Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
+{
+	this->altura=altura;
+	posicion.x = x;
+	posicion.y = y;
+	velocidad.x = vx;
+	velocidad.y = vy;
+	rojo = verde = 255;
+	azul = 100; //color distinto
+	aceleracion.x = 5.0f;
+	aceleracion.y = -9.8;
 }

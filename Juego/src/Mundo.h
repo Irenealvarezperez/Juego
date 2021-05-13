@@ -3,7 +3,7 @@
 #include "Suelo.h"
 #include "Personaje.h"
 #include "Mapa.h"
-#include "Enemigo.h"
+#include "ListaEnemigos.h"
 
 class Mundo
 {
@@ -13,7 +13,7 @@ public:
 	float z_ojo;
 	Mapa nivel;
 	Personaje personaje;
-	Enemigo enemigo;
+	ListaEnemigos enemigos;
 
 public:
 	void Tecla(unsigned char key);
