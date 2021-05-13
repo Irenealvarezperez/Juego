@@ -23,6 +23,7 @@ void Mundo::Dibuja()
 
 	personaje.dibuja();
 	nivel.dibuja();
+	enemigo.dibuja();
 }
 
 void Mundo::Mueve()
@@ -36,6 +37,7 @@ void Mundo::Mueve()
 		personaje.posicion.x = 2;
 		personaje.posicion.y = 4;
 	}
+	enemigo.mueve(0.025f);
 }
 
 void Mundo::Inicializa()

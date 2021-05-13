@@ -157,8 +157,11 @@
   <ItemGroup>
     <ClCompile Include="src\Bonus.cpp" />
     <ClCompile Include="src\Disparo.cpp" />
+    <ClCompile Include="src\Enemigo.cpp" />
+    <ClCompile Include="src\Interaccion.cpp" />
     <ClCompile Include="src\Juego.cpp" />
     <ClCompile Include="src\ListaDisparos.cpp" />
+    <ClCompile Include="src\ListaEnemigos.cpp" />
     <ClCompile Include="src\Mapa.cpp" />
     <ClCompile Include="src\Mundo.cpp" />
     <ClCompile Include="src\Personaje.cpp" />
@@ -168,7 +171,10 @@
   <ItemGroup>
     <ClInclude Include="src\Bonus.h" />
     <ClInclude Include="src\Disparo.h" />
+    <ClInclude Include="src\Enemigo.h" />
+    <ClInclude Include="src\Interaccion.h" />
     <ClInclude Include="src\ListaDisparos.h" />
+    <ClInclude Include="src\ListaEnemigos.h" />
     <ClInclude Include="src\Mapa.h" />
     <ClInclude Include="src\Mundo.h" />
     <ClInclude Include="src\Personaje.h" />
