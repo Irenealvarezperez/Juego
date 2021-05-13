@@ -1,8 +1,9 @@
 #pragma once
+
 #include "Personaje.h"
 #include "Enemigo.h"
 #include "Mapa.h"
-#include<math.h>
+#include <math.h>
 
 class Interaccion
 {
@@ -11,7 +12,4 @@ public:
 	static bool rebote(Enemigo& e, Personaje p);
 	static bool rebote(Enemigo& e, Suelo s);
 	static bool rebote(Enemigo& enem1, Enemigo& enem2);
-	
 };
-
-

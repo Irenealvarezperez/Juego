@@ -1,14 +1,17 @@
 #pragma once
+
 #include"Enemigo.h"
 #define MAX_ENEMIGOS 100 
 
 class ListaEnemigos
 {
+public:
 	Enemigo* lista[MAX_ENEMIGOS];
-	int numero;//numero enemigos
+	int numero;	//numero enemigos
 
 public:
 	ListaEnemigos();
+
 	//virtual ~ListaEsferas();
 	bool agregar(Enemigo* e);
 	void dibuja();
@@ -20,7 +23,4 @@ public:
 	void eliminar(int index);
 	void eliminar(Enemigo* e);
 	//Enemigo* colision(Personaje& p);
-
-
 };
-
