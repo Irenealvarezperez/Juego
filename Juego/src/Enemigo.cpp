@@ -13,9 +13,11 @@ Enemigo::Enemigo()
 
 void Enemigo::dibuja()
 {
+	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
+	glColor3f(rojo, verde, azul);
 	glutSolidCube(altura);
-	glTranslatef(-posicion.x, -posicion.y, 0);
+	glPopMatrix();
 }
 
 void Enemigo::mueve(float t)
@@ -40,6 +42,6 @@ Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
 	velocidad.y = vy;
 	rojo = verde = 255;
 	azul = 100; //color distinto
-	aceleracion.x = 5.0f;
-	aceleracion.y = -9.8;
+	aceleracion.x = 0;
+	aceleracion.y = 0;
 }
