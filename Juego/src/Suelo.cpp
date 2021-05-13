@@ -4,7 +4,6 @@
 Suelo::Suelo()
 {
 	sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
-	sprite->setPos(0, 0);
 }
 
 void Suelo::dibuja()
