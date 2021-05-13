@@ -34,7 +34,7 @@ float Suelo::distancia(Vector2D punto, Vector2D* direccion)
 //se modifica el valor de un vector direccion opcional que contendrá
 //el vector unitario saliente que indica la direccion de la
 //recta más corta entre el punto y el suelo.
-	Vector2D u = (punto - );
+	Vector2D u = (punto - limite1);
 	Vector2D v = (limite2 - limite1).unitario();
 	float longitud = (limite1 - limite2).modulo();
 	Vector2D dir;

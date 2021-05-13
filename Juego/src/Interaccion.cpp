@@ -22,7 +22,7 @@ bool Interaccion::rebote(Enemigo& e, Personaje p)
 bool Interaccion::rebote(Enemigo& e, Suelo s)
 {
 	Vector2D dir;
-	float dif = s.distancia(e.posicion, &dir) - e.radio;
+	float dif = s.distancia(e.posicion, &dir) - e.altura;
 	if (dif <= 0.0f)
 	{
 		Vector2D v_inicial = e.velocidad;

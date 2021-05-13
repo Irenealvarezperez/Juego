@@ -7,6 +7,8 @@ class Suelo
 public:
 	Vector2D posicion;
 	int lado = 3;
+	Vector2D limite1;
+	Vector2D limite2;
 
 public:
 	Suelo();
