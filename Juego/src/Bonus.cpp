@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include "freeglut.h"
 
-Bonus::Bonus(const char* path)
+Bonus::Bonus(const char* path, float ancho, float alto)
 {
-	bonus = new Sprite(path, posicion.x, posicion.y, lado, lado);
+	bonus = new Sprite(path, posicion.x, posicion.y, ancho, alto);
 }
 
 Bonus::~Bonus() {}
