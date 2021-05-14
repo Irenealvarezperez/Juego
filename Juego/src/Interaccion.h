@@ -12,4 +12,6 @@ public:
 	static bool rebote(Enemigo& e, Personaje p);
 	static bool rebote(Enemigo& e, Suelo s);
 	static bool rebote(Enemigo& enem1, Enemigo& enem2);
+
+	static void choque(ListaDisparos& d, ListaEnemigos& e);
 };

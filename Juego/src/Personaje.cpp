@@ -3,10 +3,8 @@
 
 Personaje::Personaje()
 {
-	sprite = new Sprite("imagenes/mariobros.png", posicion.x,posicion.y, 5, 5);
+	sprite = new Sprite("imagenes/mariobros.png", posicion.x,posicion.y, lado, lado);
 	sprite->setPos(2, 4);
-	sprite->setVel(0, 0);
-	aceleracion.y = 0;
 }
 
 void Personaje::setPos(float x, float y)
@@ -35,18 +33,9 @@ void Personaje::mueve(float t)
 
 	
 
-	if (posicion.x < 0)
-	{
-		posicion.x = 0;
-	}
-	if (posicion.y < 0)
-	{
-		posicion.y = 0;
-	}
-	if (posicion.y > 46)
-	{
-		posicion.y = 46;
-	}
+	if (posicion.x < 0) { posicion.x = 0; }
+	if (posicion.y < 0) { posicion.y = 0; }
+	if (posicion.y > 46) { posicion.y = 46; }
 	sprite->setPos(posicion.x, posicion.y);
 	sprite->setVel(velocidad.x, velocidad.y);
 
@@ -60,5 +49,4 @@ void Personaje::dispara(float vx, float vy, float flip)
 	d->setPos(posicion.x, posicion.y);
 	d->setVel(vx, vy);
 	disparos.agregar(d, flip);
-	
 }

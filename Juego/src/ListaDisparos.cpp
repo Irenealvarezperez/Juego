@@ -39,3 +39,13 @@ void ListaDisparos::dibuja() {
 ListaDisparos::~ListaDisparos() {
 	destruirContenido();
 }
+
+void ListaDisparos::eliminar(int index)
+{
+	if ((index < 0) || (index >= numero))
+		return;
+	delete lista[index];
+	numero--;
+	for (int i = index; i < numero; i++)
+		lista[i] = lista[i + 1];
+}

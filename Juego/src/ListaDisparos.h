@@ -5,7 +5,7 @@
 
 class ListaDisparos
 {
-private:
+public:
 	Disparo* lista[MAX_DISPAROS];
 	int numero;
 
@@ -17,4 +17,5 @@ public:
 	void destruirContenido();
 	void mueve(float t);
 	void dibuja();
+	void eliminar(int index);
 };

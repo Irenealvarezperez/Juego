@@ -1,11 +1,11 @@
 #pragma once
 
-#include"Enemigo.h"
+#include "Enemigo.h"
 #define MAX_ENEMIGOS 100 
 
 class ListaEnemigos
 {
-private:
+public:
 	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;	//numero enemigos
 
@@ -22,5 +22,4 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Enemigo* e);
-	//Enemigo* colision(Personaje& p);
 };

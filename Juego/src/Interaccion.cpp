@@ -1,4 +1,5 @@
 #include "Interaccion.h"
+#include "iostream"
 //IDEA- VER SI ES NECESARIO
 
 void Interaccion::rebote(Personaje& p, Mapa m)
@@ -24,6 +25,21 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 		p.aceleracion={0,0}
 	}
 	*/
+}
+
+void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
+{
+	for (int i = 0; i < e.numero; i++)
+	{
+		for (int j = 0; j < d.numero; j++)
+		{
+			if ((e.lista[i]->getPos() - d.lista[j]->getPos()).module() <= e.lista[i]->getLado())
+			{
+				e.eliminar(i);
+				d.eliminar(j);
+			}
+		}
+	}
 }
 
 bool Interaccion::rebote(Enemigo& e, Personaje p)

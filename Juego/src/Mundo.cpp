@@ -37,7 +37,9 @@ void Mundo::mueve()
 		nivel.inicia(bonus, enemigos);
 		personaje.setPos(0, 0);
 	}
-	enemigos.mueve(t);
+	//enemigos.mueve(t);
+
+	Interaccion::choque(personaje.disparos, enemigos);
 }
 
 void Mundo::inicializa()

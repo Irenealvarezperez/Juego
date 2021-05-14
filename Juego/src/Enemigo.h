@@ -6,17 +6,14 @@ using namespace ETSIDI;
 
 class Enemigo
 {
-private:
+public:
 	int vida = 1;
-	unsigned char rojo;
-	unsigned char verde;
-	unsigned char azul;
-	float altura;
-	float ancho;
+	float altura = 4, ancho = 4;
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
 	ListaDisparos disparos;
+	Sprite* enemigo;
 
 public:
 	Enemigo();
@@ -27,6 +24,8 @@ public:
 	void mueve(float t);
 	void setVel(float vel_x, float vel_y);
 	void setColor(unsigned char r, unsigned char v, unsigned char a);
+	Vector2D getPos() { return posicion; };
+	float getLado() { return altura; };
 
 	friend class Interaccion;
 };

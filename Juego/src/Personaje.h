@@ -7,16 +7,16 @@ using namespace ETSIDI;
 class Personaje
 {
 private:
-	float radio = 2;
+	float lado = 4;
 	int vida = 3;
 	bool escudo = false;
 	Sprite* sprite;
-	ListaDisparos disparos;
 
 public:
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
+	ListaDisparos disparos;
 
 	Personaje();
 
@@ -24,4 +24,6 @@ public:
 	void setPos(float x, float y);
 	void mueve(float t);
 	void dispara(float vx, float vy, float flip);
+	float getLado() { return lado; };
+	Vector2D getPos() { return posicion; };
 };

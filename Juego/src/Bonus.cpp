@@ -23,4 +23,4 @@ void Bonus::mueve(float t)
 void Bonus::setPos(float ix, float iy)
 {
 	bonus->setPos(ix, iy);
-}
+}	
