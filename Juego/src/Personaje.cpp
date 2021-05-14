@@ -3,7 +3,7 @@
 
 Personaje::Personaje()
 {
-	sprite = new Sprite("imagenes/personaje.png", posicion.x,posicion.y, 10, 10);
+	sprite = new Sprite("imagenes/mariobros.png", posicion.x,posicion.y, 5, 5);
 	sprite->setPos(2, 4);
 	sprite->setVel(0, 0);
 	aceleracion.y = 0;
