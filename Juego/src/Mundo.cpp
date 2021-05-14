@@ -1,12 +1,9 @@
 #include "Mundo.h"
 #include "glut.h"
-#include "VariablesGlobales.h"
 
-void Mundo::Dibuja()
+void Mundo::dibuja()
 {
-	float x_pto_ojo = personaje.posicion.x;
-	static const float y_pto_ojo = ALTO_PANTALLA / 35.0;
-	static const float z_pto_ojo = 0.0;
+	x_pto_ojo = personaje.posicion.x;
 
 	x_ojo = personaje.posicion.x;
 	if (x_ojo < 42)
@@ -27,29 +24,28 @@ void Mundo::Dibuja()
 	enemigos.dibuja();
 }
 
-void Mundo::Mueve()
+void Mundo::mueve()
 {
 	static const float t = FREC / 1000.0;
 
 	personaje.mueve(t);
 	if (personaje.posicion.x > 200)
 	{
-		nivel.inicia(2, bonus, enemigos);
-		personaje.setPos(2, 4);
+		enemigos.destruirContenido();
+		bonus.destruirContenido();
+		nivel.setPantalla(2);
+		nivel.inicia(bonus, enemigos);
+		personaje.setPos(0, 0);
 	}
 	enemigos.mueve(t);
 }
 
-void Mundo::Inicializa()
+void Mundo::inicializa()
 {
-	x_ojo = 0;
-	y_ojo = ALTO_PANTALLA / 35.0;
-	z_ojo = 60;
-
-	nivel.inicia(1, bonus, enemigos);
+	nivel.inicia(bonus, enemigos);
 }
 
-void Mundo::Tecla(unsigned char key)
+void Mundo::tecla(unsigned char key)
 {
 	switch (key)
 	{

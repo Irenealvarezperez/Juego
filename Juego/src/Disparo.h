@@ -6,20 +6,20 @@ using namespace ETSIDI;
 class Disparo
 {
 private:
-	float radio;
+	float lado = 1.5;
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
 	Vector2D origen;
 
 public:
-	Sprite* sprite_disparo;
+	Sprite* disparo;
 	Disparo();
-	virtual ~Disparo();
+	~Disparo();
 
 	void dibuja();
 	void mueve(float t);
 	void setPos(float ix, float iy);
 	void setVel(float vx, float vy);
-	Vector2D getPos();
+	Vector2D getPos() { return posicion; };
 };

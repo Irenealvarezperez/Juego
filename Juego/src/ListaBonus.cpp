@@ -35,8 +35,7 @@ void ListaBonus::destruirContenido()
 void ListaBonus::dibuja()
 {
 	for (int i = 0; i < numero; i++) {
-		lista[i]->Dibuja();
-
+		lista[i]->dibuja();
 	}
 }
 

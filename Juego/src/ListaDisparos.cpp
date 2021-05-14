@@ -11,7 +11,7 @@ bool ListaDisparos::agregar(Disparo* d, float flip) {
 	if (numero < MAX_DISPAROS) {
 		lista[numero++] = d;
 		if (flip != 0)
-			d->sprite_disparo->setAngle(flip);
+			d->disparo->setAngle(flip);
 		ETSIDI::play("sonidos/disparo.mp3");
 	}
 	else return false;
@@ -33,7 +33,6 @@ void ListaDisparos::mueve(float t) {
 void ListaDisparos::dibuja() {
 	for (int i = 0; i < numero; i++) {
 		lista[i]->dibuja();
-		
 	}
 }
 

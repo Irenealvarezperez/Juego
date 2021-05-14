@@ -5,13 +5,13 @@
 
 class ListaBonus
 {
-public:
+private:
 	Bonus* lista[max_bonus];
 	int numero;
 
 public:
 	ListaBonus();
-	virtual ~ListaBonus();
+	~ListaBonus();
 
 	bool agregar(Bonus* b);
 	Bonus* setBonus(const char* path, float x, float y);

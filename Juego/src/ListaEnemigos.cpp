@@ -3,16 +3,20 @@
 
 ListaEnemigos::ListaEnemigos()
 {
-
 	numero = 0;
 	for (int i = 0; i < MAX_ENEMIGOS; i++)
 		lista[i] = 0;//punteros a 0
 }
 
+ListaEnemigos::~ListaEnemigos()
+{
+	destruirContenido();
+}
+
 bool ListaEnemigos::agregar(Enemigo* e)
 {
 	for (int i = 0; i < numero; i++)
-		if (lista[i] == e)//esfera ya existente
+		if (lista[i] == e)//enemigo ya existente
 			return false;
 
 	if (numero < MAX_ENEMIGOS)
@@ -48,7 +52,7 @@ void ListaEnemigos::rebote()
 
 void ListaEnemigos::destruirContenido()
 {
-	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
+	for (int i = 0; i < numero; i++) // destrucción de enemigos contenidas
 		delete lista[i];
 	numero = 0; // inicializa lista
 }

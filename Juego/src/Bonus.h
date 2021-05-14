@@ -6,20 +6,17 @@ using namespace ETSIDI;
 class Bonus
 {
 protected:
-	float lado;
+	float lado = 4;
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
-public:
 	Sprite* bonus;
 
 public:
 	Bonus(const char* path);
-	virtual ~Bonus();
+	~Bonus();
 
-	int numero = 0;
-
-	void Dibuja();
-	void Mueve(float t);
+	void dibuja();
+	void mueve(float t);
 	void setPos(float ix, float iy);
 };

@@ -1,10 +1,11 @@
 #include "Interaccion.h"
 //IDEA- VER SI ES NECESARIO
+
 void Interaccion::rebote(Personaje& p, Mapa m)
 {
-	float xmax = m.fila_max;
+	float xmax = m.getFila_Max();
 	float xmin = 0;
-	float ymax = m.columna_max;
+	float ymax = m.getColumna_Max();
 	float ymin = 0;
 	if (p.posicion.x > xmax)p.posicion.x = xmax;
 	if (p.posicion.x < xmin)p.posicion.x = xmin;

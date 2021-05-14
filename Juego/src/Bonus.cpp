@@ -4,19 +4,17 @@
 
 Bonus::Bonus(const char* path)
 {
-	bonus = new Sprite(path, posicion.x, posicion.y, 5, 4);
-	bonus->setPos(5, 5);
-	bonus->setVel(0, 0);
+	bonus = new Sprite(path, posicion.x, posicion.y, lado, lado);
 }
 
 Bonus::~Bonus() {}
 
-void Bonus::Dibuja()
+void Bonus::dibuja()
 {
 	bonus->draw();
 }
 
-void Bonus::Mueve(float t)
+void Bonus::mueve(float t)
 {
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;

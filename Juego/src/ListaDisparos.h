@@ -11,7 +11,7 @@ private:
 
 public:
 	ListaDisparos();
-	virtual ~ListaDisparos();
+	~ListaDisparos();
 
 	bool agregar(Disparo* d, float flip);
 	void destruirContenido();

@@ -5,16 +5,13 @@
 
 #pragma warning(disable : 4996)
 
-void Mapa::inicia(int nivel, ListaBonus& bonus, ListaEnemigos &enemigos)
+void Mapa::inicia(ListaBonus& bonus, ListaEnemigos &enemigos)
 {
+    FILE* fichero = nullptr;
     char c = NULL;
-    FILE* fichero;
-    int fila = 0;
-    int columna = 0;
+    int fila = 0, columna = 0;
 
-    int cont_suelo = 0, cont_bonus = 0;
-
-    switch (nivel)
+    switch (pantalla)
     {
     case 1: {fichero = fopen("..\\src\\Nivel1.txt", "rt"); break; }
     case 2: {fichero = fopen("..\\src\\Nivel2.txt", "rt"); break; }
@@ -35,16 +32,10 @@ void Mapa::inicia(int nivel, ListaBonus& bonus, ListaEnemigos &enemigos)
                 columna = 0;
                 fila++;
             }
-            switch (c)
-            {
-            case '#': {cont_suelo++; break; }
-            case 'B': {cont_bonus++; break; }
-            }
         }
         fclose(fichero);
         fichero = nullptr;
     }
-    //bonus.numero = cont_bonus;
 
     int Iy = 0;
     for (int i = fila_max - 1; i >= 0; i--)

@@ -10,14 +10,14 @@ private:
 	float radio = 2;
 	int vida = 3;
 	bool escudo = false;
-public:
-	Vector2D posicion;
-	Vector2D velocidad;
-	Vector2D aceleracion;
 	Sprite* sprite;
 	ListaDisparos disparos;
 
 public:
+	Vector2D posicion;
+	Vector2D velocidad;
+	Vector2D aceleracion;
+
 	Personaje();
 
 	void dibuja();

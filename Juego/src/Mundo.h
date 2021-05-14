@@ -5,13 +5,12 @@
 #include "Mapa.h"
 #include "ListaEnemigos.h"
 #include "ListaBonus.h"
+#include "VariablesGlobales.h"
 
 class Mundo
 {
-public:
-	float x_ojo;
-	float y_ojo;
-	float z_ojo;
+private:
+	const float y_ojo = ALTO_PANTALLA / 35.0, z_ojo = 60.0f, y_pto_ojo = ALTO_PANTALLA / 35.0, z_pto_ojo = 0.0;
 	Mapa nivel;
 	Personaje personaje;
 	//Bonus bonus[max_bonus];
@@ -19,9 +18,10 @@ public:
 	ListaEnemigos enemigos;
 
 public:
-	void Tecla(unsigned char key);
+	float x_ojo, x_pto_ojo;
+	void tecla(unsigned char key);
 	void teclaEspecial(unsigned char key);
-	void Inicializa();
-	void Mueve();
-	void Dibuja();
+	void inicializa();
+	void mueve();
+	void dibuja();
 };

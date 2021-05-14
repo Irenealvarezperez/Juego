@@ -3,11 +3,10 @@
 #include "ListaDisparos.h"
 #include"ETSIDI.h"
 using namespace ETSIDI;
-//#include<freeglut.h>
 
 class Enemigo
 {
-public:
+private:
 	int vida = 1;
 	unsigned char rojo;
 	unsigned char verde;

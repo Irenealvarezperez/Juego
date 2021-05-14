@@ -5,14 +5,14 @@
 
 class ListaEnemigos
 {
-public:
+private:
 	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;	//numero enemigos
 
 public:
 	ListaEnemigos();
+	~ListaEnemigos();
 
-	//virtual ~ListaEsferas();
 	bool agregar(Enemigo* e);
 	void dibuja();
 	void mueve(float t);

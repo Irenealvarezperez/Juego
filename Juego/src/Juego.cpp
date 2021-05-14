@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 	glutSpecialFunc(onSpecialKeyboardDown);
 
-	mundo.Inicializa();
+	mundo.inicializa();
 	//ETSIDI::play("sonidos/JasonMraz93Milles.mp3");
 
 	//pasarle el control a GLUT,que llamara a los callbacks
@@ -54,7 +54,7 @@ void OnDraw(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	mundo.Dibuja();
+	mundo.dibuja();
 
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
@@ -62,7 +62,7 @@ void OnDraw(void)
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
-	mundo.Tecla(key);
+	mundo.tecla(key);
 
 	glutPostRedisplay();
 }
@@ -77,7 +77,7 @@ void onSpecialKeyboardDown(int key, int x, int y)
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
-	mundo.Mueve();
+	mundo.mueve();
 
 	//no borrar estas lineas
 	glutTimerFunc(FREC, OnTimer, 0);
