@@ -22,7 +22,7 @@ void Personaje::dibuja()
 		if (sprite->getState() < 5 || sprite->getState() > 8) sprite->setState(5, false);
 	}
 	if (velocidad.x < -0.01) {
-		if (sprite->getState() < 2 || sprite->getState()>4) sprite->setState(2, false);
+		if (sprite->getState() < 1 || sprite->getState()>4) sprite->setState(1, false);
 	}
 	if (velocidad.x <= 0.01 && velocidad.x >= -0.01) sprite->setState(6, false);
 
