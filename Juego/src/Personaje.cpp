@@ -1,9 +1,9 @@
 #include "Personaje.h"
-
+#include"VariablesGlobales.h"
 
 Personaje::Personaje()
 {
-	sprite = new Sprite("imagenes/mariobros.png", posicion.x,posicion.y, lado, lado);
+	sprite = new SpriteSequence("imagenes/personaje.png",5,4,200,true, posicion.x,posicion.y, lado, lado,6);
 	sprite->setPos(2, 4);
 }
 
@@ -14,6 +14,18 @@ void Personaje::setPos(float x, float y)
 
 void Personaje::dibuja()
 {
+	glPushMatrix();
+	glTranslatef(posicion.x, posicion.y, 0);
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	if (velocidad.x > 0.01) {
+		if (sprite->getState() < 5 || sprite->getState() > 8) sprite->setState(5, false);
+	}
+	if (velocidad.x < -0.01) {
+		if (sprite->getState() < 2 || sprite->getState()>4) sprite->setState(2, false);
+	}
+	if (velocidad.x <= 0.01 && velocidad.x >= -0.01) sprite->setState(6, false);
+
 	sprite->draw();
 
 	//glPushMatrix();
@@ -23,6 +35,7 @@ void Personaje::dibuja()
 	//glPopMatrix();
 
 	disparos.dibuja();
+	glPopMatrix();
 }
 
 void Personaje::mueve(float t)
@@ -31,7 +44,7 @@ void Personaje::mueve(float t)
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
 
-	
+	sprite->loop();
 
 	if (posicion.x < 0) { posicion.x = 0; }
 	if (posicion.y < 0) { posicion.y = 0; }

@@ -7,10 +7,10 @@ using namespace ETSIDI;
 class Personaje
 {
 private:
-	float lado = 4;
+	float lado = 8;
 	int vida = 3;
 	bool escudo = false;
-	Sprite* sprite;
+	SpriteSequence* sprite;
 
 public:
 	Vector2D posicion;
