@@ -18,9 +18,9 @@ bool ListaBonus::agregar(Bonus* b)
 	return true;
 }
 
-Bonus* ListaBonus::setBonus(const char* path, float x, float y)
+Bonus* ListaBonus::setBonus(const char* path, float x, float y, float ancho, float alto)
 {
-	Bonus* bonus = new Bonus(path);
+	Bonus* bonus = new Bonus(path, ancho, alto);
 	bonus->setPos(x, y);
 	return bonus;
 }

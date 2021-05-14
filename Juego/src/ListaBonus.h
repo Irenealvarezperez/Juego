@@ -14,7 +14,7 @@ public:
 	~ListaBonus();
 
 	bool agregar(Bonus* b);
-	Bonus* setBonus(const char* path, float x, float y);
+	Bonus* setBonus(const char* path, float x, float y, float ancho, float alto);
 	void destruirContenido();
 	void dibuja();
 };
