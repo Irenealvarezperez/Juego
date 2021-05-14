@@ -20,4 +20,5 @@ public:
 	const int getFila_Max() { return fila_max; };
 	const int getColumna_Max() { return columna_max; };
 	void setPantalla(int nivel) { pantalla = nivel; };
+	friend class Interaccion;
 };

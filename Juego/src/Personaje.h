@@ -26,4 +26,5 @@ public:
 	void dispara(float vx, float vy, float flip);
 	float getLado() { return lado; };
 	Vector2D getPos() { return posicion; };
+	friend class Interaccion;
 };

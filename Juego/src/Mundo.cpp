@@ -1,6 +1,7 @@
 #include "Mundo.h"
 #include "glut.h"
-
+#include <Windows.h>
+#include <stdio.h>
 void Mundo::dibuja()
 {
 	x_pto_ojo = personaje.posicion.x;
@@ -35,11 +36,11 @@ void Mundo::mueve()
 		bonus.destruirContenido();
 		nivel.setPantalla(2);
 		nivel.inicia(bonus, enemigos);
-		personaje.setPos(0, 0);
 	}
 	//enemigos.mueve(t);
 
 	Interaccion::choque(personaje.disparos, enemigos);
+	Interaccion::rebote(personaje, nivel);
 }
 
 void Mundo::inicializa()
@@ -54,28 +55,68 @@ void Mundo::tecla(unsigned char key)
 	case 'a':
 	{
 		personaje.velocidad.x -= 5;
-		if (personaje.velocidad.x < -5) { personaje.velocidad.x = -5; }
+		if (personaje.velocidad.x < -5)
+		{
+			personaje.velocidad.x = -5;
+		}
 		break;
 	}
 	case 'd':
 	{
 		personaje.velocidad.x += 5;
-		if (personaje.velocidad.x > 5) { personaje.velocidad.x = 5; }
+		if (personaje.velocidad.x > 5)
+		{
+			personaje.velocidad.x = 5;
+		}
 		break;
 	}
 	case 'w':
 	{
 		personaje.velocidad.y += 5;
-		if (personaje.velocidad.y > 5) { personaje.velocidad.y = 5; }
+		if (personaje.velocidad.y > 5)
+		{
+			personaje.velocidad.y = 5;
+		}
 		break;
 	}
 	case 's':
 	{
 		personaje.velocidad.y -= 5;
-		if (personaje.velocidad.y < -5) { personaje.velocidad.y = -5; }
+		if (personaje.velocidad.y < -5)
+		{
+			personaje.velocidad.y = -5;
+		}
 		break;
 	}
 	}
+	/*
+	intento de hacer que no se mueva el personaje sin pulsar ninguna tecla
+	if(GetAsyncKeyState(0x41) & 0x8000)
+	{
+		personaje.velocidad.x = -5;
+	}
+	if(GetAsyncKeyState(0x44) & 0x8000)
+	{
+		personaje.velocidad.x = 5;
+	}
+	if (GetAsyncKeyState(0x57) & 0x8000)
+	{
+		personaje.velocidad.y = +5;
+	}
+	if((GetAsyncKeyState(0x53) & 0x8000))
+	{
+		personaje.velocidad.y = -5;
+	}
+	//if ((GetAsyncKeyState(0x41) & 0x01))
+	//if ((!(GetAsyncKeyState(0x41) & 0x8000) && !(GetAsyncKeyState(0x44) & 0x8000) && !(GetAsyncKeyState(0x53) & 0x8000) && !(GetAsyncKeyState(0x57) & 0x8000)))
+	//if (((GetAsyncKeyState(0x41) & 0x0001) && (GetAsyncKeyState(0x44) & 0x0001) && (GetAsyncKeyState(0x53) & 0x0001) && (GetAsyncKeyState(0x57) & 0001)))
+	if ((!(GetKeyState(0x41) & 0x8000) && !(GetKeyState(0x44) & 0x8000) && !(GetKeyState(0x53) & 0x8000) && !(GetKeyState(0x57) & 0x8000)))
+	{
+		personaje.velocidad.x = 0;
+		personaje.velocidad.y = 0;
+	}*/
+
+	
 }
 
 void Mundo::teclaEspecial(unsigned char key)

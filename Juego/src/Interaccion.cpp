@@ -13,18 +13,27 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 	if (p.posicion.y > ymax)p.posicion.y = ymax;
 	if (p.posicion.y < ymin)p.posicion.y = ymin;
 
+
 	/*
-	Posible forma de detectar colision con pared
-	int px = (int)p.posicion.x;//conversion de posicion a entero para aproximar la posicion al pixel del mapa donde se encuentra
-	int py = (int)p.posicion.y;
-	if (m.cad[px][py] == '#')//en un futuro se deberia hacer funcion bool 'colision' que devuelva si el personaje colisiona o no
+	//intento de hacer choque de personaje con suelos
+	Vector2D dir;
+	int px =(int) p.posicion.x;//conversion de posicion a entero para aproximar la posicion al pixel del mapa donde se encuentra
+	int py =(int) p.posicion.y;
+
+	if (m.cad[px][py] == '#')
 	{
-		p.posicion.x = px;
-		p.posicion.y = py;
-		p.velocidad={0,0}
-		p.aceleracion={0,0}
+		if (px == p.posicion.x && py == p.posicion.y)
+		{
+			float dif = m.suelo[px][py].distancia(p.posicion, &dir) - 1.5*p.lado;
+			if (dif <= 0.0f)
+			{
+				p.sprite->setPos(p.posicion.x, p.posicion.y);
+				p.sprite->setVel(0, 0);
+			}
+		}
 	}
 	*/
+	
 }
 
 void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
