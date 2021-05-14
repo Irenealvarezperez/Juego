@@ -3,7 +3,7 @@
 
 Personaje::Personaje()
 {
-	sprite = new SpriteSequence("imagenes/personaje.png",5,4,200,true, posicion.x,posicion.y, lado, lado,6);
+	sprite = new SpriteSequence("imagenes/personaje.png", 5, 4, 200, true, posicion.x, posicion.y, lado, lado, 6);
 	sprite->setPos(2, 4);
 }
 
@@ -14,10 +14,6 @@ void Personaje::setPos(float x, float y)
 
 void Personaje::dibuja()
 {
-	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y, 0);
-	glColor3f(1.0f, 1.0f, 1.0f);
-
 	if (velocidad.x > 0.01) {
 		if (sprite->getState() < 5 || sprite->getState() > 8) sprite->setState(5, false);
 	}
@@ -28,14 +24,7 @@ void Personaje::dibuja()
 
 	sprite->draw();
 
-	//glPushMatrix();
-	//glColor3ub(0, 255, 0);
-	//glTranslatef(posicion.x, posicion.y, 0);
-	//glutSolidSphere(radio, 20, 2);
-	//glPopMatrix();
-
 	disparos.dibuja();
-	glPopMatrix();
 }
 
 void Personaje::mueve(float t)
