@@ -5,7 +5,7 @@
 
 class ListaEnemigos
 {
-public:
+private:
 	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;	//numero enemigos
 

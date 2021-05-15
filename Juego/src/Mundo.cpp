@@ -37,10 +37,10 @@ void Mundo::mueve()
 		nivel.setPantalla(2);
 		nivel.inicia(bonus, enemigos);
 	}
-	//enemigos.mueve(t);
+	enemigos.mueve(t);
 
-	Interaccion::choque(personaje.disparos, enemigos);
-	Interaccion::rebote(personaje, nivel);
+	//Interaccion::choque(personaje.disparos, enemigos);
+	//Interaccion::rebote(personaje, nivel);
 }
 
 void Mundo::inicializa()

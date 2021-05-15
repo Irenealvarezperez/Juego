@@ -35,7 +35,7 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 	*/
 	
 }
-
+/*
 void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 {
 	for (int i = 0; i < e.numero; i++)
@@ -50,7 +50,7 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 		}
 	}
 }
-
+*/
 bool Interaccion::rebote(Enemigo& e, Personaje p)
 {
 	

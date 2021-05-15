@@ -51,7 +51,7 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos &enemigos)
             case 'B': {bonus.agregar(bonus.setBonus("imagenes/botiquin.png", suelo[i][j].lado * j, Iy, 7, 4)); break; } //bonus botiquin
             case 'S': {bonus.agregar(bonus.setBonus("imagenes/escudo.png", suelo[i][j].lado * j, Iy, 5, 6)); break; } //bonus escudo
             case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", suelo[i][j].lado * j, Iy, 5, 5)); break; } //bonus espiral
-            case 'E': {enemigos.agregar(new Enemigo(5, suelo[i][j].lado * j, Iy, 0, 0)); break; }
+            case 'E': {enemigos.agregar(new Enemigo(5, suelo[i][j].lado * j, Iy, 5, 5)); break; }
             }
         }
         Iy += suelo[i][0].lado;

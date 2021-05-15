@@ -3,12 +3,21 @@
 
 Enemigo::Enemigo()
 {
-	enemigo = new Sprite("imagenes/enemigo.png", posicion.x, posicion.y, altura, altura);
+	rojo = verde = azul = 255; //blanco por defecto
+	velocidad.x = 5.0f;
+	velocidad.y = 5.0f;
+	aceleracion.x = 3.0f;
+	aceleracion.y = -9.8f;
+	altura = ancho = 5.5f;
 }
 
 void Enemigo::dibuja()
 {
-	enemigo->draw();
+	glPushMatrix();
+	glTranslatef(posicion.x, posicion.y, 0);
+	glColor3f(rojo, verde, azul);
+	glutSolidCube(altura);
+	glPopMatrix();
 }
 
 void Enemigo::mueve(float t)
@@ -17,17 +26,22 @@ void Enemigo::mueve(float t)
 	velocidad = velocidad - aceleracion * t;
 }
 
+void Enemigo::setColor(unsigned char r, unsigned char v, unsigned char a)
+{
+	rojo = r;
+	verde = v;
+	azul = a;
+}
+
 Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
 {
-	this->altura=altura;
+	this->altura = altura;
 	posicion.x = x;
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	enemigo = new Sprite("imagenes/enemigo.png", posicion.x, posicion.y, altura, altura);
-}
-
-void Enemigo::setPos(float ix, float iy)
-{
-	enemigo->setPos(ix, iy);
+	rojo = verde = 255;
+	azul = 100; //color distinto
+	aceleracion.x = 0;
+	aceleracion.y = 0;
 }
