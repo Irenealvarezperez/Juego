@@ -14,7 +14,6 @@ public:
 	~ListaEnemigos();
 
 	bool agregar(Enemigo* e);
-	Enemigo* setEnemigo(const char* path, float ancho, float alto);
 	void dibuja();
 	void mueve(float t);
 	//void rebote(Caja caja);
@@ -23,5 +22,4 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Enemigo* e);
-
 };

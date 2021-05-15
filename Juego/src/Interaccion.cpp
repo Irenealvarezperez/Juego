@@ -1,12 +1,9 @@
 #include "Interaccion.h"
 #include "iostream"
-#include "freeglut.h"
-
 //IDEA- VER SI ES NECESARIO
 
-void Interaccion::rebote(Personaje& p, Mapa& m)
+void Interaccion::rebote(Personaje& p, Mapa m)
 {
-	/*
 	float xmax = m.getFila_Max();
 	float xmin = 0;
 	float ymax = m.getColumna_Max();
@@ -15,6 +12,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 	if (p.posicion.x < xmin)p.posicion.x = xmin;
 	if (p.posicion.y > ymax)p.posicion.y = ymax;
 	if (p.posicion.y < ymin)p.posicion.y = ymin;
+
 
 	/*
 	//intento de hacer choque de personaje con suelos
@@ -35,45 +33,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		}
 	}
 	*/
-
-	for (int i = 0; i < m.getFila_Max(); i++)
-	{
-		for (int j = 0; j < m.getColumna_Max(); j++)
-		{
-			float left = p.getPos().x - p.getAncho() / 2.0;
-			float right = p.getPos().x + p.getAncho() / 2.0;
-			float top = p.getPos().y + p.getAlto() / 2.0;
-			float bottom = p.getPos().y - p.getAlto() / 2.0;
-
-			float r_left = m.suelo[i][j].getPos().x - m.suelo[i][j].getLado() / 2.0;
-			float r_right = m.suelo[i][j].getPos().x + m.suelo[i][j].getLado() / 2.0;
-			float r_top = m.suelo[i][j].getPos().y + m.suelo[i][j].getLado() / 2.0;
-			float r_bottom = m.suelo[i][j].getPos().y - m.suelo[i][j].getLado() / 2.0;
-
-			static float v_x = p.velocidad.x;
-			static float v_y = p.velocidad.y;
-
-			if (right > r_left && left < r_right && top > r_bottom && bottom < r_top)
-			{
-				if (right > r_left && p.velocidad.x > 0)
-				{
-					p.velocidad.x = 0;
-				}
-				if (left < r_right && p.velocidad.x < 0)
-				{
-					p.velocidad.x = 0;
-				}
-				if (top > r_bottom && p.velocidad.y > 0)
-				{
-					p.velocidad.y = 0;
-				}
-				if (bottom < r_top && p.velocidad.y < 0)
-				{
-					p.velocidad.y = 0;
-				}
-			}
-		}
-	}
+	
 }
 
 void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
@@ -101,7 +61,7 @@ bool Interaccion::rebote(Enemigo& e, Personaje p)
 bool Interaccion::rebote(Enemigo& e, Suelo s)
 {
 	Vector2D dir;
-	float dif = s.distancia(e.posicion, &dir) - e.alto;
+	float dif = s.distancia(e.posicion, &dir) - e.altura;
 	if (dif <= 0.0f)
 	{
 		Vector2D v_inicial = e.velocidad;
@@ -117,7 +77,7 @@ bool Interaccion::rebote(Enemigo& enem1, Enemigo& enem2)
 	//Vector que une los centros
 	Vector2D dif = enem2.posicion - enem1.posicion;
 	float d = dif.module();
-	float dentro1 = d - (enem1.alto + enem2.alto);//choque en vertical
+	float dentro1 = d - (enem1.altura + enem2.altura);//choque en vertical
 	float dentro2 = d - (enem1.ancho + enem2.ancho);//choque en horizontal
 
 	if (dentro1 < 0.0f|| dentro2<0.0f)//si hay colision
@@ -162,8 +122,8 @@ bool Interaccion::rebote(Enemigo& enem1, Enemigo& enem2)
 		float v2x = u2x;
 
 		//en el eje Y, rebote elastico
-		float m1 = enem1.alto;//
-		float m2 = enem2.alto;//
+		float m1 = enem1.altura;//
+		float m2 = enem2.altura;//
 		float py = m1 * u1y + m2 * u2y;//Cantidad de movimiento inicial ejey
 		float ey = m1 * u1y * u1y + m2 * u2y * u2y;//Energia cinetica inicial ejey
 

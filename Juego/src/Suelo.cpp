@@ -3,25 +3,17 @@
 
 Suelo::Suelo()
 {
-	sprite_suelo = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	personaje = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
 }
 
 void Suelo::dibuja()
 {
-	glPushMatrix();
-	glColor3d(255, 0, 0);
-	glTranslatef(posicion.x, posicion.y, 0);
-	glutSolidSphere(0.25, 50, 50);
-	glPopMatrix();
-
-	sprite_suelo->draw();
+	personaje->draw();
 }
 
 void Suelo::setPos(int x, int y)
 {
-	posicion.x = x;
-	posicion.y = y;
-	sprite_suelo->setPos(x, y);
+	personaje->setPos(x, y);
 }
 
 float Suelo::distancia(Vector2D punto, Vector2D* direccion)

@@ -23,7 +23,6 @@ void Mundo::dibuja()
 	nivel.dibuja();
 	bonus.dibuja();
 	enemigos.dibuja();
-
 }
 
 void Mundo::mueve()
@@ -37,9 +36,8 @@ void Mundo::mueve()
 		bonus.destruirContenido();
 		nivel.setPantalla(2);
 		nivel.inicia(bonus, enemigos);
-		personaje.setPos(2, 4);
 	}
-	enemigos.mueve(t);
+	//enemigos.mueve(t);
 
 	Interaccion::choque(personaje.disparos, enemigos);
 	Interaccion::rebote(personaje, nivel);

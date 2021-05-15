@@ -76,10 +76,3 @@ void ListaEnemigos::eliminar(Enemigo* e)
 			return;
 		}
 }
-
-Enemigo* ListaEnemigos::setEnemigo(const char* path, float x, float y)
-{
-	Enemigo* enemigo = new Enemigo(path);
-	enemigo->setPos(x, y);
-	return enemigo;
-}
