@@ -5,7 +5,7 @@ using namespace ETSIDI;
 class Suelo
 {
 private:
-	Sprite* personaje;
+	Sprite* sprite_suelo;
 
 public:
 	Vector2D posicion;
@@ -18,6 +18,8 @@ public:
 
 	void dibuja();
 	void setPos(int x, int y);
+	Vector2D getPos() { return posicion; };
+	float getLado() { return lado; };
 	float distancia(Vector2D punto, Vector2D* direccion = 0);
 	friend class Interaccion;
 };

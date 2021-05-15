@@ -1,19 +1,39 @@
 #include "Personaje.h"
-#include"VariablesGlobales.h"
+#include "VariablesGlobales.h"
+#include "freeglut.h"
 
 Personaje::Personaje()
 {
-	sprite = new SpriteSequence("imagenes/personaje.png", 5, 4, 200, true, posicion.x, posicion.y, lado, lado, 6);
-	sprite->setPos(2, 4);
+	sprite = new SpriteSequence("imagenes/personaje.png", 5, 4, 200, true, posicion.x, posicion.y, 8, 5.5, 6);
+	sprite->setPos(50, 20);
 }
 
 void Personaje::setPos(float x, float y)
 {
+	posicion.x = x;
+	posicion.y = y;
 	sprite->setPos(x, y);
 }
 
 void Personaje::dibuja()
 {
+	glPushMatrix();
+	glColor3d(255, 0, 0);
+	glTranslatef(posicion.x, posicion.y, 0);
+	glutSolidSphere(0.25, 10, 10);
+	//glPopMatrix();
+
+	glTranslatef(0, 0, -1);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glColor3d(0, 255, 0);
+	glVertex2f(ancho / 2.0f, alto / 2.0f);
+	glVertex2f(ancho / 2.0f, -alto / 2.0f);
+	glVertex2f(-ancho / 2.0f, -alto / 2.0f);
+	glVertex2f(-ancho / 2.0f, alto / 2.0f);
+	glEnd();
+	glPopMatrix();
+
 	if (velocidad.x > 0.01) {
 		if (sprite->getState() < 5 || sprite->getState() > 8) sprite->setState(5, false);
 	}

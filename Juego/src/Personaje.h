@@ -6,8 +6,8 @@ using namespace ETSIDI;
 
 class Personaje
 {
-private:
-	float lado = 8;
+public:
+	const float ancho = 4, alto = 4;
 	int vida = 3;
 	bool escudo = false;
 	SpriteSequence* sprite;
@@ -24,7 +24,8 @@ public:
 	void setPos(float x, float y);
 	void mueve(float t);
 	void dispara(float vx, float vy, float flip);
-	float getLado() { return lado; };
+	float getAncho() { return ancho; };
+	float getAlto() { return alto; };
 	Vector2D getPos() { return posicion; };
 	friend class Interaccion;
 };
