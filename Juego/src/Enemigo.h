@@ -12,11 +12,12 @@ private:
 	unsigned char verde;
 	unsigned char azul;
 	float altura;
-	float ancho;
+	float ancho = 4;
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
 	ListaDisparos disparos;
+	Sprite* sprite;
 
 public:
 	Enemigo();
