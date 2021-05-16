@@ -15,9 +15,11 @@ private:
 public:
 	void inicia(ListaBonus& bonus, ListaEnemigos &enemigos);
 	void dibuja();
+	int getPantalla() { return pantalla; };
 	const int getFila_Max() { return fila_max; };
 	const int getColumna_Max() { return columna_max; };
 	void setPantalla(int nivel) { pantalla = nivel; };
 	friend class Interaccion;
-	friend class Suelo;
+	friend class ListaSuelos;
+	friend class Mundo;
 };

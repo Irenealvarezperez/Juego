@@ -19,5 +19,6 @@ public:
 	void eliminar(int index);
 	void eliminar(Suelo* e);
 
+	friend class Mundo;
 	friend class Interaccion; //Necesito saber el valor privado de numero de suelos
 };
