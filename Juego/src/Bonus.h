@@ -19,4 +19,5 @@ public:
 	void dibuja();
 	void mueve(float t);
 	void setPos(float ix, float iy);
+	void setVel(float vel_x, float vel_y);
 };
