@@ -5,7 +5,7 @@ using namespace ETSIDI;
 class Suelo
 {
 private:
-	Sprite* personaje;
+	Sprite* sprite;
 
 public:
 	Vector2D posicion;
