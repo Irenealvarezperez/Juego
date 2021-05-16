@@ -1,9 +1,10 @@
 #include "Suelo.h"
 #include "freeglut.h"
 
-Suelo::Suelo()
+Suelo::Suelo(int x, int y)
 {
 	sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	setPos(x, y);
 }
 
 void Suelo::dibuja()

@@ -1,17 +1,15 @@
 #pragma once
 
-#include "Suelo.h"
-#include "Bonus.h"
+#include "ListaSuelos.h"
 #include "ListaEnemigos.h"
 #include "ListaBonus.h"
 
 class Mapa
 {
 private:
-	static const int fila_max = 17;
+	static const int fila_max = 16;
 	static const int columna_max = 80;
-	Suelo suelo[fila_max + 1][columna_max + 1];
-	char cad[fila_max + 1][columna_max + 1] = { 0 };
+	ListaSuelos suelos;
 	int pantalla = 1;
 
 public:
@@ -21,4 +19,5 @@ public:
 	const int getColumna_Max() { return columna_max; };
 	void setPantalla(int nivel) { pantalla = nivel; };
 	friend class Interaccion;
+	friend class Suelo;
 };

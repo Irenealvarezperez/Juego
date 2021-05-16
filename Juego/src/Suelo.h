@@ -9,15 +9,16 @@ private:
 
 public:
 	Vector2D posicion;
-	int lado = 3;
+	static const int lado = 3;
 	Vector2D limite1;
 	Vector2D limite2;
 
 public:
-	Suelo();
+	Suelo(int x, int y);
 
 	void dibuja();
 	void setPos(int x, int y);
+	static const int getLado() { return lado; };
 	float distancia(Vector2D punto, Vector2D* direccion = 0);
 	friend class Interaccion;
 };
