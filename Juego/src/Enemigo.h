@@ -28,6 +28,8 @@ public:
 	void mueve(float t);
 	void setVel(float vel_x, float vel_y);
 	void setColor(unsigned char r, unsigned char v, unsigned char a);
+	Vector2D getPos() { return posicion; };
+	float getAncho() { return ancho; };
 
 	friend class Interaccion;
 };
