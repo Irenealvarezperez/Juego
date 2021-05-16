@@ -40,7 +40,7 @@ void Mundo::mueve()
 	enemigos.mueve(t);
 	bonus.mueve(t);
 
-	//Interaccion::choque(personaje.disparos, enemigos);
+	Interaccion::choque(personaje.disparos, enemigos);
 	//Interaccion::rebote(personaje, nivel);
 }
 
