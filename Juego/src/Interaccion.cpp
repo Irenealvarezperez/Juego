@@ -35,14 +35,14 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 	*/
 	
 }
-/*
+
 void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 {
 	for (int i = 0; i < e.numero; i++)
 	{
 		for (int j = 0; j < d.numero; j++)
 		{
-			if ((e.lista[i]->getPos() - d.lista[j]->getPos()).module() <= e.lista[i]->getLado())
+			if ((e.lista[i]->getPos() - d.lista[j]->getPos()).module() <= e.lista[i]->getAncho())
 			{
 				e.eliminar(i);
 				d.eliminar(j);
@@ -50,7 +50,7 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 		}
 	}
 }
-*/
+
 bool Interaccion::rebote(Enemigo& e, Personaje p)
 {
 	
