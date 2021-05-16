@@ -18,4 +18,6 @@ public:
 	void mueve(float t);
 	void dibuja();
 	void eliminar(int index);
+
+	friend class Interaccion; //Necesito saber el valor privado de numero de disparos
 };
