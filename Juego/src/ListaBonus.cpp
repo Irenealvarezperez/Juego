@@ -42,3 +42,9 @@ void ListaBonus::dibuja()
 ListaBonus::~ListaBonus() {
 	destruirContenido();
 }
+
+void ListaBonus::mueve(float t)
+{
+	for (int i = 0; i < numero; i++)
+		lista[i]->mueve(t);
+}

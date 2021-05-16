@@ -17,4 +17,5 @@ public:
 	Bonus* setBonus(const char* path, float x, float y, float ancho, float alto);
 	void destruirContenido();
 	void dibuja();
+	void mueve(float t);
 };
