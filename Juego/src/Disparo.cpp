@@ -15,18 +15,22 @@ void Disparo::dibuja()
 
 void Disparo::mueve(float t)
 {
-	posicion = disparo->getPos();
+	//posicion = disparo->getPos(); //Sobra,comprobado
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
-	disparo->setPos(posicion.x, posicion.y);
-	disparo->setVel(velocidad.x, velocidad.y);
+
+	setPos(posicion.x, posicion.y);
+	setVel(velocidad.x, velocidad.y);
 }
 
 void Disparo::setPos(float ix, float iy) {
+	posicion.x = ix;
+	posicion.y = iy;
 	disparo->setPos(ix, iy);
 }
 
 void Disparo::setVel(float vx, float vy) {
 	velocidad.x = vx;
 	velocidad.y = vy;
+	disparo->setVel(vx, vy);
 }

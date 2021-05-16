@@ -4,12 +4,21 @@
 Personaje::Personaje()
 {
 	sprite = new SpriteSequence("imagenes/personaje.png", 5, 4, 200, true, posicion.x, posicion.y, lado, lado, 6);
-	sprite->setPos(2, 4);
+	setPos(2, 4);
 }
 
 void Personaje::setPos(float x, float y)
 {
+	posicion.x = x;
+	posicion.y = y;
 	sprite->setPos(x, y);
+}
+
+void Personaje::setVel(float vx, float vy)
+{
+	velocidad.x = vx;
+	velocidad.y = vy;
+	sprite->setVel(vx, vy);
 }
 
 void Personaje::dibuja()
@@ -29,7 +38,7 @@ void Personaje::dibuja()
 
 void Personaje::mueve(float t)
 {
-	posicion=sprite->getPos();
+	//posicion=sprite->getPos(); //Sobra, comprobado
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
 
@@ -38,8 +47,8 @@ void Personaje::mueve(float t)
 	if (posicion.x < 0) { posicion.x = 0; }
 	if (posicion.y < 0) { posicion.y = 0; }
 	if (posicion.y > 46) { posicion.y = 46; }
-	sprite->setPos(posicion.x, posicion.y);
-	sprite->setVel(velocidad.x, velocidad.y);
+	setPos(posicion.x, posicion.y);
+	setVel(velocidad.x, velocidad.y);
 
 	disparos.mueve(t);
 }

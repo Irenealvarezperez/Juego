@@ -26,12 +26,12 @@ void Enemigo::dibuja()
 
 void Enemigo::mueve(float t)
 {
-	posicion = sprite->getPos();
+	//posicion = sprite->getPos();// Sobra, comprobado
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
 
-	sprite->setPos(posicion.x, posicion.y);
-	sprite->setVel(velocidad.x, velocidad.y);
+	setPos(posicion.x, posicion.y);
+	setVel(velocidad.x, velocidad.y);
 }
 
 void Enemigo::setColor(unsigned char r, unsigned char v, unsigned char a)

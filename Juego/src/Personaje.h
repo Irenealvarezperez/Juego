@@ -22,6 +22,7 @@ public:
 
 	void dibuja();
 	void setPos(float x, float y);
+	void setVel(float vx, float vy);
 	void mueve(float t);
 	void dispara(float vx, float vy, float flip);
 	float getLado() { return lado; };

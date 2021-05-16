@@ -3,17 +3,19 @@
 
 Suelo::Suelo()
 {
-	personaje = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
 }
 
 void Suelo::dibuja()
 {
-	personaje->draw();
+	sprite->draw();
 }
 
 void Suelo::setPos(int x, int y)
 {
-	personaje->setPos(x, y);
+	posicion.x = x;
+	posicion.y = y;
+	sprite->setPos(x, y);
 }
 
 float Suelo::distancia(Vector2D punto, Vector2D* direccion)
