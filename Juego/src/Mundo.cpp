@@ -2,7 +2,8 @@
 #include "glut.h"
 #include <Windows.h>
 #include <stdio.h>
-#include "ETSIDI.h"
+
+void output(float x, float y, void* font, const char* string);
 
 void Mundo::dibuja()
 {
@@ -26,8 +27,8 @@ void Mundo::dibuja()
 	bonus.dibuja();
 	enemigos.dibuja();
 
-	ETSIDI::printxy("Aqui iran las variables del personaje, vidas y eso", x_ojo - 42, 46);
-	ETSIDI::printxy("Y aqui el tiempo", x_ojo + 30, 46);
+	output(x_ojo - 42, 46, GLUT_BITMAP_9_BY_15, "Aqui iran las variables del personaje, vidas y eso");
+	output(x_ojo + 30, 46, GLUT_BITMAP_9_BY_15, "Y aqui el tiempo");
 }
 
 void Mundo::mueve()
@@ -149,5 +150,17 @@ void Mundo::teclaEspecial(unsigned char key)
 		personaje.dispara(-10.0f, 0,90);
 		break;
 	}
+	}
+}
+
+//Posiblememnte añadir esto a una clase Texto ?
+void output(float x, float y, void* font, const char* string)
+{
+	glColor3f(0, 255, 0);
+	glRasterPos3f(x, y, 0.01);
+	int len, i;
+	len = strlen(string);
+	for (i = 0; i < len; i++) {
+		glutBitmapCharacter(font, string[i]);
 	}
 }
