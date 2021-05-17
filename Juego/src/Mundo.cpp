@@ -2,6 +2,8 @@
 #include "glut.h"
 #include <Windows.h>
 #include <stdio.h>
+#include "ETSIDI.h"
+
 void Mundo::dibuja()
 {
 	x_pto_ojo = personaje.posicion.x;
@@ -23,6 +25,9 @@ void Mundo::dibuja()
 	nivel.dibuja();
 	bonus.dibuja();
 	enemigos.dibuja();
+
+	ETSIDI::printxy("Aqui iran las variables del personaje, vidas y eso", x_ojo - 42, 46);
+	ETSIDI::printxy("Y aqui el tiempo", x_ojo + 30, 46);
 }
 
 void Mundo::mueve()

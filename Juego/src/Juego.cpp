@@ -39,6 +39,9 @@ int main(int argc, char* argv[])
 	mundo.inicializa();
 	ETSIDI::play("sonidos/Dreaming.ogg");
 
+	ETSIDI::setTextColor(0, 255, 0);
+	ETSIDI::setFont("fuentes/pixel.ttf", 16);
+
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
 
