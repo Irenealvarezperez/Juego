@@ -28,4 +28,5 @@ public:
 	float getLado() { return lado; };
 	Vector2D getPos() { return posicion; };
 	friend class Interaccion;
+	friend class Mundo;
 };
