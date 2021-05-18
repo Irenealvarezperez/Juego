@@ -13,13 +13,13 @@ void Coordinador::dibuja()
 			ANCHO_PANTALLA/35.0, ALTO_PANTALLA / 35.0, 0.0, // hacia que punto mira (0,7.5,0)
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
 		ETSIDI::setTextColor(1, 1, 0);
-		ETSIDI::setFont("fuentes/Pixel.ttf", 10);
-		ETSIDI::printxy("Juego", 4, 4);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
+		ETSIDI::printxy("Juego", 38,30);
 		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Pixel.ttf", 12);
-		ETSIDI::printxy("The creatives", 46, 10);
-		ETSIDI::setFont("fuentes/Pixel.ttf", 12);
-		ETSIDI::printxy("Pulse -e- para empezar", 10, 46);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 14);
+		ETSIDI::printxy("The creatives", 38, 18);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 18);
+		ETSIDI::printxy("Pulse -e- para empezar", 34, 24);
 	}
 	else if (estado == JUEGO)
 		mundo.dibuja();
@@ -27,20 +27,20 @@ void Coordinador::dibuja()
 	{
 		mundo.dibuja();
 		ETSIDI::setTextColor(1, 0, 0);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
 		ETSIDI::printxy("GAMEOVER: Has perdido", -5, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", -5, 5);
 	}
 	else if (estado == FIN)
 	{
 		mundo.dibuja();
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
 		ETSIDI::printxy("ENHORABUENA, ¡Has triunfado!", -5, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", -5, 9);
 	}
 	else if (estado == PAUSA) { 
 		mundo.dibuja();
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
 		ETSIDI::printxy("En pausa", -5, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", -5, 9);
 	}
