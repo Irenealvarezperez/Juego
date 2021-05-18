@@ -6,7 +6,7 @@ using namespace ETSIDI;
 class Bonus
 {
 protected:
-	float lado;
+	float lado = 4;
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
@@ -20,4 +20,6 @@ public:
 	void mueve(float t);
 	void setPos(float ix, float iy);
 	void setVel(float vel_x, float vel_y);
+	Vector2D getPos() { return posicion; };
+	float getLado() { return lado; };
 };
