@@ -41,8 +41,8 @@ void Coordinador::dibuja()
 	else if (estado == PAUSA) { 
 		mundo.dibuja();
 		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
-		ETSIDI::printxy("En pausa", -5, 10);
-		ETSIDI::printxy("Pulsa -C- para continuar", -5, 9);
+		ETSIDI::printxy("En pausa", mundo.x_pto_ojo, 40);
+		ETSIDI::printxy("Pulsa -C- para continuar", mundo.x_pto_ojo, 38);
 	}
 }
 void Coordinador::tecla(unsigned char key) {
