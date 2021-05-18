@@ -37,10 +37,7 @@ int main(int argc, char* argv[])
 	glutSpecialFunc(onSpecialKeyboardDown);
 
 	mundo.inicializa();
-	ETSIDI::play("sonidos/Dreaming.ogg");
-
-	ETSIDI::setTextColor(0, 255, 0);
-	ETSIDI::setFont("fuentes/pixel.ttf", 16);
+	ETSIDI::playMusica("sonidos/Electronic Fantasy.ogg", true);
 
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
