@@ -2,8 +2,10 @@
 #include "glut.h"
 #include <Windows.h>
 #include <stdio.h>
+#include <string>
+#include "ETSIDI.h"
 
-void output(float x, float y, void* font, const char* string);
+void texto(float x, float y, const char* string);
 
 void Mundo::dibuja()
 {
@@ -27,8 +29,20 @@ void Mundo::dibuja()
 	bonus.dibuja();
 	enemigos.dibuja();
 
-	output(x_ojo - 42, 46, GLUT_BITMAP_9_BY_15, "Aqui iran las variables del personaje, vidas y eso");
-	output(x_ojo + 30, 46, GLUT_BITMAP_9_BY_15, "Y aqui el tiempo");
+	static long int time = ETSIDI::getMillis();
+
+	string str = "Vida: ";
+	string vida = to_string(personaje.vida);
+	string str2 = "Escudo: ";
+	string escudo = to_string(personaje.escudo);
+	string str3 = "Tiempo: ";
+	string tiempo = to_string((ETSIDI::getMillis() - time) / 1000);
+	str.append(vida);
+	str2.append(escudo);
+	str3.append(tiempo);
+	texto(x_ojo - 42, 46, &str[0]);
+	texto(x_ojo - 42, 44, &str2[0]);
+	texto(x_ojo + 30, 46, &str3[0]);
 }
 
 void Mundo::mueve()
@@ -51,7 +65,7 @@ void Mundo::mueve()
 	bonus.mueve(t);
 
 	Interaccion::choque(personaje.disparos, enemigos);
-	//Interaccion::rebote(personaje, nivel);
+	Interaccion::choque(personaje, bonus);
 }
 
 void Mundo::inicializa()
@@ -97,6 +111,11 @@ void Mundo::tecla(unsigned char key)
 		{
 			personaje.velocidad.y = -5;
 		}
+		break;
+	}
+	case 't':
+	{
+		personaje.posicion.x = 150;
 		break;
 	}
 	}
@@ -154,13 +173,13 @@ void Mundo::teclaEspecial(unsigned char key)
 }
 
 //Posiblememnte añadir esto a una clase Texto ?
-void output(float x, float y, void* font, const char* string)
+void texto(float x, float y, const char* string)
 {
 	glColor3f(0, 255, 0);
 	glRasterPos3f(x, y, 0.01);
 	int len, i;
 	len = strlen(string);
 	for (i = 0; i < len; i++) {
-		glutBitmapCharacter(font, string[i]);
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, string[i]);
 	}
 }
