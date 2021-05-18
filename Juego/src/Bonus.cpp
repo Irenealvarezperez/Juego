@@ -5,7 +5,7 @@
 Bonus::Bonus(const char* path, float ancho, float alto)
 {
 	bonus = new Sprite(path, posicion.x, posicion.y, ancho, alto);
-	setVel(5, 5);
+	setVel(1, 1);
 }
 
 Bonus::~Bonus() {}
