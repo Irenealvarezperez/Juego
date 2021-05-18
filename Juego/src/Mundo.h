@@ -25,4 +25,5 @@ public:
 	void inicializa();
 	void mueve();
 	void dibuja();
+	int getVida() { return personaje.vida; };
 };

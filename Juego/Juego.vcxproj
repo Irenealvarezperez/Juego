@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Bonus.cpp" />
+    <ClCompile Include="src\Coordinador.cpp" />
     <ClCompile Include="src\Disparo.cpp" />
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Bonus.h" />
+    <ClInclude Include="src\Coordinador.h" />
     <ClInclude Include="src\Disparo.h" />
     <ClInclude Include="src\Enemigo.h" />
     <ClInclude Include="src\Interaccion.h" />

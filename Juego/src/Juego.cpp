@@ -1,9 +1,9 @@
 #include "glut.h"
-#include "Mundo.h"
+#include "Coordinador.h"
 #include "ETSIDI.h"
 #include "VariablesGlobales.h"
 
-Mundo mundo;
+Coordinador juego;
 
 //los callback, funciones que seran llamadas automaticamente por la glut
 //cuando sucedan eventos
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 	glutSpecialFunc(onSpecialKeyboardDown);
 
-	mundo.inicializa();
+	//mundo.inicializa();
 	ETSIDI::playMusica("sonidos/Electronic Fantasy.ogg", true);
 
 	//pasarle el control a GLUT,que llamara a los callbacks
@@ -54,7 +54,7 @@ void OnDraw(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	mundo.dibuja();
+	juego.dibuja();
 
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
@@ -62,14 +62,14 @@ void OnDraw(void)
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
-	mundo.tecla(key);
+	juego.tecla(key);
 
 	glutPostRedisplay();
 }
 
 void onSpecialKeyboardDown(int key, int x, int y)
 {
-	mundo.teclaEspecial(key);
+	juego.teclaEspecial(key);
 
 	glutPostRedisplay();
 }
@@ -77,7 +77,7 @@ void onSpecialKeyboardDown(int key, int x, int y)
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
-	mundo.mueve();
+	juego.mueve();
 
 	//no borrar estas lineas
 	glutTimerFunc(FREC, OnTimer, 0);
