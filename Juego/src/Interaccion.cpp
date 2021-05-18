@@ -51,6 +51,17 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 	}
 }
 
+void Interaccion::choque(Personaje& p, ListaBonus& b)
+{
+	for (int i = 0; i < b.numero; i++)
+	{
+		if ((b.lista[i]->getPos() - p.getPos()).module() <= b.lista[i]->getLado())
+		{
+			b.eliminar(i);
+		}
+	}
+}
+
 bool Interaccion::rebote(Enemigo& e, Personaje p)
 {
 	
