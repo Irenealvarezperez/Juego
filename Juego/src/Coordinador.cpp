@@ -13,12 +13,12 @@ void Coordinador::dibuja()
 			ANCHO_PANTALLA/35.0, ALTO_PANTALLA / 35.0, 0.0, // hacia que punto mira (0,7.5,0)
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
 		ETSIDI::setTextColor(1, 1, 0);
-		ETSIDI::setFont("fuentes/bitwise.ttf", 10);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 10);
 		ETSIDI::printxy("Juego", 4, 4);
 		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/bitwise.ttf", 12);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 12);
 		ETSIDI::printxy("The creatives", 46, 10);
-		ETSIDI::setFont("fuentes/bitwise.ttf", 12);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 12);
 		ETSIDI::printxy("Pulse -e- para empezar", 10, 46);
 	}
 	else if (estado == JUEGO)
