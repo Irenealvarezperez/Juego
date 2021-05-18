@@ -48,3 +48,13 @@ void ListaBonus::mueve(float t)
 	for (int i = 0; i < numero; i++)
 		lista[i]->mueve(t);
 }
+
+void ListaBonus::eliminar(int index)
+{
+	if ((index < 0) || (index >= numero))
+		return;
+	delete lista[index];
+	numero--;
+	for (int i = index; i < numero; i++)
+		lista[i] = lista[i + 1];
+}
