@@ -191,6 +191,7 @@
   <ItemGroup>
     <Text Include="src\Nivel1.txt" />
     <Text Include="src\Nivel2.txt" />
+    <Text Include="src\Registro_Niveles.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -50,17 +50,6 @@ void Mundo::mueve()
 	static const float t = FREC / 1000.0;
 
 	personaje.mueve(t);
-	if (personaje.posicion.x > 200)
-	{
-		enemigos.destruirContenido();
-		bonus.destruirContenido();
-		nivel.suelos.destruirContenido();
-		personaje.disparos.destruirContenido();
-		nivel.setPantalla(2);
-		nivel.inicia(bonus, enemigos);
-		personaje.setPos(2, 6);
-		personaje.setVel(0, 0);
-	}
 	enemigos.mueve(t);
 	bonus.mueve(t);
 

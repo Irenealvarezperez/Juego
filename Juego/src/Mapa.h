@@ -12,7 +12,9 @@ private:
 	static const int columna_max = 80;
 	ListaSuelos suelos;
 	int pantalla = 1;
-	string str = "..\\src\\Nivel.txt";
+	int pantallas_max;
+	string path = "..\\src\\Nivel0.txt";
+	string str;
 
 public:
 	void inicia(ListaBonus& bonus, ListaEnemigos &enemigos);
@@ -22,8 +24,10 @@ public:
 	const int getColumna_Max() { return columna_max; };
 	void setPantalla(int nivel) { pantalla = nivel; };
 	void crear();
+	int seleccion(int nivel);
 	
 	friend class Interaccion;
 	friend class ListaSuelos;
 	friend class Mundo;
+	friend class Coordinador;
 };

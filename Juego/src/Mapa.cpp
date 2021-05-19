@@ -21,8 +21,9 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 	default: {nombre = "1"; break; }
 	}
 
-	str.insert(12, nombre);
-	fichero = fopen(&str[0], "rt");
+	path.erase(12, 1);
+	path.insert(12, nombre);
+	fichero = fopen(&path[0], "rt");
 
 	if (fichero)
 	{
@@ -55,8 +56,6 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 		fclose(fichero);
 		fichero = nullptr;
 	}
-
-	str.erase(12, 1);
 }
 
 void Mapa::dibuja()
@@ -66,18 +65,25 @@ void Mapa::dibuja()
 
 void Mapa::crear()
 {
-	FILE* fichero = nullptr;
+	FILE* fichero = nullptr, * registro = fopen("..\\src\\Registro_Niveles.txt", "w+");
 	char c, tmp;
 	int fila, columna;
 	string nombre;
+	int num;
 
 	cout << "Introduce el nombre del nivel: ";
 	cin >> nombre;
 
-	str.insert(12, nombre);
-	fichero = fopen(&str[0], "at");
 
-	if (fichero)
+	path.insert(12, nombre);
+	fichero = fopen(&path[0], "at");
+
+	fscanf(registro, "%d", &num);
+	num++;
+	fprintf(registro, "%d", num);
+	fclose(registro);
+
+	if (fichero && registro)
 	{
 		cout << "Introduce el numero de filas y columnas: ";
 		cin >> fila >> columna;
@@ -94,4 +100,30 @@ void Mapa::crear()
 		fclose(fichero);
 		fichero = nullptr;
 	}
+}
+
+int Mapa::seleccion(int nivel)
+{
+	FILE* registro = fopen("..\\src\\Registro_Niveles.txt", "rt");
+	int puntuacion = 0;
+	char tmp;
+	char nombre[100];
+
+	if (registro)
+	{
+		fscanf(registro, "%d%c", &pantallas_max, &tmp);
+		if (nivel <= pantallas_max)
+		{
+			str = '\0';
+			for (int i = 0; i < nivel; i++)
+			{
+				nombre[0] = '\0';
+				fgets(nombre, 100, registro);
+			}
+			str.insert(0, nombre);
+			fclose(registro);
+			registro = nullptr;
+		}
+	}
+	return puntuacion;
 }
