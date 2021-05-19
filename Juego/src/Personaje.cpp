@@ -3,7 +3,7 @@
 
 Personaje::Personaje()
 {
-	sprite = new SpriteSequence("imagenes/personaje.png", 5, 4, 200, true, posicion.x, posicion.y, lado, lado, 6);
+	sprite = new SpriteSequence("imagenes/personaje2.png", 8, 5, 300, true, posicion.x, posicion.y, lado, lado, 6);
 	setPos(2, 4);
 }
 
@@ -24,12 +24,17 @@ void Personaje::setVel(float vx, float vy)
 void Personaje::dibuja()
 {
 	if (velocidad.x > 0.01) {
-		if (sprite->getState() < 5 || sprite->getState() > 8) sprite->setState(5, false);
+		sprite->flip(false, false);
+		if ( sprite->getState() > 6) sprite->setState(0, false);
 	}
 	if (velocidad.x < -0.01) {
-		if (sprite->getState() < 1 || sprite->getState()>4) sprite->setState(1, false);
+		sprite->flip(true, false);
+		if ( sprite->getState()>6) sprite->setState(0, false);
 	}
-	if (velocidad.x <= 0.01 && velocidad.x >= -0.01) sprite->setState(6, false);
+	if (velocidad.x <= 0.01 && velocidad.x>= -0.01 && velocidad.y>= -0.01 && velocidad.y<=0.01) sprite->setState(12, false);
+	if (velocidad.y > 0.01) {
+		if (sprite->getState() < 6 || sprite->getState() > 10) sprite->setState(6, false);
+	}
 
 	sprite->draw();
 

@@ -164,3 +164,6 @@ bool Interaccion::rebote(Enemigo& enem1, Enemigo& enem2)
 	}
 	return false;
 }
+void Interaccion::compruebaColision(Personaje& p1, Enemigo& p2) {
+	
+}

@@ -22,6 +22,7 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Enemigo* e);
+	int getNumero() { return numero; };
 
 	friend class Interaccion; //Necesito saber el valor privado de numero de enemigos
 };
