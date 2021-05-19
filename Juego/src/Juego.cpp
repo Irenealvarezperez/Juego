@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 	glutSpecialFunc(onSpecialKeyboardDown);
 
 	//mundo.inicializa();
-	ETSIDI::playMusica("sonidos/Electronic Fantasy.ogg", true);
+	//ETSIDI::playMusica("sonidos/Electronic Fantasy.ogg", true);
 
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
