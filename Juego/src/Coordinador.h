@@ -2,6 +2,8 @@
 #include "Mundo.h"
 class Coordinador
 {
+private:
+	long int t0;
 public:
 	Coordinador();
 	~Coordinador();

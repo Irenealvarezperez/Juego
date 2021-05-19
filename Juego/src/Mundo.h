@@ -17,6 +17,7 @@ private:
 	//Bonus bonus[max_bonus];
 	ListaBonus bonus;
 	ListaEnemigos enemigos;
+	long int time;
 
 public:
 	float x_ojo, x_pto_ojo;

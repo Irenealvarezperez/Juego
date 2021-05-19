@@ -29,14 +29,19 @@ void Mundo::dibuja()
 	bonus.dibuja();
 	enemigos.dibuja();
 
-	static long int time = ETSIDI::getMillis();
+	static float cont_time = 0;
+	if (time > 1000)
+	{
+		cont_time += 1.0 / 100.0;
+		time = 0;
+	}
 
 	string str = "Vida: ";
 	string vida = to_string(personaje.vida);
 	string str2 = "Escudo: ";
 	string escudo = to_string(personaje.escudo);
 	string str3 = "Tiempo: ";
-	string tiempo = to_string((ETSIDI::getMillis() - time) / 1000);
+	string tiempo = to_string(int(cont_time));
 	str.append(vida);
 	str2.append(escudo);
 	str3.append(tiempo);

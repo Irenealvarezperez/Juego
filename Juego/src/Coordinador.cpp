@@ -46,6 +46,8 @@ void Coordinador::dibuja()
 	}
 	else if (estado == JUEGO)
 	{
+		long int t1 = getMillis();
+		mundo.time = t1 - t0;
 		mundo.dibuja();
 		if (mundo.personaje.posicion.x > 200)
 		{
@@ -76,7 +78,8 @@ void Coordinador::dibuja()
 		ETSIDI::printxy("Pulsa -C- para continuar", 10, 5);
 		estado = SELECCION_NIVEL;
 	}
-	else if (estado == PAUSA) { 
+	else if (estado == PAUSA)
+	{
 		mundo.dibuja();
 		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
 		ETSIDI::printxy("En pausa", mundo.x_pto_ojo, 40);
@@ -112,6 +115,7 @@ void Coordinador::tecla(unsigned char key) {
 		{
 			mundo.inicializa();
 			estado = JUEGO;
+			t0 = getMillis();
 		}
 		if (key == 's')
 		{
