@@ -18,6 +18,7 @@ public:
 
 	void dibuja();
 	void setPos(int x, int y);
+	Vector2D getPos() { return posicion; };
 	static const int getLado() { return lado; };
 	float distancia(Vector2D punto, Vector2D* direccion = 0);
 	friend class Interaccion;
