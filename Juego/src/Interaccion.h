@@ -8,7 +8,7 @@
 class Interaccion
 {
 public:
-	static void rebote(Personaje& p, Mapa m);
+	static void rebote(Personaje& p, Mapa& m);
 	static bool rebote(Enemigo& e, Personaje p);
 	static bool rebote(Enemigo& e, Suelo s);
 	static bool rebote(Enemigo& enem1, Enemigo& enem2);

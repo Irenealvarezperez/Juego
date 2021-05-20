@@ -59,6 +59,7 @@ void Mundo::mueve()
 
 	Interaccion::choque(personaje.disparos, enemigos);
 	Interaccion::choque(personaje, bonus);
+	Interaccion::rebote(personaje, nivel);
 }
 
 void Mundo::inicializa()

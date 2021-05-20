@@ -2,8 +2,9 @@
 #include "iostream"
 //IDEA- VER SI ES NECESARIO
 
-void Interaccion::rebote(Personaje& p, Mapa m)
+void Interaccion::rebote(Personaje& p, Mapa& m)
 {
+	/*
 	float xmax = m.getFila_Max();
 	float xmin = 0;
 	float ymax = m.getColumna_Max();
@@ -12,7 +13,7 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 	if (p.posicion.x < xmin)p.posicion.x = xmin;
 	if (p.posicion.y > ymax)p.posicion.y = ymax;
 	if (p.posicion.y < ymin)p.posicion.y = ymin;
-
+	*/
 
 	/*
 	//intento de hacer choque de personaje con suelos
@@ -33,7 +34,41 @@ void Interaccion::rebote(Personaje& p, Mapa m)
 		}
 	}
 	*/
-	
+
+
+	for (int i = 0; i < m.suelos.numero; i++)
+	{
+		float p_izda = p.getPos().x - p.getLado() / 2.0;
+		float p_dcha = p.getPos().x + p.getLado() / 2.0;
+		float p_arriba = p.getPos().y + p.getLado() / 2.0;
+		float p_abajo = p.getPos().y - p.getLado() / 2.0;
+
+		float s_izda = m.suelos.lista[i]->getPos().x - m.suelos.lista[i]->getLado() / 2.0;
+		float s_dcha = m.suelos.lista[i]->getPos().x + m.suelos.lista[i]->getLado() / 2.0;
+		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
+		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
+
+		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
+		{
+			if (p_dcha > s_izda && p.velocidad.x > 0)
+			{
+				p.velocidad.x = 0;
+			}
+			if (p_izda < s_dcha && p.velocidad.x < 0)
+			{
+				p.velocidad.x = 0;
+			}
+			if (p_arriba > s_abajo && p.velocidad.y > 0)
+			{
+				p.velocidad.y = 0;
+			}
+			if (p_abajo < s_arriba && p.velocidad.y < 0)
+			{
+				p.velocidad.y = 0;
+			}
+		}
+	}
+
 }
 
 void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
@@ -64,7 +99,7 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 
 bool Interaccion::rebote(Enemigo& e, Personaje p)
 {
-	
+
 
 	return false;
 }
@@ -91,7 +126,7 @@ bool Interaccion::rebote(Enemigo& enem1, Enemigo& enem2)
 	float dentro1 = d - (enem1.altura + enem2.altura);//choque en vertical
 	float dentro2 = d - (enem1.ancho + enem2.ancho);//choque en horizontal
 
-	if (dentro1 < 0.0f|| dentro2<0.0f)//si hay colision
+	if (dentro1 < 0.0f || dentro2 < 0.0f)//si hay colision
 	{
 		//Cálculo módulos y argumentos velocidades ambas bolas
 		float vel1 = enem1.velocidad.module();
@@ -165,5 +200,5 @@ bool Interaccion::rebote(Enemigo& enem1, Enemigo& enem2)
 	return false;
 }
 void Interaccion::compruebaColision(Personaje& p1, Enemigo& p2) {
-	
+
 }
