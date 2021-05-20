@@ -33,11 +33,6 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 			if(x<y)
 			p.posicion.y += dir.y;
 			p.velocidad.y = 0;
-			if (x==y)
-			{
-				p.posicion.x += dir.x;
-				p.posicion.y += dir.y;
-			}
 		}
 		
 		i = i + 1;

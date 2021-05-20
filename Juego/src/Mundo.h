@@ -25,7 +25,6 @@ public:
 	void teclaEspecial(unsigned char key);
 	void inicializa();
 	void mueve();
-	void Delay();
 	void dibuja();
 	int getVida() { return personaje.vida; };
 	
