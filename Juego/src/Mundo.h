@@ -14,10 +14,10 @@ private:
 	const float y_ojo = ALTO_PANTALLA / 35.0, z_ojo = 60.0f, y_pto_ojo = ALTO_PANTALLA / 35.0, z_pto_ojo = 0.0;
 	Mapa nivel;
 	Personaje personaje;
-	//Bonus bonus[max_bonus];
 	ListaBonus bonus;
 	ListaEnemigos enemigos;
 	long int time;
+	float tiempo_nivel = 0;
 
 public:
 	float x_ojo, x_pto_ojo;

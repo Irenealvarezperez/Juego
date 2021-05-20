@@ -29,10 +29,9 @@ void Mundo::dibuja()
 	bonus.dibuja();
 	enemigos.dibuja();
 
-	static float cont_time = 0;
 	if (time > 1000)
 	{
-		cont_time += 1.0 / 100.0;
+		tiempo_nivel += 1.0 / 100.0;
 		time = 0;
 	}
 
@@ -41,7 +40,7 @@ void Mundo::dibuja()
 	string str2 = "Escudo: ";
 	string escudo = to_string(personaje.escudo);
 	string str3 = "Tiempo: ";
-	string tiempo = to_string(int(cont_time));
+	string tiempo = to_string(int(tiempo_nivel));
 	str.append(vida);
 	str2.append(escudo);
 	str3.append(tiempo);
