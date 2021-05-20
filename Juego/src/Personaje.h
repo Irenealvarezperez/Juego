@@ -11,7 +11,6 @@ private:
 	int vida = 3;
 	bool escudo = false;
 	SpriteSequence* sprite;
-
 public:
 	Vector2D posicion;
 	Vector2D velocidad;

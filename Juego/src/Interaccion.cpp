@@ -4,40 +4,12 @@
 
 void Interaccion::rebote(Personaje& p, Mapa& m)
 {
-	/*
-	float xmax = m.getFila_Max();
-	float xmin = 0;
-	float ymax = m.getColumna_Max();
-	float ymin = 0;
-	if (p.posicion.x > xmax)p.posicion.x = xmax;
-	if (p.posicion.x < xmin)p.posicion.x = xmin;
-	if (p.posicion.y > ymax)p.posicion.y = ymax;
-	if (p.posicion.y < ymin)p.posicion.y = ymin;
-	*/
 
-	/*
-	//intento de hacer choque de personaje con suelos
-	Vector2D dir;
-	int px =(int) p.posicion.x;//conversion de posicion a entero para aproximar la posicion al pixel del mapa donde se encuentra
-	int py =(int) p.posicion.y;
-
-	if (m.cad[px][py] == '#')
+	//en un futuro habria que mejorar este codigo para que solo busque los suelos que hay en su direccion de movimiento o cerca suya
+	int i=0;
+	while (i < m.suelos.numero && (p.velocidad.x || p.velocidad.y))
 	{
-		if (px == p.posicion.x && py == p.posicion.y)
-		{
-			float dif = m.suelo[px][py].distancia(p.posicion, &dir) - 1.5*p.lado;
-			if (dif <= 0.0f)
-			{
-				p.sprite->setPos(p.posicion.x, p.posicion.y);
-				p.sprite->setVel(0, 0);
-			}
-		}
-	}
-	*/
 
-
-	for (int i = 0; i < m.suelos.numero; i++)
-	{
 		float p_izda = p.getPos().x - p.getLado() / 2.0;
 		float p_dcha = p.getPos().x + p.getLado() / 2.0;
 		float p_arriba = p.getPos().y + p.getLado() / 2.0;
@@ -48,26 +20,29 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
+		if(p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
 		{
-			if (p_dcha > s_izda && p.velocidad.x > 0)
+			Vector2D dir;
+			m.suelos.lista[i]->distancia(p.getPos(), &dir);
+			auto x = abs(dir.x);
+			auto y = abs(dir.y);
+			//hay bugs, claramente
+			if(x>y)
+			p.posicion.x +=dir.x;
+			p.velocidad.x = 0;
+			if(x<y)
+			p.posicion.y += dir.y;
+			p.velocidad.y = 0;
+			if (x==y)
 			{
-				p.velocidad.x = 0;
-			}
-			if (p_izda < s_dcha && p.velocidad.x < 0)
-			{
-				p.velocidad.x = 0;
-			}
-			if (p_arriba > s_abajo && p.velocidad.y > 0)
-			{
-				p.velocidad.y = 0;
-			}
-			if (p_abajo < s_arriba && p.velocidad.y < 0)
-			{
-				p.velocidad.y = 0;
+				p.posicion.x += dir.x;
+				p.posicion.y += dir.y;
 			}
 		}
+		
+		i = i + 1;
 	}
+
 
 }
 

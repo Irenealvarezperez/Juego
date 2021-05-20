@@ -4,7 +4,9 @@
 Personaje::Personaje()
 {
 	sprite = new SpriteSequence("imagenes/personaje2.png", 8, 5, 300, true, posicion.x, posicion.y, lado*2, lado*2, 6);
-	setPos(2, 4);
+	setPos(2, 6);
+	aceleracion.y = -3;
+	aceleracion.x = -0.5;
 }
 
 void Personaje::setPos(float x, float y)
@@ -44,8 +46,10 @@ void Personaje::dibuja()
 void Personaje::mueve(float t)
 {
 	//posicion=sprite->getPos(); //Sobra, comprobado
-	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
-	velocidad = velocidad + aceleracion * t;
+
+		posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+		velocidad = velocidad + aceleracion * t;
+	
 
 	sprite->loop();
 

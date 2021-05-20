@@ -5,7 +5,10 @@
 #include <string>
 #include "ETSIDI.h"
 
+
 void texto(float x, float y, const char* string);
+
+
 
 void Mundo::dibuja()
 {
@@ -73,38 +76,26 @@ void Mundo::tecla(unsigned char key)
 	{
 	case 'a':
 	{
-		personaje.velocidad.x -= 5;
-		if (personaje.velocidad.x < -5)
-		{
-			personaje.velocidad.x = -5;
-		}
+		personaje.velocidad.x = -5;
+
 		break;
 	}
 	case 'd':
 	{
-		personaje.velocidad.x += 5;
-		if (personaje.velocidad.x > 5)
-		{
-			personaje.velocidad.x = 5;
-		}
+		personaje.velocidad.x = 5;
+
 		break;
 	}
 	case 'w':
 	{
-		personaje.velocidad.y += 5;
-		if (personaje.velocidad.y > 5)
-		{
-			personaje.velocidad.y = 5;
-		}
+		personaje.velocidad.y = 5;
 		break;
 	}
 	case 's':
 	{
-		personaje.velocidad.y -= 5;
-		if (personaje.velocidad.y < -5)
-		{
-			personaje.velocidad.y = -5;
-		}
+
+		personaje.velocidad.y = -5;
+		
 		break;
 	}
 	case 't':
@@ -113,32 +104,6 @@ void Mundo::tecla(unsigned char key)
 		break;
 	}
 	}
-	/*
-	intento de hacer que no se mueva el personaje sin pulsar ninguna tecla
-	if(GetAsyncKeyState(0x41) & 0x8000)
-	{
-		personaje.velocidad.x = -5;
-	}
-	if(GetAsyncKeyState(0x44) & 0x8000)
-	{
-		personaje.velocidad.x = 5;
-	}
-	if (GetAsyncKeyState(0x57) & 0x8000)
-	{
-		personaje.velocidad.y = +5;
-	}
-	if((GetAsyncKeyState(0x53) & 0x8000))
-	{
-		personaje.velocidad.y = -5;
-	}
-	//if ((GetAsyncKeyState(0x41) & 0x01))
-	//if ((!(GetAsyncKeyState(0x41) & 0x8000) && !(GetAsyncKeyState(0x44) & 0x8000) && !(GetAsyncKeyState(0x53) & 0x8000) && !(GetAsyncKeyState(0x57) & 0x8000)))
-	//if (((GetAsyncKeyState(0x41) & 0x0001) && (GetAsyncKeyState(0x44) & 0x0001) && (GetAsyncKeyState(0x53) & 0x0001) && (GetAsyncKeyState(0x57) & 0001)))
-	if ((!(GetKeyState(0x41) & 0x8000) && !(GetKeyState(0x44) & 0x8000) && !(GetKeyState(0x53) & 0x8000) && !(GetKeyState(0x57) & 0x8000)))
-	{
-		personaje.velocidad.x = 0;
-		personaje.velocidad.y = 0;
-	}*/
 
 	
 }
