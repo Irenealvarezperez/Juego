@@ -14,12 +14,7 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 	posicion.y = fila_max * Suelo::getLado();
 	string nombre;
 
-	switch (pantalla)
-	{
-	case 1: {nombre = "1"; break; }
-	case 2: {nombre = "2"; break; }
-	default: {nombre = "1"; break; }
-	}
+	nombre = to_string(pantalla);
 
 	path.erase(12, 1);
 	path.insert(12, nombre);
@@ -65,25 +60,35 @@ void Mapa::dibuja()
 
 void Mapa::crear()
 {
-	FILE* fichero = nullptr, * registro = fopen("..\\src\\Registro_Niveles.txt", "w+");
+	FILE* fichero = nullptr, * registro = nullptr;
 	char c, tmp;
 	int fila, columna;
-	string nombre;
 	int num;
 
-	cout << "Introduce el nombre del nivel: ";
-	cin >> nombre;
-
-
-	path.insert(12, nombre);
-	fichero = fopen(&path[0], "at");
-
+	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "rt");
 	fscanf(registro, "%d", &num);
 	num++;
+	fclose(registro);
+
+	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "w+");
 	fprintf(registro, "%d", num);
 	fclose(registro);
 
-	if (fichero && registro)
+	pantallas_max++;
+	str = "\0";
+	str.insert(0, "Nivel.txt");
+	str.insert(5, to_string(pantallas_max));
+	path.erase(12, 1);
+	path.insert(12, to_string(pantallas_max));
+
+	registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "at");
+	fputs(&str[0], registro);
+	fputs("\n", registro);
+	fclose(registro);
+
+	fichero = fopen(&path[0], "w+");
+
+	if (fichero)
 	{
 		cout << "Introduce el numero de filas y columnas: ";
 		cin >> fila >> columna;
@@ -104,18 +109,25 @@ void Mapa::crear()
 
 int Mapa::seleccion(int nivel)
 {
-	FILE* registro = fopen("..\\src\\Registro_Niveles.txt", "rt");
+	FILE* registro;
 	int puntuacion = 0;
 	char tmp;
 	char nombre[100];
 
+	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "rt");
+
 	if (registro)
 	{
-		fscanf(registro, "%d%c", &pantallas_max, &tmp);
-		if (nivel <= pantallas_max)
+		estadisticas();
+		fscanf(registro, "%d", &pantallas_max);
+		fclose(registro);
+
+		registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "rt");
+
+		if (pantalla <= pantallas_max && pantalla <= pantallas_desbloqueadas)
 		{
 			str = '\0';
-			for (int i = 0; i < nivel; i++)
+			for (int i = 0; i < pantalla; i++)
 			{
 				nombre[0] = '\0';
 				fgets(nombre, 100, registro);
@@ -126,4 +138,74 @@ int Mapa::seleccion(int nivel)
 		}
 	}
 	return puntuacion;
+}
+
+void Mapa::estadisticas()
+{
+	FILE* registro = fopen("..\\src\\Registro_Estadisticas.txt", "rt");
+
+	if (registro)
+	{
+		fscanf(registro, "%d", &pantallas_desbloqueadas);
+		fclose(registro);
+		registro = nullptr;
+	}
+}
+
+void Mapa::reiniciar()
+{
+	FILE* registro;
+	int num;
+
+	registro = fopen("..\\src\\Registro_Estadisticas.txt", "wt");
+	if (registro)
+	{
+		fprintf(registro, "%d", 1);
+		fclose(registro);
+		registro = nullptr;
+	}
+
+	registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "wt");
+	if (registro)
+	{
+		fprintf(registro, "Nivel1.txt\nNivel2.txt\n");
+		fclose(registro);
+		registro = nullptr;
+	}
+
+	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "rt");
+	if (registro)
+	{
+		fscanf(registro, "%d", &num);
+		fclose(registro);
+		registro = nullptr;
+	}
+
+	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "wt");
+	if (registro)
+	{
+		fprintf(registro, "2");
+		fclose(registro);
+		registro = nullptr;
+	}
+
+	for (int i = 3; i <= num; i++)
+	{
+		string str = "..\\src\\Nivel.txt";
+		str.insert(12, &to_string(i)[0]);
+		remove(&str[0]);
+	}
+}
+
+void Mapa::sumaPantallaDesbloqueada()
+{
+	pantallas_desbloqueadas++;
+	FILE* registro = fopen("..\\src\\Registro_Estadisticas.txt", "wt");
+
+	if (registro)
+	{
+		fprintf(registro, "%d", pantallas_desbloqueadas);
+		fclose(registro);
+		registro = nullptr;
+	}
 }

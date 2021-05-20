@@ -13,6 +13,7 @@ private:
 	ListaSuelos suelos;
 	int pantalla = 1;
 	int pantallas_max;
+	int pantallas_desbloqueadas;
 	string path = "..\\src\\Nivel0.txt";
 	string str;
 
@@ -25,6 +26,9 @@ public:
 	void setPantalla(int nivel) { pantalla = nivel; };
 	void crear();
 	int seleccion(int nivel);
+	void estadisticas();
+	void sumaPantallaDesbloqueada();
+	void reiniciar();
 	
 	friend class Interaccion;
 	friend class ListaSuelos;

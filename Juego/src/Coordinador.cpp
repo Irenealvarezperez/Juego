@@ -14,13 +14,14 @@ void Coordinador::dibuja()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
 		ETSIDI::setTextColor(1, 1, 0);
 		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
-		ETSIDI::printxy("Juego", 38,30);
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Pixel.ttf", 14);
-		ETSIDI::printxy("The creatives", 38, 18);
+		ETSIDI::printxy("Juego", 10,30);
+		ETSIDI::setTextColor(0, 1, 1);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
+		ETSIDI::printxy("The creatives", 10, 25);
 		ETSIDI::setFont("fuentes/Pixel.ttf", 18);
-		//ETSIDI::printxy("Pulse -e- para empezar", 34, 24);
-		ETSIDI::printxy("Pulse -f- para seleccionar los niveles", 34, 20);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::printxy("Pulse -F- para seleccionar los niveles", 10, 15);
+		ETSIDI::printxy("Pulse -R- para reiniciar las estadisticas y los niveles creados", 10, 10);
 	}
 	else if (estado == NIVELES)
 	{
@@ -30,9 +31,7 @@ void Coordinador::dibuja()
 		ETSIDI::setTextColor(1, 1, 0);
 		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
 		ETSIDI::printxy("Seleccion de nivel", 20, 40);
-		//ETSIDI::printxy("Pulsa -e- para empezar por el nivel 1", 34, 14);
 		ETSIDI::printxy("Pulsa -s- para ver los niveles", 30, 10);
-		//ETSIDI::printxy("Pulsa -t- para crear otro nivel", 26, 6);
 	}
 	else if (estado == SELECCION_NIVEL)
 	{
@@ -40,9 +39,15 @@ void Coordinador::dibuja()
 			ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 0.0, // hacia que punto mira (0,7.5,0)
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
 		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
-		ETSIDI::printxy(&mundo.nivel.str[0], 20, 40);
-		ETSIDI::printxy("Pulsa -s- para seleccionar el siguiente nivel", 10, 10);
-		ETSIDI::printxy("Pulsa -e- para comenzar el nivel", 10, 5);
+		ETSIDI::printxy(&mundo.nivel.str[0], 10, 30);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 20);
+		ETSIDI::printxy("Pulsa -S- para seleccionar el siguiente nivel", 5, 9);
+		ETSIDI::printxy("Pulsa -A- para seleccionar el anterior nivel", 5, 6);
+		ETSIDI::printxy("Pulsa -E- para comenzar el nivel", 5, 3);
+		if (mundo.nivel.pantallas_desbloqueadas > mundo.nivel.pantallas_max)
+		{
+			ETSIDI::printxy("Pulsa -T- para crear un nivel ", 5, 0);
+		}
 	}
 	else if (estado == JUEGO)
 	{
@@ -76,7 +81,17 @@ void Coordinador::dibuja()
 		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
 		ETSIDI::printxy("ENHORABUENA, ¡Has triunfado!", 10, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", 10, 5);
-		estado = SELECCION_NIVEL;
+		mundo.tiempo_nivel = 0;
+		if (mundo.nivel.pantallas_desbloqueadas < mundo.nivel.pantallas_max)
+		{
+			mundo.nivel.sumaPantallaDesbloqueada();
+			estado = SELECCION_NIVEL;
+		}
+		else
+		{
+			mundo.nivel.sumaPantallaDesbloqueada();
+			estado = FINAL;
+		}
 	}
 	else if (estado == PAUSA)
 	{
@@ -85,17 +100,27 @@ void Coordinador::dibuja()
 		ETSIDI::printxy("En pausa", mundo.x_pto_ojo, 40);
 		ETSIDI::printxy("Pulsa -C- para continuar", mundo.x_pto_ojo, 38);
 	}
+	else if (estado == FINAL)
+	{
+		gluLookAt(ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 60.0f, // posicion del ojo
+			ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 0.0, // hacia que punto mira (0,7.5,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
+		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
+		ETSIDI::printxy("ENHORABUENA, ¡Has triunfado!", 10, 20);
+		ETSIDI::printxy("¡Ahora puedes crear tus propios niveles!", 10, 15);
+		ETSIDI::printxy("Pulsa -S- para volver a la seleccion de niveles", 10, 10);
+		ETSIDI::printxy("Pulsa -C- para salir", 10, 5);
+	}
 }
 void Coordinador::tecla(unsigned char key) {
 	if (estado == INICIO) {
-		if (key == 'e')
-		{
-			mundo.inicializa();
-			estado = JUEGO;
-		}
 		if (key == 'f')
 		{
 			estado = NIVELES;
+		}
+		if (key == 'r')
+		{
+			mundo.nivel.reiniciar();
 		}
 		if (key == 's')
 			exit(0);
@@ -110,7 +135,6 @@ void Coordinador::tecla(unsigned char key) {
 	}
 	else if (estado == SELECCION_NIVEL)
 	{
-		static int cont = 1;
 		if (key == 'e')
 		{
 			mundo.inicializa();
@@ -119,16 +143,37 @@ void Coordinador::tecla(unsigned char key) {
 		}
 		if (key == 's')
 		{
-			if (cont < mundo.nivel.pantallas_max)
+			mundo.nivel.pantalla++;
+			if (mundo.nivel.pantalla <= mundo.nivel.pantallas_desbloqueadas)
 			{
-				mundo.nivel.pantalla++;
-				cont++;
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+			else
+			{
+				mundo.nivel.pantalla = mundo.nivel.pantallas_desbloqueadas;
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+		}
+		if (key == 'a')
+		{
+			mundo.nivel.pantalla--;
+			if (mundo.nivel.pantalla > 1)
+			{
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+			else
+			{
+				mundo.nivel.pantalla = 1;
 				mundo.nivel.seleccion(mundo.nivel.pantalla);
 			}
 		}
 		if (key == 't')
 		{
-			mundo.nivel.crear();
+			if (mundo.nivel.pantallas_desbloqueadas > mundo.nivel.pantallas_max)
+			{
+				mundo.nivel.crear();
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
 		}
 	}
 	else if (estado == JUEGO)
@@ -150,6 +195,15 @@ void Coordinador::tecla(unsigned char key) {
 	else if (estado == PAUSA) {
 		if (key == 'c')
 			estado = JUEGO;
+	}
+	else if (estado == FINAL)
+	{
+		if (key == 'c')
+			exit(0);
+		if (key == 's')
+		{
+			estado = SELECCION_NIVEL;
+		}
 	}
 }
 

@@ -13,7 +13,7 @@ public:
 	void dibuja();
 protected:
 	Mundo mundo;
-	enum Estado { INICIO, NIVELES, SELECCION_NIVEL, JUEGO, GAMEOVER, FIN, PAUSA };
+	enum Estado { INICIO, NIVELES, SELECCION_NIVEL, JUEGO, GAMEOVER, FIN, PAUSA, FINAL };
 	Estado estado;
 };
 
