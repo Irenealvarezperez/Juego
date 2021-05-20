@@ -1,9 +1,6 @@
 #include "Coordinador.h"
 
-Coordinador::Coordinador()
-{
-	estado = INICIO;
-}
+Coordinador::Coordinador() { estado = INICIO; }
 
 void Coordinador::dibuja()
 {
@@ -48,6 +45,7 @@ void Coordinador::dibuja()
 		{
 			ETSIDI::printxy("Pulsa -T- para crear un nivel ", 5, 0);
 		}
+		mundo.dibuja();
 	}
 	else if (estado == JUEGO)
 	{
@@ -130,6 +128,7 @@ void Coordinador::tecla(unsigned char key) {
 		if (key == 's')
 		{
 			mundo.nivel.seleccion(mundo.nivel.pantalla);
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
 			estado = SELECCION_NIVEL;
 		}
 	}
@@ -143,6 +142,11 @@ void Coordinador::tecla(unsigned char key) {
 		}
 		if (key == 's')
 		{
+			mundo.enemigos.destruirContenido();
+			mundo.bonus.destruirContenido();
+			mundo.nivel.suelos.destruirContenido();
+			mundo.personaje.disparos.destruirContenido();
+
 			mundo.nivel.pantalla++;
 			if (mundo.nivel.pantalla <= mundo.nivel.pantallas_desbloqueadas)
 			{
@@ -153,9 +157,15 @@ void Coordinador::tecla(unsigned char key) {
 				mundo.nivel.pantalla = mundo.nivel.pantallas_desbloqueadas;
 				mundo.nivel.seleccion(mundo.nivel.pantalla);
 			}
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
 		}
 		if (key == 'a')
 		{
+			mundo.enemigos.destruirContenido();
+			mundo.bonus.destruirContenido();
+			mundo.nivel.suelos.destruirContenido();
+			mundo.personaje.disparos.destruirContenido();
+
 			mundo.nivel.pantalla--;
 			if (mundo.nivel.pantalla > 1)
 			{
@@ -166,6 +176,7 @@ void Coordinador::tecla(unsigned char key) {
 				mundo.nivel.pantalla = 1;
 				mundo.nivel.seleccion(mundo.nivel.pantalla);
 			}
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
 		}
 		if (key == 't')
 		{
