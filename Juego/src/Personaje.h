@@ -7,7 +7,7 @@ using namespace ETSIDI;
 class Personaje
 {
 private:
-	float lado = 8;
+	float lado = 4;
 	int vida = 3;
 	bool escudo = false;
 	SpriteSequence* sprite;

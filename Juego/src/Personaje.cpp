@@ -3,7 +3,7 @@
 
 Personaje::Personaje()
 {
-	sprite = new SpriteSequence("imagenes/personaje2.png", 8, 5, 300, true, posicion.x, posicion.y, lado, lado, 6);
+	sprite = new SpriteSequence("imagenes/personaje2.png", 8, 5, 300, true, posicion.x, posicion.y, lado*2, lado*2, 6);
 	setPos(2, 4);
 }
 
