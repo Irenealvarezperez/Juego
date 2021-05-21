@@ -26,7 +26,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 			m.suelos.lista[i]->distancia(p.getPos(), &dir);
 			auto x = abs(dir.x);
 			auto y = abs(dir.y);
-			//hay bugs, claramente
+			//hay bugs cuando se encuentra con una separacion entre unidades de suelo
 			if(x>y)
 			p.posicion.x +=dir.x;
 			p.velocidad.x = 0;
