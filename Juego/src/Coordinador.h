@@ -3,7 +3,7 @@
 class Coordinador
 {
 private:
-	long int t0;
+	long int t0 = 0;
 public:
 	Coordinador();
 	~Coordinador();

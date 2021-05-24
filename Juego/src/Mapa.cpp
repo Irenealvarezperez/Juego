@@ -16,6 +16,9 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 
 	nombre = to_string(pantalla);
 
+	str = '\0';
+	str.insert(0, "Nivel ");
+	str.insert(6, to_string(pantalla));
 	path.erase(12, 1);
 	path.insert(12, nombre);
 	fichero = fopen(&path[0], "rt");
@@ -75,7 +78,7 @@ void Mapa::crear()
 	fclose(registro);
 
 	pantallas_max++;
-	str = "\0";
+	str = '\0';
 	str.insert(0, "Nivel.txt");
 	str.insert(5, to_string(pantallas_max));
 	path.erase(12, 1);
@@ -124,7 +127,7 @@ int Mapa::seleccion(int nivel)
 
 		registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "rt");
 
-		if (pantalla <= pantallas_max && pantalla <= pantallas_desbloqueadas)
+		if (pantalla <= pantallas_max && pantalla <= pantallas_completada)
 		{
 			str = '\0';
 			for (int i = 0; i < pantalla; i++)
@@ -146,7 +149,7 @@ void Mapa::estadisticas()
 
 	if (registro)
 	{
-		fscanf(registro, "%d", &pantallas_desbloqueadas);
+		fscanf(registro, "%d", &pantallas_completada);
 		fclose(registro);
 		registro = nullptr;
 	}
@@ -160,7 +163,7 @@ void Mapa::reiniciar()
 	registro = fopen("..\\src\\Registro_Estadisticas.txt", "wt");
 	if (registro)
 	{
-		fprintf(registro, "%d", 1);
+		fprintf(registro, "%d", 0);
 		fclose(registro);
 		registro = nullptr;
 	}
@@ -189,22 +192,32 @@ void Mapa::reiniciar()
 		registro = nullptr;
 	}
 
-	for (int i = 3; i <= num; i++)
+	int i = 3;
+	while (true)
 	{
 		string str = "..\\src\\Nivel.txt";
 		str.insert(12, &to_string(i)[0]);
-		remove(&str[0]);
+		FILE* fd = fopen(&str[0], "rt");
+		if (fd)
+		{
+			fclose(fd);
+			remove(&str[0]);
+		}
+		else{
+			break;
+		}
+		i++;
 	}
 }
 
-void Mapa::sumaPantallaDesbloqueada()
+void Mapa::sumaPantallaCompletada()
 {
-	pantallas_desbloqueadas++;
+	pantallas_completada++;
 	FILE* registro = fopen("..\\src\\Registro_Estadisticas.txt", "wt");
 
 	if (registro)
 	{
-		fprintf(registro, "%d", pantallas_desbloqueadas);
+		fprintf(registro, "%d", pantallas_completada);
 		fclose(registro);
 		registro = nullptr;
 	}

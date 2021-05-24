@@ -41,10 +41,11 @@ void Coordinador::dibuja()
 		ETSIDI::printxy("Pulsa -S- para seleccionar el siguiente nivel", 60, 60);
 		ETSIDI::printxy("Pulsa -A- para seleccionar el anterior nivel", 60, 55);
 		ETSIDI::printxy("Pulsa -E- para comenzar el nivel", 60, 50);
-		if (mundo.nivel.pantallas_desbloqueadas > mundo.nivel.pantallas_max)
+		if (mundo.nivel.pantallas_completada >= mundo.nivel.pantallas_max)
 		{
 			ETSIDI::printxy("Pulsa -T- para crear un nivel ", 60, 45);
 		}
+		ETSIDI::printxy("Pulsa -F- para salir a la panatalla inicial", 60, 40);
 		mundo.dibuja();
 	}
 	else if (estado == JUEGO)
@@ -80,16 +81,6 @@ void Coordinador::dibuja()
 		ETSIDI::printxy("ENHORABUENA, ¡Has triunfado!", 10, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", 10, 5);
 		mundo.tiempo_nivel = 0;
-		if (mundo.nivel.pantallas_desbloqueadas < mundo.nivel.pantallas_max)
-		{
-			mundo.nivel.sumaPantallaDesbloqueada();
-			estado = SELECCION_NIVEL;
-		}
-		else
-		{
-			mundo.nivel.sumaPantallaDesbloqueada();
-			estado = FINAL;
-		}
 	}
 	else if (estado == PAUSA)
 	{
@@ -148,13 +139,13 @@ void Coordinador::tecla(unsigned char key) {
 			mundo.personaje.disparos.destruirContenido();
 
 			mundo.nivel.pantalla++;
-			if (mundo.nivel.pantalla <= mundo.nivel.pantallas_desbloqueadas)
+			if (mundo.nivel.pantalla <= mundo.nivel.pantallas_max && mundo.nivel.pantalla <= mundo.nivel.pantallas_completada + 1)
 			{
 				mundo.nivel.seleccion(mundo.nivel.pantalla);
 			}
 			else
 			{
-				mundo.nivel.pantalla = mundo.nivel.pantallas_desbloqueadas;
+				mundo.nivel.pantalla--;
 				mundo.nivel.seleccion(mundo.nivel.pantalla);
 			}
 			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
@@ -180,11 +171,16 @@ void Coordinador::tecla(unsigned char key) {
 		}
 		if (key == 't')
 		{
-			if (mundo.nivel.pantallas_desbloqueadas > mundo.nivel.pantallas_max)
+			if (mundo.nivel.pantallas_completada >= mundo.nivel.pantallas_max)
 			{
 				mundo.nivel.crear();
 				mundo.nivel.seleccion(mundo.nivel.pantalla);
+				mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
 			}
+		}
+		if (key == 'f')
+		{
+			estado = INICIO;
 		}
 	}
 	else if (estado == JUEGO)
@@ -200,8 +196,20 @@ void Coordinador::tecla(unsigned char key) {
 	}
 	else if (estado == FIN)
 	{
+		mundo.nivel.sumaPantallaCompletada();
 		if (key == 'c')
-			estado = INICIO;
+		{
+			if (mundo.nivel.pantallas_completada == mundo.nivel.pantallas_max)
+			{
+				estado = FINAL;
+			}
+			else
+			{
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+				mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+				estado = NIVELES;
+			}
+		}
 	}
 	else if (estado == PAUSA) {
 		if (key == 'c')
@@ -213,6 +221,9 @@ void Coordinador::tecla(unsigned char key) {
 			exit(0);
 		if (key == 's')
 		{
+			mundo.nivel.seleccion(mundo.nivel.pantalla - 1);
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+			mundo.dibuja();
 			estado = SELECCION_NIVEL;
 		}
 	}
