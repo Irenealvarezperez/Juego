@@ -25,25 +25,25 @@ void Coordinador::dibuja()
 		gluLookAt(ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 60.0f, // posicion del ojo
 			ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 0.0, // hacia que punto mira (0,7.5,0)
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
-		ETSIDI::setTextColor(1, 1, 0);
+		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
-		ETSIDI::printxy("Seleccion de nivel", 20, 40);
-		ETSIDI::printxy("Pulsa -s- para ver los niveles", 30, 10);
+		ETSIDI::printxy("Seleccion de nivel", 30, 40);
+		ETSIDI::printxy("Pulsa -s- para ver los niveles", 25, 10);
 	}
 	else if (estado == SELECCION_NIVEL)
 	{
-		gluLookAt(ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 60.0f, // posicion del ojo
-			ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 0.0, // hacia que punto mira (0,7.5,0)
+		gluLookAt(ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 85.0f, // posicion del ojo
+			ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 0.0, // hacia que punto mira (0,7.5,0)
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
-		ETSIDI::setFont("fuentes/Pixel.ttf", 30);
-		ETSIDI::printxy(&mundo.nivel.str[0], 10, 30);
+		ETSIDI::setFont("fuentes/Pixel.ttf", 35);
+		ETSIDI::printxy(&mundo.nivel.str[0], 15, 45);
 		ETSIDI::setFont("fuentes/Pixel.ttf", 20);
-		ETSIDI::printxy("Pulsa -S- para seleccionar el siguiente nivel", 5, 9);
-		ETSIDI::printxy("Pulsa -A- para seleccionar el anterior nivel", 5, 6);
-		ETSIDI::printxy("Pulsa -E- para comenzar el nivel", 5, 3);
+		ETSIDI::printxy("Pulsa -S- para seleccionar el siguiente nivel", 60, 60);
+		ETSIDI::printxy("Pulsa -A- para seleccionar el anterior nivel", 60, 55);
+		ETSIDI::printxy("Pulsa -E- para comenzar el nivel", 60, 50);
 		if (mundo.nivel.pantallas_desbloqueadas > mundo.nivel.pantallas_max)
 		{
-			ETSIDI::printxy("Pulsa -T- para crear un nivel ", 5, 0);
+			ETSIDI::printxy("Pulsa -T- para crear un nivel ", 60, 45);
 		}
 		mundo.dibuja();
 	}
