@@ -6,23 +6,10 @@ Personaje::Personaje()
 {
 	sprite = new SpriteSequence("imagenes/personaje2.png", 8, 5, 300, true, posicion.x, posicion.y, lado*2, lado*2, 6);
 	setPos(2, 4);
-	
 	aceleracion.y = -3;
 }
 
-void Personaje::setPos(float x, float y)
-{
-	posicion.x = x;
-	posicion.y = y;
-	sprite->setPos(x, y);
-}
 
-void Personaje::setVel(float vx, float vy)
-{
-	velocidad.x = vx;
-	velocidad.y = vy;
-	sprite->setVel(vx, vy);
-}
 
 void Personaje::dibuja()
 {

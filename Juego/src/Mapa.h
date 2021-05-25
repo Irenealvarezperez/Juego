@@ -3,6 +3,7 @@
 #include "ListaSuelos.h"
 #include "ListaEnemigos.h"
 #include "ListaBonus.h"
+#include "Ladron.h"
 #include <string>
 
 class Mapa
