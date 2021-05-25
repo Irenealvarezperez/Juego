@@ -7,7 +7,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 
 	//en un futuro habria que mejorar este codigo para que solo busque los suelos que hay en su direccion de movimiento o cerca suya
 	int i=0;
-	while (i < m.suelos.numero && (p.velocidad.x || p.velocidad.y))
+	while (i < m.suelos.numero)
 	{
 
 		float p_izda = p.getPos().x - p.getLado() / 2.0;
@@ -22,18 +22,25 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 
 		if(p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
 		{
+			
 			Vector2D dir;
-			m.suelos.lista[i]->distancia(p.getPos(), &dir);
-			auto x = abs(dir.x);
-			auto y = abs(dir.y);
-			//hay bugs cuando se encuentra con una separacion entre unidades de suelo
-			if(x>y)
-			p.posicion.x +=dir.x;
-			p.velocidad.x = 0;
-			if(x<y)
-			p.posicion.y += dir.y;
-			p.velocidad.y = 0;
+			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir)-p.lado/2;
+			float arg = dir.argument();
+			float x =dist*sin(arg);
+			float y = dist*cos(arg);
+			
+			
+			if (x > 0) {
+				p.velocidad.x = 0;
+				//p.posicion.x -= x;
+			}
+			
+			if (y > 0 ) {
+				p.velocidad.y = 0;
+				//p.posicion.y += y;
+			}
 		}
+		
 		
 		i = i + 1;
 	}
