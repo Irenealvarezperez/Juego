@@ -8,5 +8,5 @@ void Ladron::dibuja()
 {
 	Enemigo::dibuja();
 	sprite->flip(true, false);
-	if (sprite->getState() > 5)sprite->setState(0, false);
+	//if (sprite->getState() > 5)sprite->setState(0, false);
 }

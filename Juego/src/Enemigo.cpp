@@ -32,7 +32,7 @@ void Enemigo::mueve(float t)
 
 	setPos(posicion.x, posicion.y);
 	setVel(velocidad.x, velocidad.y);
-	//sprite->loop();
+	sprite->loop();
 }
 
 void Enemigo::setColor(unsigned char r, unsigned char v, unsigned char a)
