@@ -7,7 +7,7 @@ Enemigo::Enemigo()
 	aceleracion.x = 3.0f;
 	aceleracion.y = -9.8f;
 	altura = ancho = 5.5f;
-	enemigo = new Sprite("imagenes/enemigo.png", posicion.x, posicion.y, ancho, altura);
+	//enemigo = new Sprite("imagenes/enemigo.png", posicion.x, posicion.y, ancho, altura);
 	setVel(1, 1);
 }
 
@@ -21,7 +21,7 @@ void Enemigo::dibuja()
 	glPopMatrix();
 	*/
 	//sprite->draw();
-	enemigo->draw();
+	sprite->draw();
 }
 
 void Enemigo::mueve(float t)
@@ -49,7 +49,10 @@ Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
 	azul = 100; //color distinto
 	aceleracion.x = 0;
 	aceleracion.y = 0;
-	enemigo = new Sprite("imagenes/enemigo.png", posicion.x, posicion.y, ancho, altura);
+	// Aqui deberia dar igual lo q poner porq luego se modifica desde la clase especializada, por ej Ladron,
+	// pero si cambian el numero de filas o columnas de aqui || no se q pasa
+	//														 vv
+	sprite = new SpriteSequence("imagenes/personaje2.png", 6, 1, 300, true, x, y, ancho, altura);
 	setPos(x, y);
 	setVel(vx, vy);
 }

@@ -38,8 +38,8 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				case 'B': {bonus.agregar(bonus.setBonus("imagenes/botiquin.png", posicion.x, posicion.y, 7, 4)); break; } //bonus botiquin
 				case 'S': {bonus.agregar(bonus.setBonus("imagenes/escudo.png", posicion.x, posicion.y, 5, 6)); break; } //bonus escudo
 				case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", posicion.x, posicion.y, 5, 5)); break; } //bonus espiral
-				case 'E': {enemigos.agregar(new Enemigo(5, posicion.x, posicion.y, 1, 1)); break; }
-				//case 'E': {enemigos.agregar(new Ladron(5, posicion.x, posicion.y, 1, 1)); break; }
+				//case 'E': {enemigos.agregar(new Enemigo(5, posicion.x, posicion.y, 1, 1)); break; }
+				case 'E': {enemigos.agregar(new Ladron(5, posicion.x, posicion.y, 1, 1)); break; }
 				}
 				columna++;
 				posicion.x += Suelo::getLado();
