@@ -12,14 +12,15 @@ void Ladron::dibuja()
 	sprite->flip(true, false);
 	//if (sprite->getState() > 5)sprite->setState(0, false);
 
-	disparos.dibuja();
+	//disparos.dibuja();
 }
 
 void Ladron::dispara(float vx, float vy, float flip)
 {
 	Disparo* d = new Disparo();
 
-	d->setPos(posicion.x, posicion.y);
+	d->setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
 	d->setVel(vx, vy);
 	disparos.agregar(d, flip);
+	disparos.dibuja();
 }

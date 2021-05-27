@@ -10,7 +10,7 @@ protected:
 	float altura;
 	float ancho = 4;
 	ListaDisparos disparos;
-	enum Tipo { LADRON };
+	enum Tipo { LADRON, MURCIELAGO };
 	Tipo tipo;
 
 public:

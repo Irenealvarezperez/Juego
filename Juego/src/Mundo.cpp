@@ -91,7 +91,7 @@ void Mundo::tecla(unsigned char key)
 	}
 	case 'd':
 	{
-		personaje.velocidad.x = 5;
+		personaje.velocidad.x = 8;
 
 		break;
 	}

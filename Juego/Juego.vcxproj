@@ -168,6 +168,7 @@
     <ClCompile Include="src\ListaSuelos.cpp" />
     <ClCompile Include="src\Mapa.cpp" />
     <ClCompile Include="src\Mundo.cpp" />
+    <ClCompile Include="src\Murcielago.cpp" />
     <ClCompile Include="src\ObjetoMovil.cpp" />
     <ClCompile Include="src\Personaje.cpp" />
     <ClCompile Include="src\Suelo.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="src\ListaSuelos.h" />
     <ClInclude Include="src\Mapa.h" />
     <ClInclude Include="src\Mundo.h" />
+    <ClInclude Include="src\Murcielago.h" />
     <ClInclude Include="src\ObjetoMovil.h" />
     <ClInclude Include="src\Personaje.h" />
     <ClInclude Include="src\Suelo.h" />

@@ -3,7 +3,7 @@
 
 Disparo::Disparo()
 {
-	disparo = new Sprite("imagenes/bala.png", posicion.x, posicion.y, lado, lado);
+	disparo = new Sprite("imagenes/bala.png", static_cast<float>(posicion.x), static_cast<float>(posicion.y), lado, lado);
 }
 
 Disparo::~Disparo() {}
@@ -16,11 +16,11 @@ void Disparo::dibuja()
 void Disparo::mueve(float t)
 {
 	//posicion = disparo->getPos(); //Sobra,comprobado
-	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+	posicion = posicion + velocidad * t + aceleracion *(0.5f * static_cast<double>(t) * static_cast<double>(t));
 	velocidad = velocidad + aceleracion * t;
 
-	setPos(posicion.x, posicion.y);
-	setVel(velocidad.x, velocidad.y);
+	setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
+	setVel(static_cast<float>(velocidad.x), static_cast<float>(velocidad.y));
 }
 
 void Disparo::setPos(float ix, float iy) {

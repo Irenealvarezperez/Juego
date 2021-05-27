@@ -7,11 +7,11 @@ void Enemigo::dibuja()
 
 void Enemigo::mueve(float t)
 {
-	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+	posicion = posicion + velocidad * t + aceleracion * (0.5f *static_cast<double>(t) * static_cast<double>(t));
 	velocidad = velocidad + aceleracion * t;
 
-	setPos(posicion.x, posicion.y);
-	setVel(velocidad.x, velocidad.y);
+	setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
+	setVel(static_cast<float>(velocidad.x), static_cast<float>(velocidad.y));
 
 	sprite->loop();
 
