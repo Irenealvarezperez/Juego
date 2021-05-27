@@ -96,13 +96,13 @@ void Mundo::tecla(unsigned char key)
 		personaje.velocidad.y = 5;
 		break;
 	}
-	case 's':
+	/*case 's':
 	{
 
 		personaje.velocidad.y = -5;
 		
 		break;
-	}
+	}*/
 	case 't':
 	{
 		personaje.posicion.x = 150;

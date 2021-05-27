@@ -1,4 +1,5 @@
 #include "Ladron.h"
+
 Ladron::Ladron(float altura, float x, float y, float vx, float vy) :Enemigo(altura, x, y, vx, vy)
 {
 	setTipo(LADRON);

@@ -12,6 +12,7 @@ void Enemigo::mueve(float t)
 
 	setPos(posicion.x, posicion.y);
 	setVel(velocidad.x, velocidad.y);
+
 	sprite->loop();
 
 	//Esto no deberia ir aqui pero es de prueba
