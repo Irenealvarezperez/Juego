@@ -6,8 +6,9 @@ using namespace std;
 void Interaccion::rebote(Personaje& p, Mapa& m)
 {
 	//en un futuro habria que mejorar este codigo para que solo busque los suelos que hay en su direccion de movimiento o cerca suya
+	
 	int i=0;
-	while (i < m.suelos.numero)
+	while (i < m.suelos.numero)	//Para el choque personaje suelo en vertical
 	{
 		float p_izda = p.getPos().x - p.getLado() / 2.0;
 		float p_dcha = p.getPos().x + p.getLado() / 2.0;
@@ -29,31 +30,45 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 			{
 				p.setPos(p.getPos().x, s_abajo - p.getLado() / 2.0);
 				p.velocidad.y *= -1;
-				break;
 			}
-			if (p_abajo < s_arriba && p.velocidad.y < 0)
+			else
 			{
 				p.setPos(p.getPos().x, s_arriba + p.getLado() / 2.0);
 				p.velocidad.y = 0;
+				p.velocidad.x /= 2;
+			}
+			break;
+		}
+		i++;
+	}
+
+	i = 0;
+	while (i < m.suelos.numero)	//Para el choque personaje suelo en horizontal
+	{
+		float p_izda = p.getPos().x - p.getLado() / 2.0 - 0.1;
+		float p_dcha = p.getPos().x + p.getLado() / 2.0 + 0.1;
+		float p_arriba = p.getPos().y + p.getLado() / 2.0;
+		float p_abajo = p.getPos().y - p.getLado() / 2.0;
+
+		float s_izda = m.suelos.lista[i]->getPos().x - m.suelos.lista[i]->getLado() / 2.0;
+		float s_dcha = m.suelos.lista[i]->getPos().x + m.suelos.lista[i]->getLado() / 2.0;
+		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
+		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
+
+		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
+		{
+			if (p_dcha > s_izda && p.velocidad.x > 0)
+			{
+				p.setPos(s_izda - p.getLado() / 2.0 - 0.1, p.getPos().y);
+				p.velocidad.x *= -1;
 				break;
 			}
-
-			/*Vector2D dir;
-			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir) - p.lado / 2;
-			float arg = dir.argument();
-			float x = dist * sin(arg);
-			float y = dist * cos(arg);*/
-			
-			//if (x > 0) {
-				//p.velocidad.x = 0;
-				//p.posicion.x -= x;
-			//}
-			
-			//if (y > 0 ) {
-				//p.velocidad.y = 0;
-				//p.posicion.y += y;
-			//}
-
+			else
+			{
+				p.setPos(s_dcha + p.getLado() / 2.0 + 0.1, p.getPos().y);
+				p.velocidad.x *= -1;
+				break;
+			}
 		}
 		i++;
 	}
