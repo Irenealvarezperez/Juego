@@ -25,4 +25,5 @@ public:
 	int getNumero() { return numero; };
 
 	friend class Interaccion; //Necesito saber el valor privado de numero de enemigos
+	friend class Mundo;
 };

@@ -15,5 +15,6 @@ public:
 
 	static void choque(ListaDisparos& d, ListaEnemigos& e);
 	static void choque(Personaje& p, ListaBonus& b);
+	static void choque(ListaDisparos& d, Mapa& m);
 	static void compruebaColision(Personaje& p1, Enemigo& p2);
 };

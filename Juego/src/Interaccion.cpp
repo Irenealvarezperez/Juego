@@ -1,6 +1,7 @@
 #include "Interaccion.h"
 #include "iostream"
-//IDEA- VER SI ES NECESARIO
+
+using namespace std;
 
 void Interaccion::rebote(Personaje& p, Mapa& m)
 {
@@ -70,6 +71,20 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 		if ((b.lista[i]->getPos() - p.getPos()).module() <= b.lista[i]->getLado())
 		{
 			b.eliminar(i);
+		}
+	}
+}
+
+void Interaccion::choque(ListaDisparos& d, Mapa& m)
+{
+	for (int i = 0; i < d.numero; i++)
+	{
+		for (int j = 0; j < m.suelos.numero; j++)
+		{
+			if ((d.lista[i]->getPos() - m.suelos.lista[j]->getPos()).module() <= m.suelos.lista[i]->getLado())
+			{
+				d.eliminar(i);
+			}
 		}
 	}
 }

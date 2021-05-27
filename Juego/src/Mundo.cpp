@@ -62,6 +62,11 @@ void Mundo::mueve()
 
 	Interaccion::choque(personaje.disparos, enemigos);
 	Interaccion::choque(personaje, bonus);
+	Interaccion::choque(personaje.disparos, nivel);
+	for (int i = 0; i < enemigos.numero; i++)
+	{
+		Interaccion::choque(enemigos.lista[i]->disparos, nivel);
+	}
 	Interaccion::rebote(personaje, nivel);
 }
 
@@ -116,6 +121,20 @@ void Mundo::teclaEspecial(unsigned char key)
 	case GLUT_KEY_UP:
 	{
 		personaje.dispara(0, 10.0f, 0);
+		for (int i = 0; i < enemigos.numero; i++)
+		{
+			//Arreglar esto
+			if (enemigos.lista[i]->tipo == Enemigo::LADRON)
+			{
+				reinterpret_cast<Ladron*>(enemigos.lista[i])->dispara(0, 10.0f, 0);
+			}
+
+			//Lo de abajo no lo veo como solucion definitiva porq todos los enemigos de lista
+			//de enemigos se pueden convertir a ladrones
+			// 
+			//Ladron* l = dynamic_cast<Ladron*>(enemigos.lista[i]);
+			//if (l) l->dispara(0, 10.0f, 0);
+		}
 		break;
 	}
 	case GLUT_KEY_RIGHT:
