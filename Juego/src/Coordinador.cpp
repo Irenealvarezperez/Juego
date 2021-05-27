@@ -127,6 +127,11 @@ void Coordinador::tecla(unsigned char key) {
 	{
 		if (key == 'e')
 		{
+			mundo.enemigos.destruirContenido();
+			mundo.bonus.destruirContenido();
+			mundo.nivel.suelos.destruirContenido();
+			mundo.personaje.disparos.destruirContenido();
+			
 			mundo.inicializa();
 			estado = JUEGO;
 			t0 = getMillis();
