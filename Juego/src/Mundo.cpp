@@ -44,11 +44,15 @@ void Mundo::dibuja()
 	string escudo = to_string(personaje.escudo);
 	string str3 = "Tiempo: ";
 	string tiempo = to_string(int(tiempo_nivel));
+	string str4 = "Velocidad: ";
+	string vel = to_string(int(personaje.getVel().y));
 	str.append(vida);
 	str2.append(escudo);
 	str3.append(tiempo);
+	str4.append(vel);
 	texto(x_ojo - 42, 46, &str[0]);
 	texto(x_ojo - 42, 44, &str2[0]);
+	texto(x_ojo - 42, 42, &str4[0]);
 	texto(x_ojo + 30, 46, &str3[0]);
 }
 
@@ -93,7 +97,7 @@ void Mundo::tecla(unsigned char key)
 	}
 	case 'w':
 	{
-		personaje.velocidad.y = 5;
+		personaje.velocidad.y = 10;
 		break;
 	}
 	/*case 's':

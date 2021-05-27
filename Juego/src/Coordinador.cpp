@@ -66,11 +66,20 @@ void Coordinador::dibuja()
 	}
 	else if (estado == GAMEOVER)
 	{
-		mundo.dibuja();
+		//Aqui deberia eliminar todos los objetos e inicializar todo a cero
+		mundo.enemigos.destruirContenido();
+		mundo.bonus.destruirContenido();
+		mundo.nivel.suelos.destruirContenido();
+		mundo.personaje.disparos.destruirContenido();
+
+		gluLookAt(ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 85.0f, // posicion del ojo
+			ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 0.0, // hacia que punto mira (0,7.5,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y)*/
+
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/Pixel.ttf", 16);
-		ETSIDI::printxy("GAMEOVER: Has perdido", -5, 10);
-		ETSIDI::printxy("Pulsa -C- para continuar", -5, 5);
+		ETSIDI::printxy("GAMEOVER: Has perdido", 10, 10);
+		ETSIDI::printxy("Pulsa -C- para continuar", 10, 5);
 	}
 	else if (estado == FIN)
 	{

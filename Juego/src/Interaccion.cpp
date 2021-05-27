@@ -1,12 +1,12 @@
 #include "Interaccion.h"
-#include "iostream"
+#include <iostream>
 
 using namespace std;
 
 void Interaccion::rebote(Personaje& p, Mapa& m)
 {
 	//en un futuro habria que mejorar este codigo para que solo busque los suelos que hay en su direccion de movimiento o cerca suya
-	
+
 	int i=0;
 	while (i < m.suelos.numero)	//Para el choque personaje suelo en vertical
 	{
@@ -20,7 +20,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		p.aceleracion.y = -3; //Afecta la gravedad pero se anula si hay choque
+		p.aceleracion.y = -4; //Afecta la gravedad pero se anula si hay choque
 
 		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
 		{
@@ -29,13 +29,13 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 			if (p_arriba > s_abajo && p.velocidad.y > 0)
 			{
 				p.setPos(p.getPos().x, s_abajo - p.getLado() / 2.0);
-				p.velocidad.y *= -1;
+				p.setVel(p.getVel().x, 0);
 			}
 			else
 			{
 				p.setPos(p.getPos().x, s_arriba + p.getLado() / 2.0);
-				p.velocidad.y = 0;
-				p.velocidad.x /= 2;
+				if (p.getVel().y <= -13) { p.vida--; }
+				p.setVel(p.getVel().x / 2, 0);
 			}
 			break;
 		}
@@ -55,18 +55,20 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
+		static const float vel = 0.5;
+
+		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba && !(p.velocidad.y > -vel && p.velocidad.y < vel))
 		{
 			if (p_dcha > s_izda && p.velocidad.x > 0)
 			{
 				p.setPos(s_izda - p.getLado() / 2.0 - 0.1, p.getPos().y);
-				p.velocidad.x *= -1;
+				p.setVel(-p.getVel().x, p.getVel().y);
 				break;
 			}
-			else
+			else if (p_izda < s_dcha && p.velocidad.x < 0)
 			{
 				p.setPos(s_dcha + p.getLado() / 2.0 + 0.1, p.getPos().y);
-				p.velocidad.x *= -1;
+				p.setVel(-p.getVel().x, p.getVel().y);
 				break;
 			}
 		}
