@@ -15,6 +15,8 @@ protected:
 	float altura;
 	float ancho = 4;
 	ListaDisparos disparos;
+	enum Tipo { LADRON };
+	Tipo tipo;
 
 public:
 	Enemigo();
@@ -26,6 +28,8 @@ public:
 	void mueve(float t);
 	void setColor(unsigned char r, unsigned char v, unsigned char a);
 	float getAncho() { return ancho; };
+	void setTipo(Tipo tipo) { this->tipo = tipo; };
 
 	friend class Interaccion;
+	friend class Mundo;
 };

@@ -33,6 +33,9 @@ void Enemigo::mueve(float t)
 	setPos(posicion.x, posicion.y);
 	setVel(velocidad.x, velocidad.y);
 	sprite->loop();
+
+	//Esto no deberia ir aqui pero es de prueba
+	disparos.mueve(t);
 }
 
 void Enemigo::setColor(unsigned char r, unsigned char v, unsigned char a)
@@ -56,4 +59,3 @@ Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
 	setPos(x, y);
 	setVel(vx, vy);
 }
-
