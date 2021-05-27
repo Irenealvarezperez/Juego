@@ -19,24 +19,25 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		if (p_dcha >= s_izda && p_izda <= s_dcha && p_arriba >= s_abajo && p_abajo <= s_arriba)
+		p.aceleracion.y = -3; //Afecta la gravedad pero se anula si hay choque
+
+		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
 		{
 			p.aceleracion.y = 0; //Sino hay gravedad se evitan muchos problemas de atravesar suelos
 
-			if (p_arriba >= s_abajo && p.velocidad.y != 0)
+			if (p_arriba > s_abajo && p.velocidad.y > 0)
 			{
-				if (p.velocidad.y > 0)
-				{
-					p.velocidad.y *= -1;
-					break;
-				}
-				else
-				{
-					p.setPos(p.getPos().x, p.getPos().y + 0.0001);
-					p.velocidad.y = 0;
-					break;
-				}
+				p.setPos(p.getPos().x, s_abajo - p.getLado() / 2.0);
+				p.velocidad.y *= -1;
+				break;
 			}
+			if (p_abajo < s_arriba && p.velocidad.y < 0)
+			{
+				p.setPos(p.getPos().x, s_arriba + p.getLado() / 2.0);
+				p.velocidad.y = 0;
+				break;
+			}
+
 			/*Vector2D dir;
 			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir) - p.lado / 2;
 			float arg = dir.argument();
@@ -52,11 +53,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 				//p.velocidad.y = 0;
 				//p.posicion.y += y;
 			//}
-			break;
-		}
-		else	// Sino hay choque entonces le afecta la gravedad
-		{
-			p.aceleracion.y = -3;
+
 		}
 		i++;
 	}
