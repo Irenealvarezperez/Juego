@@ -5,12 +5,10 @@ using namespace std;
 
 void Interaccion::rebote(Personaje& p, Mapa& m)
 {
-
 	//en un futuro habria que mejorar este codigo para que solo busque los suelos que hay en su direccion de movimiento o cerca suya
 	int i=0;
 	while (i < m.suelos.numero)
 	{
-
 		float p_izda = p.getPos().x - p.getLado() / 2.0;
 		float p_dcha = p.getPos().x + p.getLado() / 2.0;
 		float p_arriba = p.getPos().y + p.getLado() / 2.0;
@@ -21,32 +19,47 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		if(p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
+		if (p_dcha >= s_izda && p_izda <= s_dcha && p_arriba >= s_abajo && p_abajo <= s_arriba)
 		{
-			
-			Vector2D dir;
-			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir)-p.lado/2;
+			p.aceleracion.y = 0; //Sino hay gravedad se evitan muchos problemas de atravesar suelos
+
+			if (p_arriba >= s_abajo && p.velocidad.y != 0)
+			{
+				if (p.velocidad.y > 0)
+				{
+					p.velocidad.y *= -1;
+					break;
+				}
+				else
+				{
+					p.setPos(p.getPos().x, p.getPos().y + 0.0001);
+					p.velocidad.y = 0;
+					break;
+				}
+			}
+			/*Vector2D dir;
+			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir) - p.lado / 2;
 			float arg = dir.argument();
-			float x =dist*sin(arg);
-			float y = dist*cos(arg);
+			float x = dist * sin(arg);
+			float y = dist * cos(arg);*/
 			
-			
-			if (x > 0) {
-				p.velocidad.x = 0;
+			//if (x > 0) {
+				//p.velocidad.x = 0;
 				//p.posicion.x -= x;
-			}
+			//}
 			
-			if (y > 0 ) {
-				p.velocidad.y = 0;
+			//if (y > 0 ) {
+				//p.velocidad.y = 0;
 				//p.posicion.y += y;
-			}
+			//}
+			break;
 		}
-		
-		
-		i = i + 1;
+		else	// Sino hay choque entonces le afecta la gravedad
+		{
+			p.aceleracion.y = -3;
+		}
+		i++;
 	}
-
-
 }
 
 void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
