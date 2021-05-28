@@ -24,6 +24,25 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 
 		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
 		{
+			/*
+			Vector2D dir;
+			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir)-p.lado/2;
+			float arg = dir.argument();
+			float x =dist*sin(arg);
+			float y = dist*cos(arg);
+			
+			
+			if (x > 0) {
+				p.velocidad.x = 0;
+				//p.posicion.x -= x;
+			}
+			
+			if (y > 0 ) {
+				p.velocidad.y = 0;
+				//p.posicion.y += y;
+			}
+			*/
+
 			p.aceleracion.y = 0; //Sino hay gravedad se evitan muchos problemas de atravesar suelos
 
 			if (p_arriba > s_abajo && p.velocidad.y > 0)
