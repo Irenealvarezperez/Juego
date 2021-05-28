@@ -1,8 +1,9 @@
 #include"Murcielago.h"
-Murcielago::Murcielago(float altura, float x, float y, float vx, float vy) :Enemigo(altura, x, y, vx, vy)
+#include"freeglut.h"
+Murcielago::Murcielago(float altura,float anchura, float x, float y, float vx, float vy) :Enemigo(altura,anchura, x, y, vx, vy)
 {
 	setTipo(MURCIELAGO);
-	sprite = new SpriteSequence("imagenes/murcielago2.png", 4, 4, 300, true, x, y, ancho, altura);
+	sprite = new SpriteSequence("imagenes/murcielago2.png", 4, 4, 300, true, x, y, anchura, altura);
 	sprite->setState(9, false);
 }
 
@@ -17,6 +18,7 @@ void Murcielago::dibuja()
 		if (sprite->getState() > 11) sprite->setState(9, false);
 	}
 	Enemigo::dibuja();
+	dispara(0, -10, 0); //solo una prueba, dispara muchas veces. Arreglarlo
 }
 
 void Murcielago::dispara(float vx, float vy, float flip)

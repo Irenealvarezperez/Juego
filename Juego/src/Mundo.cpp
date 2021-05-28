@@ -71,7 +71,10 @@ void Mundo::mueve()
 	personaje.mueve(t);
 	enemigos.mueve(t);
 	bonus.mueve(t);
-
+	/*for (int i = 0; i < tiempo_nivel; i += 1) {
+		if(enemigos.lista[i]->tipo==Enemigo::MURCIELAGO)
+			reinterpret_cast<Murcielago*>(enemigos.lista[i])->dispara(0, 10.0f, 0);
+	}*/
 	Interaccion::choque(personaje.disparos, enemigos);
 	Interaccion::choque(personaje, bonus);
 	Interaccion::choque(personaje.disparos, nivel);

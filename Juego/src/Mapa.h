@@ -5,6 +5,8 @@
 #include "ListaBonus.h"
 #include "Ladron.h"
 #include "Murcielago.h"
+#include "Minivirus.h"
+#include "GranVirus.h"
 #include <string>
 
 class Mapa

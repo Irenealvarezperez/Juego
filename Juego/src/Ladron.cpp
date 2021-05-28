@@ -1,9 +1,9 @@
 #include "Ladron.h"
 
-Ladron::Ladron(float altura, float x, float y, float vx, float vy) :Enemigo(altura, x, y, vx, vy)
+Ladron::Ladron(float altura,float anchura, float x, float y, float vx, float vy) :Enemigo(altura, anchura, x, y, vx, vy)
 {
 	setTipo(LADRON);
-	sprite = new SpriteSequence("imagenes/ladron2.png", 6, 1, 300, true, x, y, ancho*1.5, altura*1.25);
+	sprite = new SpriteSequence("imagenes/ladron2.png", 6, 1, 300, true, x, y, anchura, altura*1.25);
 }
 
 void Ladron::dibuja()

@@ -19,14 +19,14 @@ void Enemigo::mueve(float t)
 	disparos.mueve(t);
 }
 
-Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
+Enemigo::Enemigo(float altura,float anchura, float x, float y, float vx, float vy)
 {
 	this->altura = altura;
 
 	// Aqui deberia dar igual lo q poner porq luego se modifica desde la clase especializada, por ej Ladron,
 	// pero si cambian el numero de filas o columnas de aqui || no se q pasa
 	//														 vv
-	sprite = new SpriteSequence("imagenes/personaje2.png", 99, 99, 300, true, x, y, ancho, altura);
+	sprite = new SpriteSequence("imagenes/personaje2.png", 99, 99, 300, true, x, y, anchura, altura);
 	setPos(x, y);
 	setVel(vx, vy);
 }
