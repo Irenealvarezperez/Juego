@@ -3,7 +3,7 @@
 Ladron::Ladron(float altura, float x, float y, float vx, float vy) :Enemigo(altura, x, y, vx, vy)
 {
 	setTipo(LADRON);
-	sprite = new SpriteSequence("imagenes/ladron.png", 6, 1, 300, true, x, y, ancho, altura);
+	sprite = new SpriteSequence("imagenes/ladron2.png", 6, 1, 300, true, x, y, ancho*1.5, altura*1.25);
 }
 
 void Ladron::dibuja()
