@@ -31,7 +31,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 				p.setPos(p.getPos().x, s_abajo - p.getLado() / 2.0);
 				p.setVel(p.getVel().x, 0);
 			}
-			else
+			else if (p_arriba > s_abajo && p.velocidad.y < 0)
 			{
 				p.setPos(p.getPos().x, s_arriba + p.getLado() / 2.0);
 				if (p.getVel().y <= -13) { p.vida--; }
@@ -45,8 +45,10 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 	i = 0;
 	while (i < m.suelos.numero)	//Para el choque personaje suelo en horizontal
 	{
-		float p_izda = p.getPos().x - p.getLado() / 2.0 - 0.1;
-		float p_dcha = p.getPos().x + p.getLado() / 2.0 + 0.1;
+		static const float extra = 0.35;
+
+		float p_izda = p.getPos().x - p.getLado() / 2.0 - extra;
+		float p_dcha = p.getPos().x + p.getLado() / 2.0 + extra;
 		float p_arriba = p.getPos().y + p.getLado() / 2.0;
 		float p_abajo = p.getPos().y - p.getLado() / 2.0;
 
@@ -55,22 +57,21 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		static const float vel = 0.5;
-
-		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba && !(p.velocidad.y > -vel && p.velocidad.y < vel))
+		if (p_dcha >= s_izda && p_izda <= s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
 		{
-			if (p_dcha > s_izda && p.velocidad.x > 0)
+			if (p.getVel().y >= extra || p.getVel().y <= -extra)
 			{
-				p.setPos(s_izda - p.getLado() / 2.0 - 0.1, p.getPos().y);
-				p.setVel(-p.getVel().x, p.getVel().y);
-				break;
+				if (p_dcha >= s_izda && p.velocidad.x > 0)
+				{
+					p.setPos(s_izda - p.getLado() / 2.0 - extra, p.getPos().y);
+				}
+				else if (p_izda <= s_dcha && p.velocidad.x < 0)
+				{
+					p.setPos(s_dcha + p.getLado() / 2.0 + extra, p.getPos().y);
+				}
+				p.setVel(-p.getVel().x / 5, p.getVel().y / 1.5);
 			}
-			else if (p_izda < s_dcha && p.velocidad.x < 0)
-			{
-				p.setPos(s_dcha + p.getLado() / 2.0 + 0.1, p.getPos().y);
-				p.setVel(-p.getVel().x, p.getVel().y);
-				break;
-			}
+			break;
 		}
 		i++;
 	}

@@ -9,7 +9,7 @@ using namespace ETSIDI;
 class Personaje : public ObjetoMovil
 {
 private:
-	float lado = 4;
+	float lado = 2.99;
 	int vida = 3;
 	bool escudo = false;
 public:
