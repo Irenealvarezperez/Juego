@@ -26,7 +26,7 @@ Enemigo::Enemigo(float altura, float x, float y, float vx, float vy)
 	// Aqui deberia dar igual lo q poner porq luego se modifica desde la clase especializada, por ej Ladron,
 	// pero si cambian el numero de filas o columnas de aqui || no se q pasa
 	//														 vv
-	sprite = new SpriteSequence("imagenes/personaje2.png", 6, 1, 300, true, x, y, ancho, altura);
+	sprite = new SpriteSequence("imagenes/personaje2.png", 99, 99, 300, true, x, y, ancho, altura);
 	setPos(x, y);
 	setVel(vx, vy);
 }

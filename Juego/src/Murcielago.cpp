@@ -2,16 +2,21 @@
 Murcielago::Murcielago(float altura, float x, float y, float vx, float vy) :Enemigo(altura, x, y, vx, vy)
 {
 	setTipo(MURCIELAGO);
-	sprite = new SpriteSequence("imagenes/Murcielago.png", 6, 1, 300, true, x, y, ancho, altura);
+	sprite = new SpriteSequence("imagenes/murcielago2.png", 4, 4, 300, true, x, y, ancho, altura);
+	sprite->setState(9, false);
 }
 
 void Murcielago::dibuja()
-{
+{	
+	if (velocidad.x > 0.01) {
+		sprite->flip(false, false);
+		if (sprite->getState() > 11) sprite->setState(9, false);
+	}
+	if (velocidad.x < -0.01) {
+		sprite->flip(true, false);
+		if (sprite->getState() > 11) sprite->setState(9, false);
+	}
 	Enemigo::dibuja();
-	sprite->flip(true, false);
-	//if (sprite->getState() > 5)sprite->setState(0, false);
-
-	
 }
 
 void Murcielago::dispara(float vx, float vy, float flip)

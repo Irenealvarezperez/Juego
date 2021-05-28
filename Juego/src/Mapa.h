@@ -4,6 +4,7 @@
 #include "ListaEnemigos.h"
 #include "ListaBonus.h"
 #include "Ladron.h"
+#include "Murcielago.h"
 #include <string>
 
 class Mapa
