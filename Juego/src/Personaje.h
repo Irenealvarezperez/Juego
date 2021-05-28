@@ -12,6 +12,7 @@ private:
 	float lado = 4;
 	int vida = 3;
 	bool escudo = false;
+	char tecla_bloq = 0;
 public:
 	ListaDisparos disparos;
 

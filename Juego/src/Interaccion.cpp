@@ -20,10 +20,39 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
 		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
 
-		p.aceleracion.y = -4; //Afecta la gravedad pero se anula si hay choque
+		p.aceleracion.y = -10; //Afecta la gravedad pero se anula si hay choque
 
-		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
+		if (p_dcha > s_izda && p_izda < s_dcha && p_arriba > s_abajo && p_abajo <= s_arriba)
 		{
+			if (abs(p.getPos().x - m.suelos.lista[i]->getPos().x) <= abs(p.getPos().y - m.suelos.lista[i]->getPos().y) ? 1 : 0)
+			{
+				if (p_arriba >= s_abajo && p.velocidad.y > 0)
+				{
+					p.setPos(p.getPos().x, s_abajo - p.getLado() / 2.0);
+					p.setVel(p.getVel().x, -p.velocidad.y / 2);
+				}
+				else if (p_arriba >= s_abajo && p.velocidad.y < 0)
+				{
+					p.setPos(p.getPos().x, s_arriba + p.getLado() / 2.0);
+					if (p.getVel().y <= -30) { p.vida--; }
+					p.setVel(p.getVel().x / 10, 0);
+					p.tecla_bloq = 0;
+				}
+				break;
+			}
+			else
+			{
+				if (p_dcha > s_izda && p.velocidad.x > 0)
+				{
+					p.setPos(s_izda - p.getLado() / 2.0, p.getPos().y);
+				}
+				else if (p_izda < s_dcha && p.velocidad.x < 0)
+				{
+					p.setPos(s_dcha + p.getLado() / 2.0, p.getPos().y);
+				}
+				p.setVel(0, p.getVel().y);
+				break;
+			}
 			/*
 			Vector2D dir;
 			float dist = m.suelos.lista[i]->distancia(p.getPos(), &dir)-p.lado/2;
@@ -42,55 +71,7 @@ void Interaccion::rebote(Personaje& p, Mapa& m)
 				//p.posicion.y += y;
 			}
 			*/
-
 			p.aceleracion.y = 0; //Sino hay gravedad se evitan muchos problemas de atravesar suelos
-
-			if (p_arriba > s_abajo && p.velocidad.y > 0)
-			{
-				p.setPos(p.getPos().x, s_abajo - p.getLado() / 2.0);
-				p.setVel(p.getVel().x, 0);
-			}
-			else if (p_arriba > s_abajo && p.velocidad.y < 0)
-			{
-				p.setPos(p.getPos().x, s_arriba + p.getLado() / 2.0);
-				if (p.getVel().y <= -13) { p.vida--; }
-				p.setVel(p.getVel().x / 2, 0);
-			}
-			break;
-		}
-		i++;
-	}
-
-	i = 0;
-	while (i < m.suelos.numero)	//Para el choque personaje suelo en horizontal
-	{
-		static const float extra = 0.35;
-
-		float p_izda = p.getPos().x - p.getLado() / 2.0 - extra;
-		float p_dcha = p.getPos().x + p.getLado() / 2.0 + extra;
-		float p_arriba = p.getPos().y + p.getLado() / 2.0;
-		float p_abajo = p.getPos().y - p.getLado() / 2.0;
-
-		float s_izda = m.suelos.lista[i]->getPos().x - m.suelos.lista[i]->getLado() / 2.0;
-		float s_dcha = m.suelos.lista[i]->getPos().x + m.suelos.lista[i]->getLado() / 2.0;
-		float s_arriba = m.suelos.lista[i]->getPos().y + m.suelos.lista[i]->getLado() / 2.0;
-		float s_abajo = m.suelos.lista[i]->getPos().y - m.suelos.lista[i]->getLado() / 2.0;
-
-		if (p_dcha >= s_izda && p_izda <= s_dcha && p_arriba > s_abajo && p_abajo < s_arriba)
-		{
-			if (p.getVel().y >= extra || p.getVel().y <= -extra)
-			{
-				if (p_dcha >= s_izda && p.velocidad.x > 0)
-				{
-					p.setPos(s_izda - p.getLado() / 2.0 - extra, p.getPos().y);
-				}
-				else if (p_izda <= s_dcha && p.velocidad.x < 0)
-				{
-					p.setPos(s_dcha + p.getLado() / 2.0 + extra, p.getPos().y);
-				}
-				p.setVel(-p.getVel().x / 5, p.getVel().y / 1.5);
-			}
-			break;
 		}
 		i++;
 	}

@@ -19,7 +19,6 @@ private:
 	long int time;
 	float tiempo_nivel = 0;
 
-
 public:
 	float x_ojo, x_pto_ojo;
 	void tecla(unsigned char key);

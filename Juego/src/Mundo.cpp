@@ -45,18 +45,22 @@ void Mundo::dibuja()
 	string str3 = "Tiempo: ";
 	string tiempo = to_string(int(tiempo_nivel));
 	string str4 = "Velocidad X: ";
-	string velx = to_string(int(personaje.getVel().x));
+	string velx = to_string(float(personaje.getVel().x));
 	string str5 = "Velocidad Y: ";
-	string vely = to_string(int(personaje.getVel().y));
+	string vely = to_string(float(personaje.getVel().y));
+	string str6 = "Tecla Bloq: ";
+	string tecla(1, personaje.tecla_bloq);
 	str.append(vida);
 	str2.append(escudo);
 	str3.append(tiempo);
 	str4.append(velx);
 	str5.append(vely);
+	str6.append(tecla);
 	texto(x_ojo - 42, 46, &str[0]);
 	texto(x_ojo - 42, 44, &str2[0]);
 	texto(x_ojo - 42, 42, &str4[0]);
 	texto(x_ojo - 42, 40, &str5[0]);
+	texto(x_ojo - 42, 38, &str6[0]);
 	texto(x_ojo + 30, 46, &str3[0]);
 }
 
@@ -89,36 +93,37 @@ void Mundo::tecla(unsigned char key)
 	{
 	case 'a':
 	{
-		personaje.velocidad.x = -8;
-
+		personaje.setVel(-8, personaje.getVel().y);
 		break;
 	}
 	case 'd':
 	{
-		personaje.velocidad.x = 8;
-
+		personaje.setVel(8, personaje.getVel().y);
 		break;
 	}
 	case 'w':
 	{
-		personaje.velocidad.y = 10;
+		if (personaje.tecla_bloq != 'w')
+		{
+			personaje.setVel(personaje.getVel().x, 16);
+			if (personaje.getVel().x > 0.01)
+			{
+				personaje.setVel(8, personaje.getVel().y);
+			}
+			else if (personaje.getVel().x < -0.01)
+			{
+				personaje.setVel(-8, personaje.getVel().y);
+			}
+		}
+		personaje.tecla_bloq = 'w';
 		break;
 	}
-	/*case 's':
-	{
-
-		personaje.velocidad.y = -5;
-		
-		break;
-	}*/
 	case 't':
 	{
 		personaje.posicion.x = 150;
 		break;
 	}
 	}
-
-	
 }
 
 void Mundo::teclaEspecial(unsigned char key)
