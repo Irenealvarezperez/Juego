@@ -45,7 +45,7 @@ void ListaEnemigos::rebote()
 	{
 		for (int j = i + 1; j < numero; j++)
 		{
-			Interaccion::rebote(*(lista[i]), *(lista[j]));
+			//Interaccion::rebote(*(lista[i]), *(lista[j]));
 		}
 	}
 }

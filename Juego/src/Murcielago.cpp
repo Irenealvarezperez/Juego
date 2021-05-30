@@ -18,7 +18,8 @@ void Murcielago::dibuja()
 		if (sprite->getState() > 11) sprite->setState(9, false);
 	}
 	Enemigo::dibuja();
-	dispara(0, -10, 0); //solo una prueba, dispara muchas veces. Arreglarlo
+	disparos.dibuja();
+	//dispara(0, -10, 0); //solo una prueba, dispara muchas veces. Arreglarlo
 }
 
 void Murcielago::dispara(float vx, float vy, float flip)
@@ -28,5 +29,4 @@ void Murcielago::dispara(float vx, float vy, float flip)
 	d->setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
 	d->setVel(vx, vy);
 	disparos.agregar(d, flip);
-	disparos.dibuja();
 }

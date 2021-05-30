@@ -2,6 +2,7 @@
 
 #include "ListaDisparos.h"
 #include "ObjetoMovil.h"
+#include "VariablesGlobales.h"
 
 class Enemigo:public ObjetoMovil
 {
@@ -22,6 +23,7 @@ public:
 	void mueve(float t);
 	float getAncho() { return ancho; };
 	void setTipo(Tipo tipo) { this->tipo = tipo; };
+	Tipo getTipo() { return tipo; };
 
 	friend class Interaccion;
 	friend class Mundo;
