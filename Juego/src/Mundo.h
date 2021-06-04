@@ -16,6 +16,7 @@ private:
 	Personaje personaje;
 	ListaBonus bonus;
 	ListaEnemigos enemigos;
+	SpriteSequence* BarradeVida;
 	long int time;
 	float tiempo_nivel = 0;
 
@@ -25,6 +26,7 @@ public:
 	void teclaEspecial(unsigned char key);
 	void inicializa();
 	void mueve();
+	Mundo();
 	void dibuja();
 	int getVida() { return personaje.vida; };
 	
