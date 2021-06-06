@@ -8,6 +8,7 @@ class ObjetoMovil //clase base de los objetos móviles que usen secuencias de spr
 protected:
 	Vector2D posicion, velocidad, aceleracion;
 	SpriteSequence* sprite;
+	SpriteSequence* BarradeVida;
 public:
 	virtual void mueve(float t);
 	Vector2D getPos() { return posicion; };

@@ -7,12 +7,13 @@
 class Enemigo:public ObjetoMovil
 {
 protected:
-	int vida = 1;
+	int vida;
 	float altura;
 	float ancho = 4;
 	ListaDisparos disparos;
 	enum Tipo { LADRON, MURCIELAGO, MINIVIRUS, GRANVIRUS };
 	Tipo tipo;
+	
 
 public:
 	Enemigo(float altura = 5.0,float anchura=5.0, float x = 0.0, float y = 0.0, float vx = 0.0, float vy = 0.0);

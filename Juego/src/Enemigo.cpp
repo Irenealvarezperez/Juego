@@ -3,6 +3,7 @@
 void Enemigo::dibuja()
 {
 	sprite->draw();
+
 }
 
 void Enemigo::mueve(float t)
@@ -29,4 +30,7 @@ Enemigo::Enemigo(float altura,float anchura, float x, float y, float vx, float v
 	sprite = new SpriteSequence("imagenes/personaje2.png", 99, 99, 300, true, x, y, anchura, altura);
 	setPos(x, y);
 	setVel(vx, vy);
+
+	//BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, x_ojo-42,46, 15,2,0);
+	BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, posicion.x, posicion.y + altura / 2, 6, 1, 0);
 }

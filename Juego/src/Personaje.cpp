@@ -5,6 +5,9 @@
 Personaje::Personaje()
 {
 	sprite = new SpriteSequence("imagenes/personaje2.png", 8, 5, 300, true, posicion.x, posicion.y, lado*2, lado*1.5, 6);
+
+	//BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, x_ojo-42,46, 15,2,0);
+	BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, posicion.x, posicion.y + lado / 2, 6, 1, 0);
 	setPos(2, 4);
 }
 
@@ -22,6 +25,14 @@ void Personaje::dibuja()
 	if (velocidad.y > 0.01) {
 		if (sprite->getState() < 6 || sprite->getState() > 10) sprite->setState(6, false);
 	}
+
+	if (vida == 5)BarradeVida->setState(0, false);
+	else if (vida == 4)BarradeVida->setState(2, false);
+	else if (vida == 3)BarradeVida->setState(4, false);
+	else if (vida == 2)BarradeVida->setState(6, false);
+	else if (vida == 1)BarradeVida->setState(7, false);
+	BarradeVida->setPos(posicion.x, posicion.y + lado / 2);
+	BarradeVida->draw();
 
 	sprite->draw();
 

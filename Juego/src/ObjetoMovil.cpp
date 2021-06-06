@@ -6,4 +6,5 @@ void ObjetoMovil::mueve(float t) {
 
 	setPos(posicion.x, posicion.y);
 	setVel(velocidad.x, velocidad.y);
+
 }

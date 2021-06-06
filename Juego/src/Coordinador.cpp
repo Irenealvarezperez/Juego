@@ -98,8 +98,8 @@ void Coordinador::dibuja()
 	{
 		mundo.dibuja();
 		setFont("fuentes/Pixel.ttf", 16);
-		printxy("En pausa", mundo.x_pto_ojo, 40);
-		printxy("Pulsa -C- para continuar", mundo.x_pto_ojo, 38);
+		printxy("En pausa",(int) mundo.x_pto_ojo, 40);
+		printxy("Pulsa -C- para continuar",(int) mundo.x_pto_ojo, 38);
 		break;
 	}
 	case FINAL:

@@ -83,10 +83,20 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 	{
 		for (int j = 0; j < d.numero; j++)
 		{
-			if ((e.lista[i]->getPos() - d.lista[j]->getPos()).module() <= e.lista[i]->getAncho())
+			Vector2D diferencia = e.lista[i]->getPos() - d.lista[j]->getPos();
+			if (diferencia.module() <= e.lista[i]->getAncho())
 			{
-				e.eliminar(i);
 				d.eliminar(j);
+				if (e.lista[i]->vida == 1)
+					e.eliminar(i);
+				else
+				{
+					e.lista[i]->vida -= 1;
+					if (diferencia.x <= 0)
+						e.lista[i]->posicion.x -= 2;
+					if(diferencia.x >0)
+						e.lista[i]->posicion.x += 2;
+				}
 			}
 		}
 	}

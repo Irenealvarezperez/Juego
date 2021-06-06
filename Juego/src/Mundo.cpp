@@ -10,7 +10,7 @@ void texto(float x, float y, const char* string);
 
 Mundo::Mundo()
 {
-	BarradeVida = new SpriteSequence("imagenes/barradevida.png", 5, 1, 100, true, x_ojo-42,46, 15,3,1);
+	
 }
 
 void Mundo::dibuja()
@@ -35,16 +35,7 @@ void Mundo::dibuja()
 	bonus.dibuja();
 	enemigos.dibuja();
 
-	//barra de vida
-	//no sé como ponerla por delante de los suelos
-
-	if (personaje.vida==5)BarradeVida->setState(0, false);
-	else if (personaje.vida == 4)BarradeVida->setState(1, false);
-	else if (personaje.vida == 3)BarradeVida->setState(2, false);
-	else if (personaje.vida == 2)BarradeVida->setState(3, false);
-	else if (personaje.vida == 1)BarradeVida->setState(4, false);
-	BarradeVida->setPos(x_ojo - 34, 46);
-	BarradeVida->draw();
+	
 
 
 

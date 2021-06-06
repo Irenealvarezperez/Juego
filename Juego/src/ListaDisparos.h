@@ -1,7 +1,7 @@
 #pragma once
 
 #include"Disparo.h"
-#define MAX_DISPAROS 15
+#define MAX_DISPAROS 3
 
 class ListaDisparos
 {

@@ -5,6 +5,7 @@ Murcielago::Murcielago(float altura,float anchura, float x, float y, float vx, f
 	setTipo(MURCIELAGO);
 	sprite = new SpriteSequence("imagenes/murcielago2.png", 4, 4, 300, true, x, y, anchura, altura);
 	sprite->setState(9, false);
+	vida = 1;
 }
 
 void Murcielago::dibuja()
@@ -20,6 +21,8 @@ void Murcielago::dibuja()
 	Enemigo::dibuja();
 	disparos.dibuja();
 	//dispara(0, -10, 0); //solo una prueba, dispara muchas veces. Arreglarlo
+
+	if (vida == 1)BarradeVida->setState(0, false);
 }
 
 void Murcielago::dispara(float vx, float vy, float flip)

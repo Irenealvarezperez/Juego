@@ -15,6 +15,7 @@ private:
 	char tecla_bloq = 0;
 public:
 	ListaDisparos disparos;
+	
 
 	Personaje();
 
