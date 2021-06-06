@@ -119,9 +119,14 @@ void Interaccion::choque(ListaDisparos& d, Mapa& m)
 	{
 		for (int j = 0; j < m.suelos.numero; j++)
 		{
-			if ((d.lista[i]->getPos() - m.suelos.lista[j]->getPos()).module() <= m.suelos.lista[i]->getLado())
+			Vector2D posicion = d.lista[i]->getPos(); //variable auxiliar de la posicion del disparo
+			if ((posicion - m.suelos.lista[j]->getPos()).module() <= m.suelos.lista[i]->getLado())
 			{
 				d.eliminar(i);
+			}
+			else if (posicion.x < -10 || posicion.y > 46) 
+			{ 
+				d.eliminar(i); 
 			}
 		}
 	}
