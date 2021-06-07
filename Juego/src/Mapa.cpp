@@ -32,12 +32,12 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				switch (c)
 				{
 				case '#': {suelos.agregar(new Suelo(posicion.x, posicion.y)); break; }
-				case 'M': {bonus.agregar(bonus.setBonus("imagenes/mascarilla.png", posicion.x, posicion.y, 5, 4)); break; } //bonus mascarilla
-				case 'P': {bonus.agregar(bonus.setBonus("imagenes/papel.png", posicion.x, posicion.y, 4, 4)); break; } //bonus papel
-				case 'V': {bonus.agregar(bonus.setBonus("imagenes/vacuna.png", posicion.x, posicion.y, 4, 4)); break; } //bonus vacuna
-				case 'B': {bonus.agregar(bonus.setBonus("imagenes/botiquin.png", posicion.x, posicion.y, 7, 4)); break; } //bonus botiquin
-				case 'S': {bonus.agregar(bonus.setBonus("imagenes/escudo.png", posicion.x, posicion.y, 5, 6)); break; } //bonus escudo
-				case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", posicion.x, posicion.y, 5, 5)); break; } //bonus espiral
+				case 'M': {bonus.agregar(bonus.setBonus("imagenes/mascarilla.png", posicion.x, posicion.y, 5, 4, Bonus::MASCARILLAS)); break; } //bonus mascarilla
+				case 'P': {bonus.agregar(bonus.setBonus("imagenes/papel.png", posicion.x, posicion.y, 4, 4, Bonus::PAPEL)); break; } //bonus papel
+				case 'V': {bonus.agregar(bonus.setBonus("imagenes/vacuna.png", posicion.x, posicion.y, 4, 4, Bonus::VACUNA)); break; } //bonus vacuna
+				case 'B': {bonus.agregar(bonus.setBonus("imagenes/botiquin.png", posicion.x, posicion.y, 7, 4, Bonus::BOTIQUIN)); break; } //bonus botiquin
+				case 'S': {bonus.agregar(bonus.setBonus("imagenes/escudo.png", posicion.x, posicion.y, 5, 6, Bonus::ESCUDO)); break; } //bonus escudo
+				case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", posicion.x, posicion.y, 5, 5, Bonus::ESPIRAL)); break; } //bonus espiral
 				//case 'E': {enemigos.agregar(new Enemigo(5, posicion.x, posicion.y, 1, 1)); break; }
 				case 'E': {enemigos.agregar(new Ladron(5,6, posicion.x, posicion.y, -1, 0)); break; }
 				case 'X': {enemigos.agregar(new Murcielago(5,4, posicion.x, posicion.y, -1, 0)); break; }

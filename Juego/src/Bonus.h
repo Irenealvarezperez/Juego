@@ -11,6 +11,9 @@ protected:
 	Vector2D velocidad;
 	Vector2D aceleracion;
 	Sprite* bonus;
+public:
+	enum Tipo { BOTIQUIN, ESCUDO, ESPIRAL, VACUNA, MASCARILLAS, PAPEL };
+	Tipo tipo;
 
 public:
 	Bonus(const char* path, float ancho, float alto);
@@ -22,4 +25,6 @@ public:
 	void setVel(float vel_x, float vel_y);
 	Vector2D getPos() { return posicion; };
 	float getLado() { return lado; };
+	void setTipo(Tipo tipo) { this->tipo = tipo; };
+	Tipo getTipo() { return tipo; };
 };

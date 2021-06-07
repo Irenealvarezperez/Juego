@@ -108,7 +108,25 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 	{
 		if ((b.lista[i]->getPos() - p.getPos()).module() <= b.lista[i]->getLado())
 		{
-			b.eliminar(i);
+			switch (b.getTipo(b.lista[i])) {
+			case Bonus::Tipo::MASCARILLAS:
+				p.setVida(p.getVida()+1);
+				break;
+			case Bonus::Tipo::BOTIQUIN:
+				p.setVida(5);
+				break;
+			case Bonus::Tipo::PAPEL:
+				//añadir una ud de papel
+				break;
+			case Bonus::Tipo::VACUNA:
+				//añadir una municion
+				break;
+			case Bonus::Tipo::ESPIRAL:
+				//añadir proteccion por tiempo
+				break;
+			case Bonus::Tipo::ESCUDO:
+				p.setEscudo(true);
+			}
 		}
 	}
 }
@@ -139,7 +157,14 @@ void Interaccion::choque(ListaDisparos& d, Personaje& p)
 		if ((d.lista[i]->getPos() - p.getPos()).module() <= p.getLado())
 		{
 			d.eliminar(i);
-			p.setVida(p.getVida() - 1);
+			if (p.getEscudo()==false)
+				p.setVida(p.getVida() - 1);
+			else
+			{
+				p.restaDuracionEscudo();
+				if (p.getDuracionEscudo() == 0)
+					p.setEscudo(false);
+			}
 		}
 	}
 }
@@ -242,7 +267,14 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 			if ((e.lista[i]->getPos() - p.getPos()).module() <= p.getLado())
 			{
 				rebote(*(e.lista[i]), p);
-				p.setVida(p.getVida() - 1);
+				if (p.getEscudo() == false)
+					p.setVida(p.getVida() - 1);
+				else
+				{
+					p.restaDuracionEscudo();
+					if (p.getDuracionEscudo() == 0)
+						p.setEscudo(false);
+				}
 			}
 			break;
 		}
