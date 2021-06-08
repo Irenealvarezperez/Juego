@@ -17,5 +17,4 @@ public:
 	static void choque(Personaje& p, ListaBonus& b);
 	static void choque(ListaDisparos& d, Mapa& m);
 	static void atacar(ListaEnemigos& e, Personaje& p);
-	static void compruebaColision(Personaje& p1, Enemigo& p2);
 };

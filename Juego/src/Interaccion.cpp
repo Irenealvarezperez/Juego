@@ -88,7 +88,14 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 			{
 				d.eliminar(j);
 				if (e.lista[i]->vida == 1)
+				{
+					if (e.lista[i]->getTipo() == Enemigo::GRANVIRUS)
+					{
+						auto gv = dynamic_cast<GranVirus*>(e.lista[i]);
+						gv->dispara(e);
+					}
 					e.eliminar(i);
+				}
 				else
 				{
 					e.lista[i]->vida -= 1;
@@ -171,6 +178,9 @@ void Interaccion::choque(ListaDisparos& d, Personaje& p)
 
 bool Interaccion::rebote(Enemigo& e, Personaje& p)
 {
+	bool flag = false;
+	if (abs(p.getVel().y) > 10) flag = true;
+
 	//Vector que une los centros
 	Vector2D dif = p.getPos() - e.getPos();
 	float d = dif.module();
@@ -244,6 +254,7 @@ bool Interaccion::rebote(Enemigo& e, Personaje& p)
 
 		//Velocidades en absolutas despues del choque en componentes
 		p.setVel(static_cast<float>(modv2 * cos(fi2)), 5 + static_cast<float> (modv2 * sin(fi2)));
+		if (flag) return true;
 	}
 	return false;
 }
@@ -258,15 +269,34 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 		{
 			if (e.lista[i]->getPos().x - p.getPos().x <= 100)
 			{
-				dynamic_cast<Murcielago*>(e.lista[i])->dispara(0, -10.0f, 0);
+				auto m = dynamic_cast<Murcielago*>(e.lista[i]);
+				m->setTime1(getMillis());
+				if (m->getTime1() - m->getTime0() > 2000)
+				{
+					dynamic_cast<Murcielago*>(e.lista[i])->dispara(0, -10.0f, 0);
+					m->setTime0(getMillis());
+				}
 			}
 			break;
 		}
 		case Enemigo::MINIVIRUS:
 		{
-			if ((e.lista[i]->getPos() - p.getPos()).module() <= p.getLado())
+			Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
+			if (diferencia.module() <= p.getLado())
 			{
-				rebote(*(e.lista[i]), p);
+				if (rebote(*(e.lista[i]), p))
+				{
+					if (e.lista[i]->vida == 1)
+						e.eliminar(i);
+					else
+					{
+						e.lista[i]->vida -= 1;
+						if (diferencia.x <= 0)
+							e.lista[i]->posicion.x -= 2;
+						if (diferencia.x > 0)
+							e.lista[i]->posicion.x += 2;
+					}
+				}
 				if (p.getEscudo() == false)
 					p.setVida(p.getVida() - 1);
 				else
@@ -294,9 +324,4 @@ bool Interaccion::rebote(Enemigo& e, Suelo s)
 		return true;
 	}
 	return false;
-}
-
-
-void Interaccion::compruebaColision(Personaje& p1, Enemigo& p2) {
-
 }
