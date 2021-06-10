@@ -22,8 +22,11 @@ void Personaje::dibuja()
 		if ( sprite->getState()>6) sprite->setState(0, false);
 	}
 	if (velocidad.x <= 0.01 && velocidad.x>= -0.01 && velocidad.y>= -0.01 && velocidad.y<=0.01) sprite->setState(12, false);
-	if (velocidad.y > 0.01) {
-		if (sprite->getState() < 6 || sprite->getState() > 10) sprite->setState(6, false);
+	if (velocidad.y > 0.0000001) {
+		if (sprite->getState() < 7 || sprite->getState() > 8) sprite->setState(7, false);
+	}
+	if (velocidad.y < -0.000001) {
+		if (sprite->getState() < 7 || sprite->getState() > 8) sprite->setState(7, false);
 	}
 
 	if (vida == 5)BarradeVida->setState(0, false);
