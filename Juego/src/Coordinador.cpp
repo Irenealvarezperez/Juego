@@ -3,7 +3,7 @@
 void pantallaVacia() { gluLookAt(ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 60.0f, ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 0.0, 0.0, 1.0, 0.0); }
 void pantallaVaciaEspecial() { gluLookAt(ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 85.0f, ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 0.0, 0.0, 1.0, 0.0); }
 
-Coordinador::Coordinador() { estado = INICIO; }
+Coordinador::Coordinador() { estado = HISTORIA; }
 
 Coordinador::~Coordinador() {}
 
@@ -19,6 +19,23 @@ void Coordinador::dibuja()
 {
 	switch (estado)
 	{
+	case HISTORIA:
+	{
+		pantallaVacia();
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/historia1.png").id);
+		glDisable(GL_LIGHTING);
+
+		glBegin(GL_POLYGON);
+		glTexCoord2d(0, 1); glVertex2f(10, 10);
+		glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA/20.0, 10);
+		glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA/20.0, ALTO_PANTALLA/20.0);
+		glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA/20.0);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE);
+		break;
+	}
 	case INICIO:
 	{
 		pantallaVacia();
@@ -119,6 +136,12 @@ void Coordinador::tecla(unsigned char key)
 {
 	switch (estado)
 	{
+	case HISTORIA:
+	{
+		if (key == ' ')
+			estado = INICIO;
+		break;
+	}
 	case INICIO:
 	{
 		switch (key)

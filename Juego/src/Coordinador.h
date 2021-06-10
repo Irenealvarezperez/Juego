@@ -7,7 +7,7 @@ class Coordinador
 private:
 	long int t0 = 0;
 	Mundo mundo;
-	enum Estado { INICIO, NIVELES, SELECCION_NIVEL, JUEGO, GAMEOVER, FIN, PAUSA, FINAL };
+	enum Estado { HISTORIA, INICIO, NIVELES, SELECCION_NIVEL, JUEGO, GAMEOVER, FIN, PAUSA, FINAL };
 	Estado estado;
 public:
 	Coordinador();
