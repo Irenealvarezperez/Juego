@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mundo.h"
+#include <string>
 
 class Coordinador
 {
@@ -9,6 +10,8 @@ private:
 	Mundo mundo;
 	enum Estado { HISTORIA, INICIO, NIVELES, SELECCION_NIVEL, JUEGO, GAMEOVER, FIN, PAUSA, FINAL };
 	Estado estado;
+	string path = "imagenes/historia00.png";
+	int pantalla_historia = 10;
 public:
 	Coordinador();
 	~Coordinador();

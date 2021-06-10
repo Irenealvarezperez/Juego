@@ -21,9 +21,20 @@ void Coordinador::dibuja()
 	{
 	case HISTORIA:
 	{
+		if (pantalla_historia <= 20)
+		{
+			path.erase(17, 2);
+			path.insert(17, to_string(pantalla_historia));
+		}
+		else
+		{
+			estado = INICIO;
+			break;
+		}
+
 		pantallaVacia();
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/historia1.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture(&path[0]).id);
 		glDisable(GL_LIGHTING);
 
 		glBegin(GL_POLYGON);
@@ -139,7 +150,10 @@ void Coordinador::tecla(unsigned char key)
 	case HISTORIA:
 	{
 		if (key == ' ')
-			estado = INICIO;
+		{
+			pantalla_historia++;
+			estado = HISTORIA;
+		}
 		break;
 	}
 	case INICIO:
