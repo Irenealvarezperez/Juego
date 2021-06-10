@@ -107,20 +107,49 @@ void Coordinador::dibuja()
 		//Aqui deberia eliminar todos los objetos e inicializar todo a cero
 		destruirContenido();
 		pantallaVacia();
-		setTextColor(1, 0, 0);
+		
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Foto5.png").id);
+		glDisable(GL_LIGHTING);
+
+		glBegin(GL_POLYGON);
+		glTexCoord2d(0, 1); glVertex2f(10, 10);
+		glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
+		glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
+		glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE);
+		setTextColor(1, 1, 1);
 		setFont("fuentes/Pixel.ttf", 16);
-		printxy("GAMEOVER: Has perdido", 10, 10);
+		printxy("GAMEOVER: Has perdido", 10, 50);
+		setTextColor(1, 1, 1);
 		printxy("Pulsa -C- para continuar", 10, 5);
 		break;
 	}
 	case FIN:
 	{
 		pantallaVacia();
-		setFont("fuentes/Pixel.ttf", 16);
-		printxy("ENHORABUENA, ¡Has triunfado!", 10, 10);
-		printxy("Pulsa -C- para continuar", 10, 5);
-		mundo.tiempo_nivel = 0;
-		break;
+		
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Foto1.png").id);
+			glDisable(GL_LIGHTING);
+			glBegin(GL_POLYGON);
+			glTexCoord2d(0, 1); glVertex2f(10, 10);
+			glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
+			glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
+			glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
+			glEnd();
+			glEnable(GL_LIGHTING);
+			glDisable(GL_TEXTURE);
+		
+			setTextColor(0, 1, 0);
+			setFont("fuentes/Pixel.ttf", 26);
+			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
+			setTextColor(1, 1, 1);
+			printxy("Pulsa -C- para continuar", 10, 5);
+			mundo.tiempo_nivel = 0;
+			break;
 	}
 	case PAUSA:
 	{
@@ -133,9 +162,22 @@ void Coordinador::dibuja()
 	case FINAL:
 	{
 		pantallaVacia();
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Foto3.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glTexCoord2d(0, 1); glVertex2f(10, 10);
+		glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
+		glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
+		glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE);
+		setTextColor(0, 1, 0);
 		setFont("fuentes/Pixel.ttf", 16);
 		printxy("ENHORABUENA, ¡Has triunfado!", 10, 20);
-		printxy("¡Ahora puedes crear tus propios niveles!", 10, 15);
+		printxy("¡Ahora puedes crear tus propios niveles!", 26, 24);
+		setTextColor(1, 1, 1);
 		printxy("Pulsa -S- para volver a la seleccion de niveles", 10, 10);
 		printxy("Pulsa -C- para salir", 10, 5);
 		break;

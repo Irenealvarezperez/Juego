@@ -105,12 +105,12 @@ void Mundo::tecla(unsigned char key)
 	{
 	case 'a':
 	{
-		personaje.setVel(-8, personaje.getVel().y);
+		personaje.setVel(-12, personaje.getVel().y);
 		break;
 	}
 	case 'd':
 	{
-		personaje.setVel(8, personaje.getVel().y);
+		personaje.setVel(12, personaje.getVel().y);
 		break;
 	}
 	case 'w':
