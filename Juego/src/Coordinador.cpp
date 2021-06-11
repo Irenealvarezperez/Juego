@@ -50,14 +50,14 @@ void Coordinador::dibuja()
 	case INICIO:
 	{
 		pantallaVacia();
-		setTextColor(1, 1, 0);
+		setTextColor(255, 255, 0);
 		setFont("fuentes/Pixel.ttf", 30);
 		printxy("Juego", 10, 30);
-		setTextColor(0, 1, 1);
+		setTextColor(0, 255, 255);
 		setFont("fuentes/Pixel.ttf", 30);
 		printxy("The creatives", 10, 25);
 		setFont("fuentes/Pixel.ttf", 18);
-		setTextColor(1, 1, 1);
+		setTextColor(255, 255, 255);//
 		printxy("Pulse -F- para seleccionar los niveles", 10, 15);
 		printxy("Pulse -R- para reiniciar las estadisticas y los niveles creados", 10, 10);
 		break;
@@ -65,7 +65,7 @@ void Coordinador::dibuja()
 	case NIVELES:
 	{
 		pantallaVacia();
-		setTextColor(1, 1, 1);
+		setTextColor(255, 255, 255);
 		setFont("fuentes/Pixel.ttf", 30);
 		printxy("Seleccion de nivel", 30, 40);
 		printxy("Pulsa -s- para ver los niveles", 25, 10);
@@ -120,11 +120,13 @@ void Coordinador::dibuja()
 		glEnd();
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE);
-		setTextColor(1, 1, 1);
+
+		setTextColor(0, 0, 1);
 		setFont("fuentes/Pixel.ttf", 16);
 		printxy("GAMEOVER: Has perdido", 10, 50);
-		setTextColor(1, 1, 1);
+		setTextColor(255, 255, 255);
 		printxy("Pulsa -C- para continuar", 10, 5);
+		
 		break;
 	}
 	case FIN:
@@ -143,10 +145,10 @@ void Coordinador::dibuja()
 			glEnable(GL_LIGHTING);
 			glDisable(GL_TEXTURE);
 		
-			setTextColor(0, 1, 0);
+			setTextColor(0, 255, 0);
 			setFont("fuentes/Pixel.ttf", 26);
 			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
-			setTextColor(1, 1, 1);
+			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
 			break;
@@ -173,11 +175,11 @@ void Coordinador::dibuja()
 		glEnd();
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE);
-		setTextColor(0, 1, 0);
+		setTextColor(0, 255, 0);
 		setFont("fuentes/Pixel.ttf", 16);
 		printxy("ENHORABUENA, ¡Has triunfado!", 10, 20);
 		printxy("¡Ahora puedes crear tus propios niveles!", 26, 24);
-		setTextColor(1, 1, 1);
+		setTextColor(255, 255, 255);
 		printxy("Pulsa -S- para volver a la seleccion de niveles", 10, 10);
 		printxy("Pulsa -C- para salir", 10, 5);
 		break;
