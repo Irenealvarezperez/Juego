@@ -36,7 +36,7 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				case '&': {suelos.agregar(new Suelo(posicion.x, posicion.y, 3)); break; }
 				case '4': {suelos.agregar(new Suelo(posicion.x, posicion.y, 4)); break; }
 				case '5': {suelos.agregar(new Suelo(posicion.x, posicion.y, 5)); break; }
-				case '6': {suelos.agregar(new Suelo(posicion.x, posicion.y, 0)); break; }
+				case '6': {suelos.agregar(new Suelo(posicion.x, posicion.y, 0)); break; } 
 				case 'M': {bonus.agregar(bonus.setBonus("imagenes/mascarilla.png", posicion.x, posicion.y, 5, 4, Bonus::MASCARILLAS)); break; } //bonus mascarilla
 				case 'P': {bonus.agregar(bonus.setBonus("imagenes/papel.png", posicion.x, posicion.y, 4, 4, Bonus::PAPEL)); break; } //bonus papel
 				case 'V': {bonus.agregar(bonus.setBonus("imagenes/vacuna.png", posicion.x, posicion.y, 4, 4, Bonus::VACUNA)); break; } //bonus vacuna

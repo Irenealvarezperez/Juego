@@ -273,13 +273,42 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 				m->setTime1(getMillis());
 				if (m->getTime1() - m->getTime0() > 2000)
 				{
-					dynamic_cast<Murcielago*>(e.lista[i])->dispara(0, -10.0f, 0);
+					dynamic_cast<Murcielago*>(e.lista[i])->dispara(0, -10.0f, 180);
 					m->setTime0(getMillis());
 				}
 			}
 			break;
 		}
 		case Enemigo::MINIVIRUS:
+		{
+			Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
+			if (diferencia.module() <= p.getLado())
+			{
+				if (rebote(*(e.lista[i]), p))
+				{
+					if (e.lista[i]->vida == 1)
+						e.eliminar(i);
+					else
+					{
+						e.lista[i]->vida -= 1;
+						if (diferencia.x <= 0)
+							e.lista[i]->posicion.x -= 2;
+						if (diferencia.x > 0)
+							e.lista[i]->posicion.x += 2;
+					}
+				}
+				if (p.getEscudo() == false)
+					p.setVida(p.getVida() - 1);
+				else
+				{
+					p.restaDuracionEscudo();
+					if (p.getDuracionEscudo() == 0)
+						p.setEscudo(false);
+				}
+			}
+			break;
+		}
+		case Enemigo::GRANVIRUS:
 		{
 			Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
 			if (diferencia.module() <= p.getLado())

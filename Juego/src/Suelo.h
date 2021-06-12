@@ -14,7 +14,7 @@ public:
 	Vector2D limite2;
 
 public:
-	Suelo(int x, int y);
+	Suelo(int x, int y, int indice);
 
 	void dibuja();
 	void setPos(int x, int y);
