@@ -33,7 +33,7 @@ void Mundo::dibuja()
 
 	personaje.dibuja();
 	
-	FILE* nombre;
+	/*FILE* nombre;
 	nombre = fopen("..\\src\\Registro_Nombres_Niveles.txt", "r");
 	char num_nivel;
 	while (!feof(nombre)) {
@@ -51,6 +51,22 @@ void Mundo::dibuja()
 				nivel.dibuja(2);
 				break;
 			}
+			case '3' : {
+				nivel.dibuja(3);
+				break;
+			}
+			case '4': {
+				nivel.dibuja(4);
+				break;
+			}
+			case '5': {
+				nivel.dibuja(5);
+				break;
+			}
+			case '6': {
+				nivel.dibuja(6);
+				break;
+			}
 			}//arreglarlo
 		}
 	}
@@ -60,9 +76,9 @@ void Mundo::dibuja()
 			if (num_nivel[i] == '1') {
 				nivel.dibuja(1);
 			}
-		}*/
+		}*/ 
 	 //cambiarlo para q lea todo
-	fclose(nombre);
+	nivel.dibuja(1); //no se como hacer que cambie el dibujo según el nivel
 	bonus.dibuja();
 	enemigos.dibuja();
 	
