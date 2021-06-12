@@ -5,7 +5,7 @@ ListaDisparos::ListaDisparos() {
 	for (int i = 0; i < MAX_DISPAROS; i++) {
 		lista[i] = 0;
 	}
-	max_disparos = 3;
+	max_disparos = 1;
 }
 
 bool ListaDisparos::agregar(Disparo* d, float flip) {
@@ -13,7 +13,7 @@ bool ListaDisparos::agregar(Disparo* d, float flip) {
 		lista[numero++] = d;
 		if (flip != 0)
 			d->disparo->setAngle(flip);
-		ETSIDI::play("sonidos/disparo.mp3");
+		//ETSIDI::play("sonidos/disparo.mp3");
 	}
 	else return false;
 	return true;

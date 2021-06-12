@@ -111,12 +111,14 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 
 void Interaccion::choque(Personaje& p, ListaBonus& b)
 {
+	long t1, t0;
 	for (int i = 0; i < b.numero; i++)
 	{
+		
 		if ((b.lista[i]->getPos() - p.getPos()).module() <= b.lista[i]->getLado())
 		{
-			b.eliminar(i);
-			switch (b.getTipo(b.lista[i])) {
+			switch (b.getTipo(b.lista[i])) 
+			{
 			case Bonus::Tipo::MASCARILLAS:
 				p.setVida(p.getVida() + 1);
 				break;
@@ -127,25 +129,25 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 				//añadir una ud de papel
 				break;
 			case Bonus::Tipo::VACUNA:
-				p.disparos.max_disparos +=1;
+				p.disparos.max_disparos =5;
 				break;
 			case Bonus::Tipo::ESPIRAL:
-			{
 				//hacer que no le baje la vida ni el escudo en ese tiempo
-				/*auto m = (b.lista[i]);
-				m->setTime1(getMillis());
-				if (m->getTime1() - m->getTime0() > 5000)
-				{
-					p.invencible = true;
-					m->setTime0(getMillis());
-				}
-				*/
+				t0=getMillis();
+				t1=getMillis();
+				p.invencible = true;
 				break;
-			}
+			
 			case Bonus::Tipo::ESCUDO:
 				p.setEscudo(true);
 				break;
 			}
+			b.eliminar(i);
+		}
+		if (p.invencible == true)
+		{
+			t1 = getMillis();
+			if (t1 - t0 > 5000)p.invencible = false;
 		}
 	}
 }
@@ -291,6 +293,34 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 					m->setTime0(getMillis());
 				}
 			}
+			Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
+			if (diferencia.module() <= p.getLado())
+			{
+				if (rebote(*(e.lista[i]), p))
+				{
+					if (e.lista[i]->vida == 1)
+						e.eliminar(i);
+					else
+					{
+						e.lista[i]->vida -= 1;
+						if (diferencia.x <= 0)
+							e.lista[i]->posicion.x -= 2;
+						if (diferencia.x > 0)
+							e.lista[i]->posicion.x += 2;
+					}
+				}
+				if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
+					if (p.getEscudo() == false)
+						p.setVida(p.getVida() - 1);
+					else
+					{
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
+							p.setEscudo(false);
+					}
+				}
+			}
+
 			break;
 		}
 		case Enemigo::MINIVIRUS:
@@ -389,6 +419,7 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 		}
 	}
 }
+
 
 bool Interaccion::rebote(Enemigo& e, Suelo s)
 {
