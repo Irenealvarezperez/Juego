@@ -49,6 +49,7 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				case 'X': {enemigos.agregar(new Murcielago(5,4, posicion.x, posicion.y, -1, 0)); break; }
 				case 'Z': {enemigos.agregar(new Minivirus(6,6, posicion.x, posicion.y, -1, 0)); break; }
 				case 'G': {enemigos.agregar(new GranVirus(10,12, posicion.x, posicion.y, -1, 0)); break; }
+				//case '1': {fondo.ponerFondo(1); break; } Lo lee correctamente pero no lo dibuja
 				}
 				columna++;
 				posicion.x += Suelo::getLado();
@@ -66,9 +67,10 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 	}
 }
 
-void Mapa::dibuja()
+void Mapa::dibuja(int nivel)
 {
 	suelos.dibuja();
+	fondo.ponerFondo(nivel); //buscar una forma de implementar uno diferente por nivel
 }
 
 void Mapa::crear()

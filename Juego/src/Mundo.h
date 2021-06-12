@@ -7,6 +7,7 @@
 #include "ListaBonus.h"
 #include "VariablesGlobales.h"
 #include "Interaccion.h"
+#include "Fondo.h" 
 
 class Mundo
 {

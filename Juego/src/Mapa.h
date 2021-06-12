@@ -9,6 +9,7 @@
 #include "Minivirus.h"
 #include "GranVirus.h"
 #include <string>
+#include "Fondo.h"
 
 class Mapa
 {
@@ -21,10 +22,10 @@ private:
 	int pantallas_completada;
 	string path = "..\\src\\Nivel0.txt";
 	string str;
-
+	Fondo fondo;
 public:
 	void inicia(ListaBonus& bonus, ListaEnemigos &enemigos);
-	void dibuja();
+	void dibuja(int indice);
 	int getPantalla() { return pantalla; };
 	const int getFila_Max() { return fila_max; };
 	const int getColumna_Max() { return columna_max; };

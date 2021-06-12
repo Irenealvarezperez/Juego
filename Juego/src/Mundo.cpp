@@ -5,6 +5,7 @@
 #include <string>
 #include "ETSIDI.h"
 
+#pragma warning(disable : 4996)
 
 void texto(float x, float y, const char* string);
 
@@ -31,23 +32,40 @@ void Mundo::dibuja()
 	//aqui es donde hay que poner el codigo de dibujo
 
 	personaje.dibuja();
-	nivel.dibuja();
+	
+	FILE* nombre;
+	nombre = fopen("..\\src\\Registro_Nombres_Niveles.txt", "r");
+	char num_nivel;
+	while (!feof(nombre)) {
+		fscanf(nombre, "%c", &num_nivel);
+		if (num_nivel != '\n' && !feof(nombre))
+		{
+			switch (num_nivel)
+			{
+			case '1':
+			{
+				nivel.dibuja(1);
+				break;
+			}
+			case '2': {
+				nivel.dibuja(2);
+				break;
+			}
+			}//arreglarlo
+		}
+	}
+	/*fgets(num_nivel, 100, nombre);
+	while (!feof(nombre)) {
+		for (int i = 0; num_nivel[i] != '\0'; i++) {
+			if (num_nivel[i] == '1') {
+				nivel.dibuja(1);
+			}
+		}*/
+	 //cambiarlo para q lea todo
+	fclose(nombre);
 	bonus.dibuja();
 	enemigos.dibuja();
-
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/fondohospital.png").id);
-	glDisable(GL_LIGHTING);
-
-	glBegin(GL_POLYGON);
-	glTexCoord2d(0, 1); glVertex2f(-2, -2);
-	glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 6.75, -2);
-	glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 6.75, ALTO_PANTALLA / 16.0);
-	glTexCoord2d(0, 0); glVertex2f(-2, ALTO_PANTALLA / 16.0);
-	glEnd();
-	glEnable(GL_LIGHTING);
-	glDisable(GL_TEXTURE);
-
+	
 
 
 	if (time > 1000)
