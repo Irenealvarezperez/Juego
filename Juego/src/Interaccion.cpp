@@ -355,6 +355,37 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 			}
 			break;
 		}
+		case Enemigo::CONTAGIADOLEVE:
+		{
+			Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
+			if (diferencia.module() <= p.getLado())
+			{
+				if (rebote(*(e.lista[i]), p))
+				{
+					if (e.lista[i]->vida == 1)
+						e.eliminar(i);
+					else
+					{
+						e.lista[i]->vida -= 1;
+						if (diferencia.x <= 0)
+							e.lista[i]->posicion.x -= 2;
+						if (diferencia.x > 0)
+							e.lista[i]->posicion.x += 2;
+					}
+				}
+				if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
+					if (p.getEscudo() == false)
+						p.setVida(p.getVida() - 1);
+					else
+					{
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
+							p.setEscudo(false);
+					}
+				}
+			}
+			break;
+		}
 		}
 	}
 }
