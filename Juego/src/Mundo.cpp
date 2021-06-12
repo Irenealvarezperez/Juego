@@ -35,7 +35,18 @@ void Mundo::dibuja()
 	bonus.dibuja();
 	enemigos.dibuja();
 
-	
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/fondohospital.png").id);
+	glDisable(GL_LIGHTING);
+
+	glBegin(GL_POLYGON);
+	glTexCoord2d(0, 1); glVertex2f(-2, -2);
+	glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 6.75, -2);
+	glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 6.75, ALTO_PANTALLA / 16.0);
+	glTexCoord2d(0, 0); glVertex2f(-2, ALTO_PANTALLA / 16.0);
+	glEnd();
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE);
 
 
 
