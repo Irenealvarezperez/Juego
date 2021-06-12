@@ -31,7 +31,12 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 			{
 				switch (c)
 				{
-				case '#': {suelos.agregar(new Suelo(posicion.x, posicion.y)); break; }
+				case '@': {suelos.agregar(new Suelo(posicion.x, posicion.y, 1)); break; }
+				case '%': {suelos.agregar(new Suelo(posicion.x, posicion.y, 2)); break; }
+				case '&': {suelos.agregar(new Suelo(posicion.x, posicion.y, 3)); break; }
+				case '4': {suelos.agregar(new Suelo(posicion.x, posicion.y, 4)); break; }
+				case '5': {suelos.agregar(new Suelo(posicion.x, posicion.y, 5)); break; }
+				case '6': {suelos.agregar(new Suelo(posicion.x, posicion.y, 0)); break; }
 				case 'M': {bonus.agregar(bonus.setBonus("imagenes/mascarilla.png", posicion.x, posicion.y, 5, 4, Bonus::MASCARILLAS)); break; } //bonus mascarilla
 				case 'P': {bonus.agregar(bonus.setBonus("imagenes/papel.png", posicion.x, posicion.y, 4, 4, Bonus::PAPEL)); break; } //bonus papel
 				case 'V': {bonus.agregar(bonus.setBonus("imagenes/vacuna.png", posicion.x, posicion.y, 4, 4, Bonus::VACUNA)); break; } //bonus vacuna
@@ -40,6 +45,7 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", posicion.x, posicion.y, 5, 5, Bonus::ESPIRAL)); break; } //bonus espiral
 				//case 'E': {enemigos.agregar(new Enemigo(5, posicion.x, posicion.y, 1, 1)); break; }
 				case 'E': {enemigos.agregar(new Ladron(5,6, posicion.x, posicion.y, -1, 0)); break; }
+				case 'C': {enemigos.agregar(new ContagiadoLeve(5, 6, posicion.x, posicion.y, -1, 0)); break; }
 				case 'X': {enemigos.agregar(new Murcielago(5,4, posicion.x, posicion.y, -1, 0)); break; }
 				case 'Z': {enemigos.agregar(new Minivirus(6,6, posicion.x, posicion.y, -1, 0)); break; }
 				case 'G': {enemigos.agregar(new GranVirus(10,12, posicion.x, posicion.y, -1, 0)); break; }
@@ -175,7 +181,7 @@ void Mapa::reiniciar()
 	registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "wt");
 	if (registro)
 	{
-		fprintf(registro, "Nivel1.txt\nNivel2.txt\n");
+		fprintf(registro, "Nivel1.txt\nNivel2.txt\nNivel3.txt\nNivel4.txt\nNivel5.txt\nNivel6.txt\n");
 		fclose(registro);
 		registro = nullptr;
 	}
@@ -191,12 +197,12 @@ void Mapa::reiniciar()
 	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "wt");
 	if (registro)
 	{
-		fprintf(registro, "2");
+		fprintf(registro, "6");
 		fclose(registro);
 		registro = nullptr;
 	}
 
-	int i = 3;
+	int i = 7;
 	while (true)
 	{
 		string str = "..\\src\\Nivel.txt";

@@ -1,10 +1,16 @@
 #include "Suelo.h"
 #include "freeglut.h"
 
-Suelo::Suelo(int x, int y)
+Suelo::Suelo(int x, int y,int indice)
 {
-	sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	if(indice==0)sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	if(indice==1)sprite = new Sprite("imagenes/suelog.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 2)sprite = new Sprite("imagenes/suelob.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 3)sprite = new Sprite("imagenes/suelo3.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 4)sprite = new Sprite("imagenes/suelo4.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 5)sprite = new Sprite("imagenes/suelo5.png", posicion.x, posicion.y, lado, lado);
 	setPos(x, y);
+	
 }
 
 void Suelo::dibuja()

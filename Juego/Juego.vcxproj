@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Bonus.cpp" />
+    <ClCompile Include="src\ContagiadoLeve.cpp" />
     <ClCompile Include="src\Coordinador.cpp" />
     <ClCompile Include="src\Disparo.cpp" />
     <ClCompile Include="src\Enemigo.cpp" />
@@ -166,18 +167,21 @@
     <ClCompile Include="src\ListaBonus.cpp" />
     <ClCompile Include="src\ListaDisparos.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
+    <ClCompile Include="src\ListaObstaculos.cpp" />
     <ClCompile Include="src\ListaSuelos.cpp" />
     <ClCompile Include="src\Mapa.cpp" />
     <ClCompile Include="src\Minivirus.cpp" />
     <ClCompile Include="src\Mundo.cpp" />
     <ClCompile Include="src\Murcielago.cpp" />
     <ClCompile Include="src\ObjetoMovil.cpp" />
+    <ClCompile Include="src\Obstaculos.cpp" />
     <ClCompile Include="src\Personaje.cpp" />
     <ClCompile Include="src\Suelo.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Bonus.h" />
+    <ClInclude Include="src\ContagiadoLeve.h" />
     <ClInclude Include="src\Coordinador.h" />
     <ClInclude Include="src\Disparo.h" />
     <ClInclude Include="src\Enemigo.h" />
@@ -187,12 +191,14 @@
     <ClInclude Include="src\ListaBonus.h" />
     <ClInclude Include="src\ListaDisparos.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
+    <ClInclude Include="src\ListaObstaculos.h" />
     <ClInclude Include="src\ListaSuelos.h" />
     <ClInclude Include="src\Mapa.h" />
     <ClInclude Include="src\Minivirus.h" />
     <ClInclude Include="src\Mundo.h" />
     <ClInclude Include="src\Murcielago.h" />
     <ClInclude Include="src\ObjetoMovil.h" />
+    <ClInclude Include="src\Obstaculos.h" />
     <ClInclude Include="src\Personaje.h" />
     <ClInclude Include="src\Suelo.h" />
     <ClInclude Include="src\VariablesGlobales.h" />
@@ -201,6 +207,8 @@
   <ItemGroup>
     <Text Include="src\Nivel1.txt" />
     <Text Include="src\Nivel2.txt" />
+    <Text Include="src\Nivel3.txt" />
+    <Text Include="src\Nivel4.txt" />
     <Text Include="src\Registro_Niveles.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

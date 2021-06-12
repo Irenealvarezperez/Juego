@@ -4,6 +4,7 @@
 #include "ListaEnemigos.h"
 #include "ListaBonus.h"
 #include "Ladron.h"
+#include "ContagiadoLeve.h"
 #include "Murcielago.h"
 #include "Minivirus.h"
 #include "GranVirus.h"

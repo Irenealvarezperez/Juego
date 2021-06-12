@@ -11,7 +11,7 @@ protected:
 	float altura;
 	float ancho = 4;
 	ListaDisparos disparos;
-	enum Tipo { LADRON, MURCIELAGO, MINIVIRUS, GRANVIRUS };
+	enum Tipo { LADRON, MURCIELAGO, MINIVIRUS, GRANVIRUS, CONTAGIADOLEVE };
 	Tipo tipo;
 	
 
