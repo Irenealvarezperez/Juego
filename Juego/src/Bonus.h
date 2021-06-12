@@ -5,6 +5,9 @@ using namespace ETSIDI;
 
 class Bonus
 {
+private:
+	long t0 = 0; //variables para controlar el tiempo en bonus
+	long t1;
 protected:
 	float lado = 4;
 	Vector2D posicion;
@@ -14,6 +17,10 @@ protected:
 public:
 	enum Tipo { BOTIQUIN, ESCUDO, ESPIRAL, VACUNA, MASCARILLAS, PAPEL };
 	Tipo tipo;
+	long getTime0() { return t0; };
+	long getTime1() { return t1; };
+	void setTime0(long t0) { this->t0 = t0; };
+	void setTime1(long t1) { this->t1 = t1; };
 
 public:
 	Bonus(const char* path, float ancho, float alto);

@@ -1,12 +1,14 @@
 #pragma once
 
 #include"Disparo.h"
-#define MAX_DISPAROS 3
+#define MAX_DISPAROS 6
 
 class ListaDisparos
 {
 public:
+
 	Disparo* lista[MAX_DISPAROS];
+	int max_disparos; //variable creada para añadir una unidad al número de disparos que puede haber a la vez
 	int numero;
 
 public:

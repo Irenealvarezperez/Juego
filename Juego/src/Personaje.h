@@ -14,6 +14,7 @@ private:
 	bool escudo = false;
 	int duracionEscudo = 2;
 	char tecla_bloq = 0;
+	bool invencible; //si ha usado la espiral
 public:
 	ListaDisparos disparos;
 	

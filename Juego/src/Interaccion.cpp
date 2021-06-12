@@ -115,9 +115,10 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 	{
 		if ((b.lista[i]->getPos() - p.getPos()).module() <= b.lista[i]->getLado())
 		{
+			b.eliminar(i);
 			switch (b.getTipo(b.lista[i])) {
 			case Bonus::Tipo::MASCARILLAS:
-				p.setVida(p.getVida()+1);
+				p.setVida(p.getVida() + 1);
 				break;
 			case Bonus::Tipo::BOTIQUIN:
 				p.setVida(5);
@@ -126,13 +127,24 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 				//añadir una ud de papel
 				break;
 			case Bonus::Tipo::VACUNA:
-				//añadir una municion
+				p.disparos.max_disparos +=1;
 				break;
 			case Bonus::Tipo::ESPIRAL:
-				//añadir proteccion por tiempo
+			{
+				//hacer que no le baje la vida ni el escudo en ese tiempo
+				/*auto m = (b.lista[i]);
+				m->setTime1(getMillis());
+				if (m->getTime1() - m->getTime0() > 5000)
+				{
+					p.invencible = true;
+					m->setTime0(getMillis());
+				}
+				*/
 				break;
+			}
 			case Bonus::Tipo::ESCUDO:
 				p.setEscudo(true);
+				break;
 			}
 		}
 	}
@@ -149,7 +161,7 @@ void Interaccion::choque(ListaDisparos& d, Mapa& m)
 			{
 				d.eliminar(i);
 			}
-			else if (posicion.x < -10 || posicion.y > 46) 
+			else if (posicion.x < -10 || posicion.y > 46 || posicion.x>200) 
 			{ 
 				d.eliminar(i); 
 			}
@@ -164,13 +176,15 @@ void Interaccion::choque(ListaDisparos& d, Personaje& p)
 		if ((d.lista[i]->getPos() - p.getPos()).module() <= p.getLado())
 		{
 			d.eliminar(i);
-			if (p.getEscudo()==false)
-				p.setVida(p.getVida() - 1);
-			else
-			{
-				p.restaDuracionEscudo();
-				if (p.getDuracionEscudo() == 0)
-					p.setEscudo(false);
+			if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
+				if (p.getEscudo() == false)
+					p.setVida(p.getVida() - 1);
+				else
+				{
+					p.restaDuracionEscudo();
+					if (p.getDuracionEscudo() == 0)
+						p.setEscudo(false);
+				}
 			}
 		}
 	}
@@ -297,13 +311,15 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 							e.lista[i]->posicion.x += 2;
 					}
 				}
-				if (p.getEscudo() == false)
-					p.setVida(p.getVida() - 1);
-				else
-				{
-					p.restaDuracionEscudo();
-					if (p.getDuracionEscudo() == 0)
-						p.setEscudo(false);
+				if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
+					if (p.getEscudo() == false)
+						p.setVida(p.getVida() - 1);
+					else
+					{
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
+							p.setEscudo(false);
+					}
 				}
 			}
 			break;
@@ -326,13 +342,15 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 							e.lista[i]->posicion.x += 2;
 					}
 				}
-				if (p.getEscudo() == false)
-					p.setVida(p.getVida() - 1);
-				else
-				{
-					p.restaDuracionEscudo();
-					if (p.getDuracionEscudo() == 0)
-						p.setEscudo(false);
+				if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
+					if (p.getEscudo() == false)
+						p.setVida(p.getVida() - 1);
+					else
+					{
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
+							p.setEscudo(false);
+					}
 				}
 			}
 			break;

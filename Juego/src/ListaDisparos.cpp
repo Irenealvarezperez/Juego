@@ -5,10 +5,11 @@ ListaDisparos::ListaDisparos() {
 	for (int i = 0; i < MAX_DISPAROS; i++) {
 		lista[i] = 0;
 	}
+	max_disparos = 3;
 }
 
 bool ListaDisparos::agregar(Disparo* d, float flip) {
-	if (numero < MAX_DISPAROS) {
+	if (numero < max_disparos) {
 		lista[numero++] = d;
 		if (flip != 0)
 			d->disparo->setAngle(flip);
