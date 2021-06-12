@@ -120,6 +120,7 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 			switch (b.getTipo(b.lista[i])) 
 			{
 			case Bonus::Tipo::MASCARILLAS:
+				if(p.getVida()<5)
 				p.setVida(p.getVida() + 1);
 				break;
 			case Bonus::Tipo::BOTIQUIN:

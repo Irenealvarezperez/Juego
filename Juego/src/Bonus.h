@@ -23,6 +23,7 @@ public:
 	void setTime1(long t1) { this->t1 = t1; };
 
 public:
+	//Bonus(const char* path,float x, float y, float ancho, float alto, Tipo tipo);
 	Bonus(const char* path, float ancho, float alto);
 	~Bonus();
 
