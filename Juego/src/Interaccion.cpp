@@ -400,7 +400,7 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 			
 			break;
 		}
-		case Enemigo::CONTAGIADOLEVE:
+		case Enemigo::CONTAGIADO:
 		{
 			Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
 			if (diferencia.module() <= p.getLado())

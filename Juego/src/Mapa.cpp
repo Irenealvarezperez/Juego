@@ -46,7 +46,7 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", posicion.x, posicion.y, 5, 5, Bonus::ESPIRAL)); break; } //bonus espiral
 				//case 'E': {enemigos.agregar(new Enemigo(5, posicion.x, posicion.y, 1, 1)); break; }
 				case 'E': {enemigos.agregar(new Ladron(5,6, posicion.x, posicion.y, -3, 0)); break; }
-				case 'C': {enemigos.agregar(new ContagiadoLeve(6, 6, posicion.x, posicion.y+2.4, -2, 0)); break; }
+				case 'C': {enemigos.agregar(new Contagiado(6, 6, posicion.x, posicion.y+2.4, -2, 0)); break; }
 				case 'X': {enemigos.agregar(new Murcielago(5,4, posicion.x, posicion.y, -1, 0)); break; }
 				case 'Z': {enemigos.agregar(new Minivirus(6,6, posicion.x, posicion.y, -5, 0)); break; }
 				case 'G': {enemigos.agregar(new GranVirus(10,12, posicion.x, posicion.y+3, -1, 0)); break; }
