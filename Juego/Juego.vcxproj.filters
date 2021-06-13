@@ -166,11 +166,13 @@
     <Text Include="src\Nivel1.txt" />
     <Text Include="src\Nivel2.txt" />
     <Text Include="src\Registro_Niveles.txt" />
-    <Text Include="src\Nivel3.txt">
-      <Filter>Archivos de recursos</Filter>
-    </Text>
-    <Text Include="src\Nivel4.txt">
-      <Filter>Archivos de recursos</Filter>
-    </Text>
+    <Text Include="src\Nivel3.txt" />
+    <Text Include="src\Nivel4.txt" />
+    <Text Include="src\Nivel5.txt" />
+    <Text Include="src\Nivel6.txt" />
+    <Text Include="src\Nivel7.txt" />
+    <Text Include="src\Registro_Estadisticas.txt" />
+    <Text Include="src\Registro_Nombres_Niveles.txt" />
+    <Text Include="src\Registro_Numeros_Niveles.txt" />
   </ItemGroup>
 </Project>

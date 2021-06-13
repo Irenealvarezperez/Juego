@@ -3,7 +3,7 @@
 ContagiadoLeve::ContagiadoLeve(float altura, float anchura, float x, float y, float vx, float vy) :Enemigo(altura, anchura, x, y, vx, vy)
 {
 	setTipo(CONTAGIADOLEVE);
-	sprite = new SpriteSequence("imagenes/zombie.png", 1, 1, 300, true, x, y, anchura, altura * 1.5);
+	sprite = new SpriteSequence("imagenes/zombie.png", 1, 1, 300, true, x, y, anchura, altura * 1.25);
 	vida = 2;
 }
 

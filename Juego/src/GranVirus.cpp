@@ -24,3 +24,11 @@ void GranVirus::dispara(ListaEnemigos& enemigos)
 	enemigos.agregar(new Minivirus(6, 6, posicion.x - 5, posicion.y - 3, -1, 0));
 	enemigos.agregar(new Minivirus(6, 6, posicion.x + 5, posicion.y - 3, -1, 0));
 }
+void GranVirus::dispara(float vx, float vy, float flip)
+{
+	Disparo* d = new Disparo();
+
+	d->setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
+	d->setVel(vx, vy);
+	disparos.agregar(d, flip);
+}

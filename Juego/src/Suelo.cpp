@@ -9,6 +9,7 @@ Suelo::Suelo(int x, int y,int indice)
 	if (indice == 3)sprite = new Sprite("imagenes/suelo3.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 4)sprite = new Sprite("imagenes/suelo4.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 5)sprite = new Sprite("imagenes/suelo5.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 6)sprite = new Sprite("imagenes/suelo7.png", posicion.x, posicion.y, lado, lado);
 	setPos(x, y);
 	
 }

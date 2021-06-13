@@ -111,13 +111,14 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 
 void Interaccion::choque(Personaje& p, ListaBonus& b)
 {
-	long t1, t0;
+	long int t1, t0 = 0;
 	for (int i = 0; i < b.numero; i++)
 	{
 		
+		
 		if ((b.lista[i]->getPos() - p.getPos()).module() <= b.lista[i]->getLado())
 		{
-			switch (b.getTipo(b.lista[i])) 
+			switch (b.lista[i]->getTipo()) 
 			{
 			case Bonus::Tipo::MASCARILLAS:
 				if(p.getVida()<5)
@@ -130,12 +131,11 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 				//añadir una ud de papel
 				break;
 			case Bonus::Tipo::VACUNA:
-				p.disparos.max_disparos =5;
+				p.disparos.max_disparos +=1;
 				break;
 			case Bonus::Tipo::ESPIRAL:
 				//hacer que no le baje la vida ni el escudo en ese tiempo
 				t0=getMillis();
-				t1=getMillis();
 				p.invencible = true;
 				break;
 			
@@ -148,7 +148,7 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 		if (p.invencible == true)
 		{
 			t1 = getMillis();
-			if (t1 - t0 > 5000)p.invencible = false;
+			if ((t1 - t0) > 5000)p.invencible = false;
 		}
 	}
 }
@@ -315,8 +315,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						p.restaDuracionEscudo();
-						if (p.getDuracionEscudo() == 0)
+						//p.restaDuracionEscudo();
+						//if (p.getDuracionEscudo() == 0)
 							p.setEscudo(false);
 					}
 				}
@@ -347,9 +347,9 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						p.restaDuracionEscudo();
-						if (p.getDuracionEscudo() == 0)
-							p.setEscudo(false);
+						//p.restaDuracionEscudo();
+						//if (p.getDuracionEscudo() == 0)
+					   p.setEscudo(false);
 					}
 				}
 			}
@@ -373,13 +373,20 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 							e.lista[i]->posicion.x += 2;
 					}
 				}
+				auto m = dynamic_cast<GranVirus*>(e.lista[i]);
+				m->setTime1(getMillis());
+				if (m->getTime1() - m->getTime0() > 1000)
+				{
+					dynamic_cast<GranVirus*>(e.lista[i])->dispara(-15.0f, 0, 0);
+					m->setTime0(getMillis());
+				}
 				if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
 					if (p.getEscudo() == false)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						p.restaDuracionEscudo();
-						if (p.getDuracionEscudo() == 0)
+						//p.restaDuracionEscudo();
+						//if (p.getDuracionEscudo() == 0)
 							p.setEscudo(false);
 					}
 				}
@@ -409,8 +416,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						p.restaDuracionEscudo();
-						if (p.getDuracionEscudo() == 0)
+						//p.restaDuracionEscudo();
+						//if (p.getDuracionEscudo() == 0)
 							p.setEscudo(false);
 					}
 				}
