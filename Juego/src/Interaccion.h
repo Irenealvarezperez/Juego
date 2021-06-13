@@ -7,11 +7,12 @@
 
 class Interaccion
 {
+
 public:
 	static void rebote(Personaje& p, Mapa& m);
 	static bool rebote(Enemigo& e, Suelo s);
+	static void spawn(ListaEnemigos& e);
 	static bool rebote(Enemigo& enem1, Personaje& p);
-
 	static void choque(ListaDisparos& d, ListaEnemigos& e);
 	static void choque(ListaDisparos& d, Personaje& p);
 	static void choque(Personaje& p, ListaBonus& b);

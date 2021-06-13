@@ -116,9 +116,9 @@ void Mundo::dibuja()
 	texto(x_ojo + 30, 46, &str3[0]);
 	//aun no funciona lo de abajo
 	if (personaje.invencible == true) {
-		setTextColor(255, 255, 255);
-		setFont("fuentes/Pixel.ttf", 40);
-		printxy("Espiral: Activada", personaje.posicion.x, 10);
+		setTextColor(0,0,0);
+		setFont("fuentes/Pixel.ttf", 10);
+		printxy("Espiral Activada", x_ojo-42,36);
 	}
 }
 
@@ -143,7 +143,7 @@ void Mundo::mueve()
 	}
 	Interaccion::rebote(personaje, nivel);
 	Interaccion::atacar(enemigos, personaje);
-	
+	Interaccion::spawn(enemigos);
 }
 
 void Mundo::inicializa()

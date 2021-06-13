@@ -13,7 +13,7 @@ bool ListaDisparos::agregar(Disparo* d, float flip) {
 		lista[numero++] = d;
 		if (flip != 0)
 			d->disparo->setAngle(flip);
-		//ETSIDI::play("sonidos/disparo.mp3");
+		ETSIDI::play("sonidos/disparo.mp3");
 	}
 	else return false;
 	return true;

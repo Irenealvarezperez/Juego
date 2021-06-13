@@ -2,7 +2,8 @@
 #include <iostream>
 
 using namespace std;
-
+static long time01 = 0;
+static long time0 = 0;
 void Interaccion::rebote(Personaje& p, Mapa& m)
 {
 	//en un futuro habria que mejorar este codigo para que solo busque los suelos que hay en su direccion de movimiento o cerca suya
@@ -111,7 +112,7 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e)
 
 void Interaccion::choque(Personaje& p, ListaBonus& b)
 {
-	long int t1, t0 = 0;
+	long int t1;
 	for (int i = 0; i < b.numero; i++)
 	{
 		
@@ -135,7 +136,7 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 				break;
 			case Bonus::Tipo::ESPIRAL:
 				//hacer que no le baje la vida ni el escudo en ese tiempo
-				t0=getMillis();
+				time01=getMillis();
 				p.invencible = true;
 				break;
 			
@@ -148,7 +149,7 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 		if (p.invencible == true)
 		{
 			t1 = getMillis();
-			if ((t1 - t0) > 5000)p.invencible = false;
+			if ((t1 - time01) > 5000)p.invencible = false;
 		}
 	}
 }
@@ -184,8 +185,8 @@ void Interaccion::choque(ListaDisparos& d, Personaje& p)
 					p.setVida(p.getVida() - 1);
 				else
 				{
-					p.restaDuracionEscudo();
-					if (p.getDuracionEscudo() == 0)
+					//p.restaDuracionEscudo();
+					//if (p.getDuracionEscudo() == 0)
 						p.setEscudo(false);
 				}
 			}
@@ -353,6 +354,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 					}
 				}
 			}
+
+			
 			break;
 		}
 		case Enemigo::GRANVIRUS:
@@ -373,13 +376,6 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 							e.lista[i]->posicion.x += 2;
 					}
 				}
-				auto m = dynamic_cast<GranVirus*>(e.lista[i]);
-				m->setTime1(getMillis());
-				if (m->getTime1() - m->getTime0() > 1000)
-				{
-					dynamic_cast<GranVirus*>(e.lista[i])->dispara(-15.0f, 0, 0);
-					m->setTime0(getMillis());
-				}
 				if (p.invencible == false) { //si está activada la espiral no disminuye la vida ni el escudo
 					if (p.getEscudo() == false)
 						p.setVida(p.getVida() - 1);
@@ -391,6 +387,17 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 					}
 				}
 			}
+			if (e.lista[i]->getPos().x - p.getPos().x <= 100)
+			{
+				auto m = dynamic_cast<GranVirus*>(e.lista[i]);
+				m->setTime1(getMillis());
+				if (m->getTime1() - m->getTime0() > 1000)
+				{
+					m->dispara(-10.0f, 0.0f, 90);
+					m->setTime0(getMillis());
+				}
+			}
+			
 			break;
 		}
 		case Enemigo::CONTAGIADOLEVE:
@@ -441,4 +448,15 @@ bool Interaccion::rebote(Enemigo& e, Suelo s)
 		return true;
 	}
 	return false;
+}
+
+void Interaccion::spawn(ListaEnemigos& e)
+{
+	
+	long t1 = getMillis();
+	if ((t1 - time0) > 3000) {
+		e.agregar(new Minivirus(6, 6, 190, 2.5, -5, 0));
+		time0 = getMillis();
+	}
+
 }
