@@ -90,14 +90,13 @@ void Coordinador::dibuja()
 		long int t1 = getMillis();
 		mundo.time = t1 - t0;
 		mundo.dibuja();
-		if (mundo.personaje.getPos().x > 200)
+		if (mundo.personaje.Condicion()==true) //si el personaje se encuentra en posicion>200 y ha recogido un papel puede terminar el nivel
 		{
 			mundo.enemigos.destruirContenido();
 			mundo.bonus.destruirContenido();
 			mundo.nivel.suelos.destruirContenido();
 			mundo.personaje.disparos.destruirContenido();
-			mundo.personaje.setPos(2, 4);
-			mundo.personaje.setVel(0, 0);
+			mundo.personaje.reiniciar();
 			estado = FIN;
 		}
 		break;

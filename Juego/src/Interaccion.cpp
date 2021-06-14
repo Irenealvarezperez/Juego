@@ -129,7 +129,7 @@ void Interaccion::choque(Personaje& p, ListaBonus& b)
 				p.setVida(5);
 				break;
 			case Bonus::Tipo::PAPEL:
-				//añadir una ud de papel
+				p.setPapel();
 				break;
 			case Bonus::Tipo::VACUNA:
 				p.disparos.max_disparos +=1;
@@ -185,8 +185,8 @@ void Interaccion::choque(ListaDisparos& d, Personaje& p)
 					p.setVida(p.getVida() - 1);
 				else
 				{
-					//p.restaDuracionEscudo();
-					//if (p.getDuracionEscudo() == 0)
+					p.restaDuracionEscudo();
+					if (p.getDuracionEscudo() == 0)
 						p.setEscudo(false);
 				}
 			}
@@ -316,8 +316,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						//p.restaDuracionEscudo();
-						//if (p.getDuracionEscudo() == 0)
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
 							p.setEscudo(false);
 					}
 				}
@@ -348,8 +348,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						//p.restaDuracionEscudo();
-						//if (p.getDuracionEscudo() == 0)
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
 					   p.setEscudo(false);
 					}
 				}
@@ -381,8 +381,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						//p.restaDuracionEscudo();
-						//if (p.getDuracionEscudo() == 0)
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
 							p.setEscudo(false);
 					}
 				}
@@ -423,8 +423,8 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 						p.setVida(p.getVida() - 1);
 					else
 					{
-						//p.restaDuracionEscudo();
-						//if (p.getDuracionEscudo() == 0)
+						p.restaDuracionEscudo();
+						if (p.getDuracionEscudo() == 0)
 							p.setEscudo(false);
 					}
 				}

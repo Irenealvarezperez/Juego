@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Bonus.h"
-#define max_bonus 10
+#define max_bonus 100
 
 class ListaBonus
 {

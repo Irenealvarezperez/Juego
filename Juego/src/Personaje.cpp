@@ -10,6 +10,9 @@ Personaje::Personaje()
 	BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, posicion.x, posicion.y + lado / 2, 6, 1, 0);
 	setPos(2, 4);
 	invencible = false;
+	escudo = false;
+	tecla_bloq = 0;
+	duracionEscudo = 2;
 }
 
 void Personaje::dibuja()
@@ -41,6 +44,8 @@ void Personaje::dibuja()
 	sprite->draw();
 
 	disparos.dibuja();
+
+	
 }
 
 void Personaje::mueve(float t)
@@ -58,6 +63,7 @@ void Personaje::mueve(float t)
 	setVel(velocidad.x, velocidad.y);
 
 	disparos.mueve(t);
+
 }
 
 void Personaje::dispara(float vx, float vy, float flip)
@@ -67,4 +73,26 @@ void Personaje::dispara(float vx, float vy, float flip)
 	d->setPos(posicion.x, posicion.y);
 	d->setVel(vx, vy);
 	disparos.agregar(d, flip);
+}
+
+bool Personaje::Condicion()
+{
+	if (posicion.x > 200 && papel == true)
+		return true;
+	else
+	return false;
+}
+
+void Personaje::setEscudo(bool Escudo)
+{
+	escudo = Escudo;
+	if (Escudo == true)duracionEscudo = 2;
+}
+
+void Personaje::reiniciar()
+{
+	disparos.max_disparos = 2;
+	setPos(2, 4);
+	setVel(0, 0);
+	papel = false;
 }
