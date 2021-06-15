@@ -85,7 +85,7 @@ void Coordinador::dibuja()
 		printxy("Pulsa -A- para seleccionar el anterior nivel", 60, 55);
 		printxy("Pulsa -E- para comenzar el nivel", 60, 50);
 		if (mundo.nivel.pantallas_completada >= mundo.nivel.pantallas_max) printxy("Pulsa -T- para crear un nivel ", 60, 45);
-		printxy("Pulsa -F- para salir a la panatalla inicial", 60, 40);
+		printxy("Pulsa -F- para salir a la pantalla inicial", 60, 40);
 		mundo.dibuja();
 		break;
 	}
