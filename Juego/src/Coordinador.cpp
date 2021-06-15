@@ -333,9 +333,16 @@ void Coordinador::mueve()
 	{
 		mundo.mueve();
 
-		if (mundo.getVida() == 0)
+		if (mundo.getVida() <= 0 && mundo.nivel.getPantalla() > 1)
 		{
 			estado = GAMEOVER;
+		}
+		else if (mundo.getVida() <= 0 && mundo.nivel.getPantalla() == 1)
+		{
+			mundo.personaje.setPos(2, 4);
+			mundo.personaje.setVel(0, 0);
+			mundo.personaje.setVida(5);
+			estado = FIN;
 		}
 	}
 }
