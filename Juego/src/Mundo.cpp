@@ -32,57 +32,9 @@ void Mundo::dibuja()
 	//aqui es donde hay que poner el codigo de dibujo
 
 	personaje.dibuja();
-	
-	/*FILE* nombre;
-	nombre = fopen("..\\src\\Registro_Nombres_Niveles.txt", "r");
-	char num_nivel;
-	while (!feof(nombre)) {
-		fscanf(nombre, "%c", &num_nivel);
-		if (num_nivel != '\n' && !feof(nombre))
-		{
-			switch (num_nivel)
-			{
-			case '1':
-			{
-				nivel.dibuja(1);
-				break;
-			}
-			case '2': {
-				nivel.dibuja(2);
-				break;
-			}
-			case '3' : {
-				nivel.dibuja(3);
-				break;
-			}
-			case '4': {
-				nivel.dibuja(4);
-				break;
-			}
-			case '5': {
-				nivel.dibuja(5);
-				break;
-			}
-			case '6': {
-				nivel.dibuja(6);
-				break;
-			}
-			}//arreglarlo
-		}
-	}
-	/*fgets(num_nivel, 100, nombre);
-	while (!feof(nombre)) {
-		for (int i = 0; num_nivel[i] != '\0'; i++) {
-			if (num_nivel[i] == '1') {
-				nivel.dibuja(1);
-			}
-		}*/ 
-	 //cambiarlo para q lea todo
-	nivel.dibuja(1); //no se como hacer que cambie el dibujo según el nivel
+	nivel.dibuja();
 	bonus.dibuja();
 	enemigos.dibuja();
-	
-
 
 	if (time > 1000)
 	{
@@ -102,17 +54,21 @@ void Mundo::dibuja()
 	string vely = to_string(float(personaje.getVel().y));
 	string str6 = "Tecla Bloq: ";
 	string tecla(1, personaje.tecla_bloq);
+	string str7 = "Puntuacion: ";
+	string punt = to_string(int(personaje.getPuntuacion()));
 	str.append(vida);
 	str2.append(escudo);
 	str3.append(tiempo);
 	str4.append(velx);
 	str5.append(vely);
 	str6.append(tecla);
+	str7.append(punt);
 	texto(x_ojo - 42, 46, &str[0]);
 	texto(x_ojo - 42, 44, &str2[0]);
 	texto(x_ojo - 42, 42, &str4[0]);
 	texto(x_ojo - 42, 40, &str5[0]);
 	texto(x_ojo - 42, 38, &str6[0]);
+	texto(x_ojo - 42, 36, &str7[0]);
 	texto(x_ojo + 30, 46, &str3[0]);
 	//aun no funciona lo de abajo
 	if (personaje.invencible == true) {
@@ -133,7 +89,7 @@ void Mundo::mueve()
 		if(enemigos.lista[i]->tipo==Enemigo::MURCIELAGO)
 			reinterpret_cast<Murcielago*>(enemigos.lista[i])->dispara(0, 10.0f, 0);
 	}*/
-	Interaccion::choque(personaje.disparos, enemigos);
+	Interaccion::choque(personaje.disparos, enemigos, personaje);
 	Interaccion::choque(personaje, bonus);
 	Interaccion::choque(personaje.disparos, nivel);
 	for (int i = 0; i < enemigos.numero; i++)

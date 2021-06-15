@@ -13,7 +13,7 @@ protected:
 	ListaDisparos disparos;
 	enum Tipo { LADRON, MURCIELAGO, MINIVIRUS, GRANVIRUS, CONTAGIADO };
 	Tipo tipo;
-	
+	int puntuacion;
 
 public:
 	Enemigo(float altura = 5.0,float anchura=5.0, float x = 0.0, float y = 0.0, float vx = 0.0, float vy = 0.0);

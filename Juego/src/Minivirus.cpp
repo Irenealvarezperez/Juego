@@ -5,6 +5,7 @@ Minivirus::Minivirus(float altura,float anchura, float x, float y, float vx, flo
 	sprite = new SpriteSequence("imagenes/minivirus.png", 1, 1, 300, true, x, y, ancho, altura);
 	sprite->setState(0, false);
 	vida = 1;
+	puntuacion = 1;
 }
 
 void Minivirus::dibuja() {

@@ -30,7 +30,6 @@ public:
 	Mundo();
 	void dibuja();
 	int getVida() { return personaje.vida; };
-	
 
 	friend class Coordinador;
 };

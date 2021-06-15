@@ -6,6 +6,7 @@ GranVirus::GranVirus(float altura, float anchura, float x, float y, float vx, fl
 	sprite = new SpriteSequence("imagenes/virus.png", 1, 1, 300, true, x, y, anchura, altura);
 	sprite->setState(0, false);
 	vida = 3;
+	puntuacion = 5;
 }
 
 void GranVirus::dibuja() {

@@ -6,6 +6,7 @@ Murcielago::Murcielago(float altura,float anchura, float x, float y, float vx, f
 	sprite = new SpriteSequence("imagenes/murcielago2.png", 4, 4, 300, true, x, y, anchura, altura);
 	sprite->setState(9, false);
 	vida = 1;
+	puntuacion = 1;
 }
 
 void Murcielago::dibuja()

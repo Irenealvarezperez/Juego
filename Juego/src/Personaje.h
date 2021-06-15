@@ -16,6 +16,7 @@ private:
 	char tecla_bloq ;
 	bool invencible; //si ha usado la espiral
 	bool papel;//true si ha cogido el papel necesario para pasar de nivel
+	int puntuacion = 0;
 public:
 	ListaDisparos disparos;
 	
@@ -35,6 +36,8 @@ public:
 	bool Condicion();
 	void setPapel() { papel = true; };
 	void reiniciar();
+	void sumarPuntuacion(int puntos) { puntuacion += puntos; };
+	int getPuntuacion() { return puntuacion; };
 
 	friend class Interaccion;
 	friend class Mundo;
