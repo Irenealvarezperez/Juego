@@ -154,6 +154,7 @@ void Mundo::teclaEspecial(unsigned char key)
 	case GLUT_KEY_UP:
 	{
 		personaje.dispara(0, 10.0f, 0);
+		ETSIDI::play("sonidos/disparo.mp3");
 			//Lo de abajo no lo veo como solucion definitiva porq todos los enemigos de lista
 			//de enemigos se pueden convertir a ladrones
 			// 
@@ -164,11 +165,13 @@ void Mundo::teclaEspecial(unsigned char key)
 	case GLUT_KEY_RIGHT:
 	{
 		personaje.dispara(10.0f, 0, 270);
+		ETSIDI::play("sonidos/disparo.mp3");
 		break;
 	}
 	case GLUT_KEY_LEFT:
 	{
 		personaje.dispara(-10.0f, 0,90);
+		ETSIDI::play("sonidos/disparo.mp3");
 		break;
 	}
 	}
