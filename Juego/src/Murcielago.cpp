@@ -25,12 +25,3 @@ void Murcielago::dibuja()
 
 	if (vida == 1)BarradeVida->setState(0, false);
 }
-
-void Murcielago::dispara(float vx, float vy, float flip)
-{
-	Disparo* d = new Disparo();
-
-	d->setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
-	d->setVel(vx, vy);
-	disparos.agregar(d, flip);
-}

@@ -34,3 +34,12 @@ Enemigo::Enemigo(float altura,float anchura, float x, float y, float vx, float v
 	//BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, x_ojo-42,46, 15,2,0);
 	BarradeVida = new SpriteSequence("imagenes/barradevida.png", 3, 3, 100, true, posicion.x, posicion.y + altura / 2, 6, 1, 0);
 }
+
+void Enemigo::dispara(float vx, float vy, float flip)
+{
+	Disparo* d = new Disparo();
+
+	d->setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
+	d->setVel(vx, vy);
+	disparos.agregar(d, flip);
+}

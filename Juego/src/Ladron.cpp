@@ -11,6 +11,7 @@ Ladron::Ladron(float altura, float anchura, float x, float y, float vx, float vy
 void Ladron::dibuja()
 {
 	Enemigo::dibuja();
+	disparos.dibuja();
 	sprite->flip(true, false);
 	//if (sprite->getState() > 5)sprite->setState(0, false);
 
@@ -20,14 +21,4 @@ void Ladron::dibuja()
 	else if (vida == 1)BarradeVida->setState(4, false);
 	BarradeVida->setPos(posicion.x, posicion.y + altura / 2);
 	BarradeVida->draw();
-}
-
-void Ladron::dispara(float vx, float vy, float flip)
-{
-	Disparo* d = new Disparo();
-
-	d->setPos(static_cast<float>(posicion.x), static_cast<float>(posicion.y));
-	d->setVel(vx, vy);
-	disparos.agregar(d, flip);
-	disparos.dibuja();
 }

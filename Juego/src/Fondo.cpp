@@ -22,12 +22,13 @@ void ponerimagen(const char path[])
 void Fondo::ponerFondo(int indice) {
 	switch (indice)
 	{
-	case 1: ponerimagen("imagenes/fondohospital.png"); break;
-	case 2: ponerimagen("imagenes/fondoaeropuerto.png"); break;
-	case 3: ponerimagen("imagenes/fondosupermercado.png"); break;
-	case 4: ponerimagen("imagenes/fondoapartamento.png"); break;
-	case 5: ponerimagen("imagenes/fondociudad.png"); break;
-	case 6: ponerimagen("imagenes/fondofinal.png"); break;
+	case 1: ponerimagen("imagenes/fondolaboratorio.png"); break;
+	case 2: ponerimagen("imagenes/fondohospital.png"); break;
+	case 3: ponerimagen("imagenes/fondoaeropuerto.png"); break;
+	case 4: ponerimagen("imagenes/fondosupermercado.png"); break;
+	case 5: ponerimagen("imagenes/fondoapartamento.png"); break;
+	case 6: ponerimagen("imagenes/fondociudad.png"); break;
+	case 7: ponerimagen("imagenes/fondofinal.png"); break;
 	default: ponerimagen("imagenes/fondohospital.png"); break;
 	}
 }

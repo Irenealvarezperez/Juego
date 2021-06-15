@@ -93,7 +93,7 @@ void Interaccion::choque(ListaDisparos& d, ListaEnemigos& e, Personaje& p)
 					if (e.lista[i]->getTipo() == Enemigo::GRANVIRUS)
 					{
 						auto gv = dynamic_cast<GranVirus*>(e.lista[i]);
-						gv->dispara(e);
+						gv->division(e);
 					}
 					p.sumarPuntuacion(e.lista[i]->puntuacion);
 					e.eliminar(i);
@@ -320,6 +320,18 @@ void Interaccion::atacar(ListaEnemigos& e, Personaje& p)
 		{
 			break;
 		}
+
+		case Enemigo::LADRON:
+			if (e.lista[i]->getPos().x - p.getPos().x <= 20)
+			{
+				auto m = dynamic_cast<Ladron*>(e.lista[i]);
+				m->setTime1(getMillis());
+				if (m->getTime1() - m->getTime0() > 2000)
+				{
+					m->dispara(-10.0f, 0.0f, 90);
+					m->setTime0(getMillis());
+				}
+			}
 		}
 		Vector2D diferencia = e.lista[i]->getPos() - p.getPos();
 		if (diferencia.module() <= p.getLado())

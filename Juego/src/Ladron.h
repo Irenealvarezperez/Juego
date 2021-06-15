@@ -7,5 +7,4 @@ class Ladron :public Enemigo
 public:
     Ladron(float altura, float anchura, float x, float y, float vx, float vy);
     void dibuja();
-    void dispara(float vx, float vy, float flip);
 };
