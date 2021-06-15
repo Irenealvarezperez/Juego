@@ -3,7 +3,7 @@
 
 Disparo::Disparo()
 {
-	disparo = new Sprite("imagenes/bala.png", static_cast<float>(posicion.x), static_cast<float>(posicion.y), lado, lado);
+	disparo = new Sprite("imagenes/bala.png", static_cast<float>(posicion.x), static_cast<float>(posicion.y), 3, lado);
 }
 
 Disparo::~Disparo() {}

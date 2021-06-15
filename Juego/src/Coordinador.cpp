@@ -36,7 +36,7 @@ void Coordinador::dibuja()
 	{
 	case HISTORIA:
 	{
-		if (pantalla_historia <= 20)
+		if (pantalla_historia <= 21)
 		{
 			path.erase(17, 2);
 			path.insert(17, to_string(pantalla_historia));

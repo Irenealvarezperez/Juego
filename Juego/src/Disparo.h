@@ -6,7 +6,7 @@ using namespace ETSIDI;
 class Disparo
 {
 private:
-	float lado = 1.5;
+	float lado = 2.5;
 	Vector2D posicion;
 	Vector2D velocidad;
 	Vector2D aceleracion;
