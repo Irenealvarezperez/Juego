@@ -2,7 +2,7 @@
 
 ListaDisparos::ListaDisparos() {
 	numero = 0;
-	for (int i = 0; i < MAX_DISPAROS; i++) {
+	for (int i = 0; i < max_disparos; i++) {
 		lista[i] = 0;
 	}
 	max_disparos = 1;

@@ -141,6 +141,7 @@ void Mundo::tecla(unsigned char key)
 	case 't':
 	{
 		personaje.posicion.x = 200;
+		personaje.papel = true;
 		break;
 	}
 	}
