@@ -51,6 +51,9 @@ void Mundo::dibuja()
 	string tecla(1, personaje.tecla_bloq);
 	string str7 = "Puntuacion: ";
 	string punt = to_string(int(personaje.getPuntuacion()));
+	string str8 = "Espiral: ";
+	string espiral = to_string(personaje.invencible);
+
 	str.append(vida);
 	str2.append(escudo);
 	str3.append(tiempo);
@@ -58,6 +61,7 @@ void Mundo::dibuja()
 	str5.append(vely);
 	str6.append(tecla);
 	str7.append(punt);
+	str8.append(espiral);
 	texto(x_ojo - 42, 46, &str[0]);
 	texto(x_ojo - 42, 44, &str2[0]);
 	texto(x_ojo - 42, 42, &str4[0]);
@@ -65,13 +69,8 @@ void Mundo::dibuja()
 	texto(x_ojo - 42, 38, &str6[0]);
 	texto(x_ojo - 42, 36, &str7[0]);
 	texto(x_ojo + 30, 46, &str3[0]);
-	//aun no funciona lo de abajo
-	if (personaje.invencible == true) {
-		setTextColor(0,0,0);
-		setFont("fuentes/Pixel.ttf", 10);
-		printxy("Espiral Activada", x_ojo-42,36);
+	texto(x_ojo - 42, 34, &str8[0]);
 	}
-}
 
 void Mundo::mueve()
 {
