@@ -19,8 +19,8 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 	str = '\0';
 	str.insert(0, "Nivel ");
 	str.insert(6, to_string(pantalla));
-	path.erase(12, 1);
-	path.insert(12, nombre);
+	path.erase(13, 1);
+	path.insert(13, nombre);
 	fichero = fopen(&path[0], "rt");
 
 	if (fichero)
@@ -85,12 +85,12 @@ void Mapa::crear()
 	int fila, columna;
 	int num;
 
-	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "rt");
+	registro = fopen("niveles/Registro_Numeros_Niveles.txt", "rt");
 	fscanf(registro, "%d", &num);
 	num++;
 	fclose(registro);
 
-	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "w+");
+	registro = fopen("niveles/Registro_Numeros_Niveles.txt", "w+");
 	fprintf(registro, "%d", num);
 	fclose(registro);
 
@@ -98,10 +98,10 @@ void Mapa::crear()
 	str = '\0';
 	str.insert(0, "Nivel.txt");
 	str.insert(5, to_string(pantallas_max));
-	path.erase(12, 1);
-	path.insert(12, to_string(pantallas_max));
+	path.erase(13, 1);
+	path.insert(13, to_string(pantallas_max));
 
-	registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "at");
+	registro = fopen("niveles/Registro_Nombres_Niveles.txt", "at");
 	fputs(&str[0], registro);
 	fputs("\n", registro);
 	fclose(registro);
@@ -133,7 +133,7 @@ int Mapa::seleccion(int nivel)
 	char tmp;
 	char nombre[100];
 
-	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "rt");
+	registro = fopen("niveles/Registro_Numeros_Niveles.txt", "rt");
 
 	if (registro)
 	{
@@ -141,7 +141,7 @@ int Mapa::seleccion(int nivel)
 		fscanf(registro, "%d", &pantallas_max);
 		fclose(registro);
 
-		registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "rt");
+		registro = fopen("niveles/Registro_Nombres_Niveles.txt", "rt");
 
 		if (pantalla <= pantallas_max && pantalla <= pantallas_completada)
 		{
@@ -160,7 +160,7 @@ int Mapa::seleccion(int nivel)
 
 void Mapa::estadisticas()
 {
-	FILE* registro = fopen("..\\src\\Registro_Estadisticas.txt", "rt");
+	FILE* registro = fopen("niveles/Registro_Estadisticas.txt", "rt");
 
 	if (registro)
 	{
@@ -175,7 +175,7 @@ void Mapa::reiniciar()
 	FILE* registro;
 	int num;
 
-	registro = fopen("..\\src\\Registro_Estadisticas.txt", "wt");
+	registro = fopen("niveles/Registro_Estadisticas.txt", "wt");
 	if (registro)
 	{
 		fprintf(registro, "%d", 0);
@@ -183,7 +183,7 @@ void Mapa::reiniciar()
 		registro = nullptr;
 	}
 
-	registro = fopen("..\\src\\Registro_Nombres_Niveles.txt", "wt");
+	registro = fopen("niveles/Registro_Nombres_Niveles.txt", "wt");
 	if (registro)
 	{
 		fprintf(registro, "Nivel1.txt\nNivel2.txt\nNivel3.txt\nNivel4.txt\nNivel5.txt\nNivel6.txt\nNivel7.txt\n");
@@ -191,7 +191,7 @@ void Mapa::reiniciar()
 		registro = nullptr;
 	}
 
-	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "rt");
+	registro = fopen("niveles/Registro_Numeros_Niveles.txt", "rt");
 	if (registro)
 	{
 		fscanf(registro, "%d", &num);
@@ -199,7 +199,7 @@ void Mapa::reiniciar()
 		registro = nullptr;
 	}
 
-	registro = fopen("..\\src\\Registro_Numeros_Niveles.txt", "wt");
+	registro = fopen("niveles/Registro_Numeros_Niveles.txt", "wt");
 	if (registro)
 	{
 		fprintf(registro, "7");
@@ -210,8 +210,8 @@ void Mapa::reiniciar()
 	int i = 8;
 	while (true)
 	{
-		string str = "..\\src\\Nivel.txt";
-		str.insert(12, &to_string(i)[0]);
+		string str = "niveles/Nivel.txt";
+		str.insert(13, &to_string(i)[0]);
 		FILE* fd = fopen(&str[0], "rt");
 		if (fd)
 		{
@@ -228,7 +228,7 @@ void Mapa::reiniciar()
 void Mapa::sumaPantallaCompletada()
 {
 	pantallas_completada++;
-	FILE* registro = fopen("..\\src\\Registro_Estadisticas.txt", "wt");
+	FILE* registro = fopen("niveles/Registro_Estadisticas.txt", "wt");
 
 	if (registro)
 	{

@@ -67,9 +67,9 @@ void Mundo::dibuja()
 	texto(x_ojo - 42, 42, &str4[0]);
 	texto(x_ojo - 42, 40, &str5[0]);
 	texto(x_ojo - 42, 38, &str6[0]);
-	texto(x_ojo - 42, 36, &str7[0]);
+	texto(x_ojo - 42, 36, &str8[0]);
 	texto(x_ojo + 30, 46, &str3[0]);
-	texto(x_ojo - 42, 34, &str8[0]);
+	texto(x_ojo + 30, 44, &str7[0]);
 	}
 
 void Mundo::mueve()

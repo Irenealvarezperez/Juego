@@ -20,7 +20,7 @@ private:
 	int pantalla = 1;
 	int pantallas_max;
 	int pantallas_completada;
-	string path = "..\\src\\Nivel0.txt";
+	string path = "niveles/Nivel0.txt";
 	string str;
 	Fondo fondo;
 public:
