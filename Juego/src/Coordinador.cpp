@@ -154,7 +154,7 @@ void Coordinador::dibuja()
 			setTextColor(0, 255, 0);
 			setFont("fuentes/Pixel.ttf", 44);
 			printxy("¡Por los pelos!", 26, 40);
-			printxy("Próximo destino: Madrid", 26, 34);
+			printxy("Proximo destino: Madrid", 26, 34);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;

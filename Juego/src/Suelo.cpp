@@ -3,13 +3,19 @@
 
 Suelo::Suelo(int x, int y,int indice)
 {
-	if(indice==0)sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
-	if(indice==1)sprite = new Sprite("imagenes/suelog.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 0)sprite = new Sprite("imagenes/suelo.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 1)sprite = new Sprite("imagenes/suelog.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 2)sprite = new Sprite("imagenes/suelob.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 3)sprite = new Sprite("imagenes/suelo3.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 4)sprite = new Sprite("imagenes/suelo4.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 5)sprite = new Sprite("imagenes/suelo5.png", posicion.x, posicion.y, lado, lado);
 	if (indice == 6)sprite = new Sprite("imagenes/suelo7.png", posicion.x, posicion.y, lado, lado);
+	if (indice == 7)sprite = new Sprite("imagenes/cama1.png", posicion.x, posicion.y, 7, 5);
+	if (indice == 8)sprite = new Sprite("imagenes/valla.png", posicion.x, posicion.y, 9, 5);
+	if (indice == 9)sprite = new Sprite("imagenes/maleta1.png", posicion.x, posicion.y, 5, 5);
+	if (indice == 10)sprite = new Sprite("imagenes/maleta2.png", posicion.x, posicion.y, 4, 5);
+	if (indice == 11)sprite = new Sprite("imagenes/caja.png", posicion.x, posicion.y, 4, 4);
+	if (indice == 12)sprite = new Sprite("imagenes/cono.png", posicion.x, posicion.y, 5, 6);
 	setPos(x, y);
 	
 }
