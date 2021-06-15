@@ -140,7 +140,7 @@ void Mundo::tecla(unsigned char key)
 	}
 	case 't':
 	{
-		personaje.posicion.x = 150;
+		personaje.posicion.x = 200;
 		break;
 	}
 	}

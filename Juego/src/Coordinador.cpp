@@ -139,11 +139,10 @@ void Coordinador::dibuja()
 		if (mundo.nivel.getPantalla()==2) {
 			poner_imagen("imagenes/Foto_finNivel2.png");
 
-			setTextColor(0, 255, 0);
+			setTextColor(255, 255, 255);
 			setFont("fuentes/Pixel.ttf", 26);
-			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
-			printxy("El último vuelo a España sale en cinco minutos", 26, 34);
-			printxy("Es tu última oportunidad de regresar", 26, 24);
+			printxy("El ultimo vuelo sale en cinco minutos", 24, 44);
+			printxy("Es tu ultima oportunidad de regresar", 24, 42);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
@@ -153,8 +152,8 @@ void Coordinador::dibuja()
 			poner_imagen("imagenes/Foto_finNivel3.png");
 
 			setTextColor(0, 255, 0);
-			setFont("fuentes/Pixel.ttf", 26);
-			printxy("¡Por los pelos!", 26, 24);
+			setFont("fuentes/Pixel.ttf", 44);
+			printxy("¡Por los pelos!", 26, 40);
 			printxy("Próximo destino: Madrid", 26, 34);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
