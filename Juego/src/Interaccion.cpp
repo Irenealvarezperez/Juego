@@ -385,7 +385,7 @@ void Interaccion::spawn(ListaEnemigos& e)
 {
 	
 	long t1 = getMillis();
-	if ((t1 - time0) > 3000) {
+	if ((t1 - time0) > 6000) {
 		e.agregar(new Minivirus(6, 6, 190, 2.5, -5, 0));
 		time0 = getMillis();
 	}
