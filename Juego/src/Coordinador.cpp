@@ -2,6 +2,21 @@
 
 void pantallaVacia() { gluLookAt(ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 60.0f, ANCHO_PANTALLA / 35.0, ALTO_PANTALLA / 35.0, 0.0, 0.0, 1.0, 0.0); }
 void pantallaVaciaEspecial() { gluLookAt(ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 85.0f, ANCHO_PANTALLA / 24.0, ALTO_PANTALLA / 25.0, 0.0, 0.0, 1.0, 0.0); }
+void poner_imagen(const char path[])
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture(path).id);
+	glDisable(GL_LIGHTING);
+
+	glBegin(GL_POLYGON);
+	glTexCoord2d(0, 1); glVertex2f(10, 10);
+	glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
+	glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
+	glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
+	glEnd();
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE);
+}
 
 Coordinador::Coordinador() { estado = HISTORIA; }
 
@@ -33,18 +48,7 @@ void Coordinador::dibuja()
 		}
 
 		pantallaVacia();
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture(&path[0]).id);
-		glDisable(GL_LIGHTING);
-
-		glBegin(GL_POLYGON);
-		glTexCoord2d(0, 1); glVertex2f(10, 10);
-		glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA/20.0, 10);
-		glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA/20.0, ALTO_PANTALLA/20.0);
-		glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA/20.0);
-		glEnd();
-		glEnable(GL_LIGHTING);
-		glDisable(GL_TEXTURE);
+		poner_imagen(&path[0]);
 		break;
 	}
 	case INICIO:
@@ -57,7 +61,7 @@ void Coordinador::dibuja()
 		setFont("fuentes/Pixel.ttf", 30);
 		printxy("The creatives", 10, 25);
 		setFont("fuentes/Pixel.ttf", 18);
-		setTextColor(255, 255, 255);//
+		setTextColor(255, 255, 255);
 		printxy("Pulse -F- para seleccionar los niveles", 10, 15);
 		printxy("Pulse -R- para reiniciar las estadisticas y los niveles creados", 10, 10);
 		break;
@@ -90,7 +94,7 @@ void Coordinador::dibuja()
 		long int t1 = getMillis();
 		mundo.time = t1 - t0;
 		mundo.dibuja();
-		if (mundo.personaje.Condicion()==true) //si el personaje se encuentra en posicion>200 y ha recogido un papel puede terminar el nivel
+		if (mundo.personaje.Condicion() == true) //si el personaje se encuentra en posicion>200 y ha recogido un papel puede terminar el nivel
 		{
 			mundo.enemigos.destruirContenido();
 			mundo.bonus.destruirContenido();
@@ -106,74 +110,42 @@ void Coordinador::dibuja()
 		//Aqui deberia eliminar todos los objetos e inicializar todo a cero
 		destruirContenido();
 		pantallaVacia();
-		
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Foto5.png").id);
-		glDisable(GL_LIGHTING);
-
-		glBegin(GL_POLYGON);
-		glTexCoord2d(0, 1); glVertex2f(10, 10);
-		glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
-		glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
-		glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
-		glEnd();
-		glEnable(GL_LIGHTING);
-		glDisable(GL_TEXTURE);
+		poner_imagen("imagenes/Foto5.png");
 
 		setTextColor(0, 0, 1);
 		setFont("fuentes/Pixel.ttf", 16);
 		printxy("GAMEOVER: Has perdido", 10, 50);
 		setTextColor(255, 255, 255);
 		printxy("Pulsa -C- para continuar", 10, 5);
-		
+
 		break;
 	}
 	case FIN:
 	{
 		pantallaVacia();
-		
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Foto1.png").id);
-			glDisable(GL_LIGHTING);
-			glBegin(GL_POLYGON);
-			glTexCoord2d(0, 1); glVertex2f(10, 10);
-			glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
-			glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
-			glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
-			glEnd();
-			glEnable(GL_LIGHTING);
-			glDisable(GL_TEXTURE);
-		
-			setTextColor(0, 255, 0);
-			setFont("fuentes/Pixel.ttf", 26);
-			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
-			setTextColor(255, 255, 255);
-			printxy("Pulsa -C- para continuar", 10, 5);
-			mundo.tiempo_nivel = 0;
-			break;
+		poner_imagen("imagenes/Foto1.png");
+
+		setTextColor(0, 255, 0);
+		setFont("fuentes/Pixel.ttf", 26);
+		printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
+		setTextColor(255, 255, 255);
+		printxy("Pulsa -C- para continuar", 10, 5);
+		mundo.tiempo_nivel = 0;
+		break;
 	}
 	case PAUSA:
 	{
 		mundo.dibuja();
 		setFont("fuentes/Pixel.ttf", 16);
-		printxy("En pausa",(int) mundo.x_pto_ojo, 40);
-		printxy("Pulsa -C- para continuar",(int) mundo.x_pto_ojo, 38);
+		printxy("En pausa", (int)mundo.x_pto_ojo, 40);
+		printxy("Pulsa -C- para continuar", (int)mundo.x_pto_ojo, 38);
 		break;
 	}
 	case FINAL:
 	{
 		pantallaVacia();
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Foto3.png").id);
-		glDisable(GL_LIGHTING);
-		glBegin(GL_POLYGON);
-		glTexCoord2d(0, 1); glVertex2f(10, 10);
-		glTexCoord2d(1, 1); glVertex2f(ANCHO_PANTALLA / 20.0, 10);
-		glTexCoord2d(1, 0); glVertex2f(ANCHO_PANTALLA / 20.0, ALTO_PANTALLA / 20.0);
-		glTexCoord2d(0, 0); glVertex2f(10, ALTO_PANTALLA / 20.0);
-		glEnd();
-		glEnable(GL_LIGHTING);
-		glDisable(GL_TEXTURE);
+		poner_imagen("imagenes/Foto3.png");
+
 		setTextColor(0, 255, 0);
 		setFont("fuentes/Pixel.ttf", 16);
 		printxy("ENHORABUENA, ¡Has triunfado!", 10, 20);
@@ -361,7 +333,7 @@ void Coordinador::mueve()
 	{
 		mundo.mueve();
 
-		if (mundo.getVida()==0)
+		if (mundo.getVida() == 0)
 		{
 			estado = GAMEOVER;
 		}
