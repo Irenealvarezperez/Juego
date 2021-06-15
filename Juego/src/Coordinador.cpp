@@ -123,15 +123,68 @@ void Coordinador::dibuja()
 	case FIN:
 	{
 		pantallaVacia();
-		poner_imagen("imagenes/Foto1.png");
+		
+		if (mundo.nivel.getPantalla() == 1) {
+			poner_imagen("imagenes/Foto_finNivel1.png");
 
-		setTextColor(0, 255, 0);
-		setFont("fuentes/Pixel.ttf", 26);
-		printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
-		setTextColor(255, 255, 255);
-		printxy("Pulsa -C- para continuar", 10, 5);
-		mundo.tiempo_nivel = 0;
-		break;
+			setTextColor(255, 255, 255);
+			setFont("fuentes/Pixel.ttf", 26);
+			printxy("¡Oh no, el virus ha escapado!", 28, 44);
+			printxy("Ahora debes eliminarlos", 28, 40);
+			setTextColor(255, 255, 255);
+			printxy("Pulsa -C- para continuar", 10, 5);
+			mundo.tiempo_nivel = 0;
+			break;
+		}
+		if (mundo.nivel.getPantalla()==2) {
+			poner_imagen("imagenes/Foto_finNivel2.png");
+
+			setTextColor(0, 255, 0);
+			setFont("fuentes/Pixel.ttf", 26);
+			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
+			printxy("El último vuelo a España sale en cinco minutos", 26, 34);
+			printxy("Es tu última oportunidad de regresar", 26, 24);
+			setTextColor(255, 255, 255);
+			printxy("Pulsa -C- para continuar", 10, 5);
+			mundo.tiempo_nivel = 0;
+			break;
+		}
+		if (mundo.nivel.getPantalla() == 3) {
+			poner_imagen("imagenes/Foto_finNivel3.png");
+
+			setTextColor(0, 255, 0);
+			setFont("fuentes/Pixel.ttf", 26);
+			printxy("¡Por los pelos!", 26, 24);
+			printxy("Próximo destino: Madrid", 26, 34);
+			setTextColor(255, 255, 255);
+			printxy("Pulsa -C- para continuar", 10, 5);
+			mundo.tiempo_nivel = 0;
+			break;
+		}
+		if (mundo.nivel.getPantalla() == 4) {
+			poner_imagen("imagenes/Foto_finNivel4.png");
+
+			setTextColor(0, 255, 0);
+			setFont("fuentes/Pixel.ttf", 26);
+			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
+			setTextColor(255, 255, 255);
+			printxy("Pulsa -C- para continuar", 10, 5);
+			mundo.tiempo_nivel = 0;
+			break;
+		}
+		else {
+			
+			poner_imagen("imagenes/Foto1.png");
+
+			setTextColor(0, 255, 0);
+			setFont("fuentes/Pixel.ttf", 26);
+			printxy("ENHORABUENA, ¡Has triunfado!", 26, 24);
+			setTextColor(255, 255, 255);
+			printxy("Pulsa -C- para continuar", 10, 5);
+			mundo.tiempo_nivel = 0;
+			break;
+		
+		}
 	}
 	case PAUSA:
 	{
