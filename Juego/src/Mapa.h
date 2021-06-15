@@ -25,7 +25,7 @@ private:
 	Fondo fondo;
 public:
 	void inicia(ListaBonus& bonus, ListaEnemigos &enemigos);
-	void dibuja(int indice);
+	void dibuja();
 	int getPantalla() { return pantalla; };
 	const int getFila_Max() { return fila_max; };
 	const int getColumna_Max() { return columna_max; };

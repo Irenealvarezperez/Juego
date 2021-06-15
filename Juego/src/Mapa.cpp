@@ -44,13 +44,11 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 				case 'B': {bonus.agregar(bonus.setBonus("imagenes/botiquin.png", posicion.x, posicion.y, 7, 4, Bonus::BOTIQUIN)); break; } //bonus botiquin
 				case 'S': {bonus.agregar(bonus.setBonus("imagenes/escudo.png", posicion.x, posicion.y, 5, 6, Bonus::ESCUDO)); break; } //bonus escudo
 				case 'L': {bonus.agregar(bonus.setBonus("imagenes/espiral.png", posicion.x, posicion.y, 5, 5, Bonus::ESPIRAL)); break; } //bonus espiral
-				//case 'E': {enemigos.agregar(new Enemigo(5, posicion.x, posicion.y, 1, 1)); break; }
 				case 'E': {enemigos.agregar(new Ladron(5,6, posicion.x, posicion.y, -3, 0)); break; }
 				case 'C': {enemigos.agregar(new Contagiado(6, 6, posicion.x, posicion.y+2.4, -2, 0)); break; }
 				case 'X': {enemigos.agregar(new Murcielago(5,4, posicion.x, posicion.y, -1, 0)); break; }
 				case 'Z': {enemigos.agregar(new Minivirus(6,6, posicion.x, posicion.y, -5, 0)); break; }
 				case 'G': {enemigos.agregar(new GranVirus(10,12, posicion.x, posicion.y+3, -1, 0)); break; }
-				//case '1': {fondo.ponerFondo(1); break; } Lo lee correctamente pero no lo dibuja
 				}
 				columna++;
 				posicion.x += Suelo::getLado();
@@ -68,10 +66,10 @@ void Mapa::inicia(ListaBonus& bonus, ListaEnemigos& enemigos)
 	}
 }
 
-void Mapa::dibuja(int nivel)
+void Mapa::dibuja()
 {
 	suelos.dibuja();
-	fondo.ponerFondo(nivel); //buscar una forma de implementar uno diferente por nivel
+	fondo.ponerFondo(getPantalla());
 }
 
 void Mapa::crear()
@@ -126,7 +124,6 @@ void Mapa::crear()
 int Mapa::seleccion(int nivel)
 {
 	FILE* registro;
-	int puntuacion = 0;
 	char tmp;
 	char nombre[100];
 
@@ -153,7 +150,6 @@ int Mapa::seleccion(int nivel)
 			registro = nullptr;
 		}
 	}
-	return puntuacion;
 }
 
 void Mapa::estadisticas()
