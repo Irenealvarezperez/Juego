@@ -91,8 +91,7 @@ void Coordinador::dibuja()
 	}
 	case JUEGO:
 	{
-		long int t1 = getMillis();
-		mundo.time = t1 - t0;
+		mundo.tiempo_nivel = getMillis() / 1000 - mundo.time;
 		mundo.dibuja();
 		if (mundo.personaje.Condicion() == true) //si el personaje se encuentra en posicion>200 y ha recogido un papel puede terminar el nivel
 		{
@@ -256,7 +255,6 @@ void Coordinador::tecla(unsigned char key)
 			destruirContenido();
 			mundo.inicializa();
 			estado = JUEGO;
-			t0 = getMillis();
 			break;
 		}
 		case 's':

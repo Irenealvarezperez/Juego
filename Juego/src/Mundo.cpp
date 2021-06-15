@@ -11,7 +11,8 @@ void texto(float x, float y, const char* string);
 
 Mundo::Mundo()
 {
-	
+	tiempo_nivel = 0;
+	time = 0;
 }
 
 void Mundo::dibuja()
@@ -35,12 +36,6 @@ void Mundo::dibuja()
 	nivel.dibuja();
 	bonus.dibuja();
 	enemigos.dibuja();
-
-	if (time > 1000)
-	{
-		tiempo_nivel += 1.0 / 100.0;
-		time = 0;
-	}
 
 	string str = "Vida: ";
 	string vida = to_string(personaje.vida);
@@ -81,14 +76,11 @@ void Mundo::dibuja()
 void Mundo::mueve()
 {
 	static const float t = FREC / 1000.0;
-
+	
 	personaje.mueve(t);
 	enemigos.mueve(t);
 	bonus.mueve(t);
-	/*for (int i = 0; i < tiempo_nivel; i += 1) {
-		if(enemigos.lista[i]->tipo==Enemigo::MURCIELAGO)
-			reinterpret_cast<Murcielago*>(enemigos.lista[i])->dispara(0, 10.0f, 0);
-	}*/
+
 	Interaccion::choque(personaje.disparos, enemigos, personaje);
 	Interaccion::choque(personaje, bonus);
 	Interaccion::choque(personaje.disparos, nivel);
@@ -105,6 +97,7 @@ void Mundo::mueve()
 void Mundo::inicializa()
 {
 	nivel.inicia(bonus, enemigos);
+	time = getMillis() / 1000;
 }
 
 void Mundo::tecla(unsigned char key)
@@ -156,11 +149,6 @@ void Mundo::teclaEspecial(unsigned char key)
 	{
 		personaje.dispara(0, 10.0f, 0);
 		ETSIDI::play("sonidos/disparo.mp3");
-			//Lo de abajo no lo veo como solucion definitiva porq todos los enemigos de lista
-			//de enemigos se pueden convertir a ladrones
-			// 
-			//Ladron* l = dynamic_cast<Ladron*>(enemigos.lista[i]);
-			//if (l) l->dispara(0, 10.0f, 0);
 		break;
 	}
 	case GLUT_KEY_RIGHT:

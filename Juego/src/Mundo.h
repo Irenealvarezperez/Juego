@@ -19,7 +19,7 @@ private:
 	ListaEnemigos enemigos;
 	SpriteSequence* BarradeVida;
 	long int time;
-	float tiempo_nivel = 0;
+	float tiempo_nivel;
 
 public:
 	float x_ojo, x_pto_ojo;
