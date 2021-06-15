@@ -95,4 +95,5 @@ void Personaje::reiniciar()
 	setPos(2, 4);
 	setVel(0, 0);
 	papel = false;
+	invencible = false;
 }
