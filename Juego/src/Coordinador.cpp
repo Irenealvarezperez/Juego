@@ -152,10 +152,10 @@ void Coordinador::dibuja()
 
 			setTextColor(255, 255, 255);
 			setFont("fuentes/Pixel.ttf", 26);
-			printxy("¡Por los pelos!", 26, 44);
-			printxy("Proximo destino: Madrid", 26, 42);
-			printxy("En el próximo nivel deberás mantener al menos", 26, 42);
-			printxy("un rollo de papel, ¡Cuidado, que es muy codiciado!", 26, 42);
+			printxy("¡Por los pelos!", 16, 18);
+			printxy("Proximo destino: Madrid.", 16, 16);
+			printxy("En el proximo nivel deberas mantener al menos", 16, 14);
+			printxy("un rollo de papel, ¡Cuidado, que es muy codiciado!", 16, 12);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
@@ -164,53 +164,56 @@ void Coordinador::dibuja()
 		if (mundo.nivel.getPantalla() == 4) {
 			poner_imagen("imagenes/Foto_finNivel4.png");
 
-			setTextColor(0, 255, 0);
-			setFont("fuentes/Pixel.ttf", 26);
-			printxy("ENHORABUENA,", 36, 34);
-			printxy("¡Has triunfado!", 36, 32);
-			printxy("En el próximo nivel deberás obtener la primera llave", 36, 30);
-			printxy("Necesitas dos para tener la oportunidad de pasar al nivel final", 36, 28);
+			setTextColor(0, 0, 255);
+			setFont("fuentes/Pixel.ttf", 25);
+			printxy("ENHORABUENA,", 44, 34);
+			printxy("¡Has triunfado!", 44, 32);
+			printxy("En el próximo nivel debes", 44, 30);
+			printxy("obtener la primera llave", 44, 28);
+			printxy("Necesitas dos para poder", 44, 26);
+			printxy("pasar al nivel final", 44, 24);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
 			break;
 		}
 		if (mundo.nivel.getPantalla() == 5) {
-			poner_imagen("imagenes/Foto_finNivel4.png");
+			poner_imagen("imagenes/Foto_finNivel5.png");
 
-			setTextColor(0, 255, 0);
+			setTextColor(255, 255, 255);
 			setFont("fuentes/Pixel.ttf", 26);
-			printxy("ENHORABUENA,", 36, 34);
-			printxy("¡Has triunfado!", 36, 32);
-			printxy("En el próximo nivel deberás obtener la segunda llave", 36, 30);
-			printxy("¡Ya caso has llegado al final!", 36, 28);
+			printxy("ENHORABUENA, ¡Has triunfado!", 24, 44);
+			printxy("En el proximo nivel deberas obtener la segunda llave", 12, 42);
+			printxy("¡Ya casi has llegado al final!", 26, 38);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
 			break;
 		}
 		if (mundo.nivel.getPantalla() == 6) {
-			poner_imagen("imagenes/Foto_finNivel4.png");
+			poner_imagen("imagenes/Foto_finNivel6.png");
 
-			setTextColor(0, 255, 0);
+			setTextColor(255, 255, 255);
 			setFont("fuentes/Pixel.ttf", 26);
-			printxy("ENHORABUENA,", 36, 34);
-			printxy("Ahora te debes enfrentar al Gran Virus", 36, 32);
-			printxy("Recoge todas las vacunas que puedas,", 36, 30);
-			printxy("las necesitarás para vencer", 36, 28);
+			printxy("¡ENHORABUENA!, ahora te debes enfrentar al Gran Virus", 10, 44);
+			printxy("Recoge todas las vacunas que puedas, las necesitaras", 11, 42);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
 			break;
 		}
 		if (mundo.nivel.getPantalla() == 7) {
-			poner_imagen("imagenes/Foto_finNivel4.png");
+			poner_imagen("imagenes/Foto_finNivel7.png");
 
-			setTextColor(0, 255, 0);
+			setTextColor(255, 255, 255);
 			setFont("fuentes/Pixel.ttf", 26);
-			printxy("¡¡ENHORABUENA, HAS CONSEGUIDO", 36, 34);
-			printxy("DERROTAR AL VIRUS, EL MUNDO ESTA A SALVO!!", 36, 32);
-			printxy("Ahora ya puedes crear tus propios niveles", 36, 30);
+			printxy("¡¡ENHORABUENA, HAS CONSEGUIDO", 20, 44);
+			printxy("DERROTAR AL VIRUS, EL MUNDO ESTA A SALVO!!", 16, 42);
+			setTextColor(255, 255, 0);
+			printxy("Ahora ya", 57, 30);
+			printxy("puedes crear", 57, 28);
+			printxy("tus propios", 57, 26);
+			printxy("niveles", 57, 24);
 			setTextColor(255, 255, 255);
 			printxy("Pulsa -C- para continuar", 10, 5);
 			mundo.tiempo_nivel = 0;
