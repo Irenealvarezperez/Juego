@@ -92,7 +92,6 @@ void Coordinador::dibuja()
 	case JUEGO:
 	{
 		mundo.dibuja();
-		mundo.tiempo_nivel = (getMillis() - mundo.time) / 1000;
 		if (mundo.personaje.Condicion() == true) //si el personaje se encuentra en posicion>200 y ha recogido un papel puede terminar el nivel
 		{
 			mundo.enemigos.destruirContenido();
@@ -503,6 +502,7 @@ void Coordinador::mueve()
 	if (estado == JUEGO)
 	{
 		mundo.mueve();
+		mundo.tiempo_nivel = (getMillis() - mundo.time) / 1000;
 
 		if (mundo.getVida() <= 0 && mundo.nivel.getPantalla() > 1)
 		{
