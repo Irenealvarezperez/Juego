@@ -108,7 +108,17 @@ void Mundo::tecla(unsigned char key)
 		personaje.setVel(-12, personaje.getVel().y);
 		break;
 	}
+	case 'A':
+	{
+		personaje.setVel(-12, personaje.getVel().y);
+		break;
+	}
 	case 'd':
+	{
+		personaje.setVel(12, personaje.getVel().y);
+		break;
+	}
+	case 'D':
 	{
 		personaje.setVel(12, personaje.getVel().y);
 		break;
@@ -130,10 +140,21 @@ void Mundo::tecla(unsigned char key)
 		personaje.tecla_bloq = 'w';
 		break;
 	}
-	case 't':
+	case 'W':
 	{
-		personaje.posicion.x = 200;
-		personaje.papel = true;
+		if (personaje.tecla_bloq != 'W')
+		{
+			personaje.setVel(personaje.getVel().x, 16);
+			if (personaje.getVel().x > 0.01)
+			{
+				personaje.setVel(8, personaje.getVel().y);
+			}
+			else if (personaje.getVel().x < -0.01)
+			{
+				personaje.setVel(-8, personaje.getVel().y);
+			}
+		}
+		personaje.tecla_bloq = 'W';
 		break;
 	}
 	}
