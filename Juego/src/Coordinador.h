@@ -12,6 +12,7 @@ private:
 	Estado estado;
 	string path = "imagenes/historia00.png";
 	int pantalla_historia = 10;
+	long duracionPausa = 0.0f;
 public:
 	Coordinador();
 	~Coordinador();

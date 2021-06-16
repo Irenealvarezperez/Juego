@@ -96,7 +96,7 @@ void Mundo::mueve()
 void Mundo::inicializa()
 {
 	nivel.inicia(bonus, enemigos);
-	time = getMillis() / 1000;
+	time = getMillis();
 }
 
 void Mundo::tecla(unsigned char key)
