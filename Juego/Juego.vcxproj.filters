@@ -151,16 +151,35 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\Nivel1.txt" />
-    <Text Include="src\Nivel2.txt" />
-    <Text Include="src\Registro_Niveles.txt" />
-    <Text Include="src\Nivel3.txt" />
-    <Text Include="src\Nivel4.txt" />
-    <Text Include="src\Nivel5.txt" />
-    <Text Include="src\Nivel6.txt" />
-    <Text Include="src\Nivel7.txt" />
-    <Text Include="src\Registro_Estadisticas.txt" />
-    <Text Include="src\Registro_Nombres_Niveles.txt" />
-    <Text Include="src\Registro_Numeros_Niveles.txt" />
+    <Text Include="bin\niveles\Nivel1.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Nivel2.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Nivel3.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Nivel4.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Nivel5.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Nivel6.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Nivel7.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Registro_Estadisticas.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Registro_Nombres_Niveles.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="bin\niveles\Registro_Numeros_Niveles.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
   </ItemGroup>
 </Project>
