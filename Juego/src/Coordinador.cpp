@@ -275,8 +275,11 @@ void Coordinador::tecla(unsigned char key)
 		switch (key)
 		{
 		case 'f': estado = NIVELES; break;
+		case 'F': estado = NIVELES; break;
 		case 'r': mundo.nivel.reiniciar(); break;
+		case 'R': mundo.nivel.reiniciar(); break;
 		case 's': exit(0);
+		case 'S': exit(0);
 		}
 		break;
 	}
@@ -285,6 +288,13 @@ void Coordinador::tecla(unsigned char key)
 		switch (key)
 		{
 		case 's':
+		{
+			mundo.nivel.seleccion(mundo.nivel.pantalla);
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+			estado = SELECCION_NIVEL;
+			break;
+		}
+		case 'S':
 		{
 			mundo.nivel.seleccion(mundo.nivel.pantalla);
 			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
@@ -305,7 +315,30 @@ void Coordinador::tecla(unsigned char key)
 			estado = JUEGO;
 			break;
 		}
+		case 'E':
+		{
+			destruirContenido();
+			mundo.inicializa();
+			estado = JUEGO;
+			break;
+		}
 		case 's':
+		{
+			destruirContenido();
+			mundo.nivel.pantalla++;
+			if (mundo.nivel.pantalla <= mundo.nivel.pantallas_max && mundo.nivel.pantalla <= mundo.nivel.pantallas_completada + 1)
+			{
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+			else
+			{
+				mundo.nivel.pantalla--;
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+			break;
+		}
+		case 'S':
 		{
 			destruirContenido();
 			mundo.nivel.pantalla++;
@@ -337,6 +370,22 @@ void Coordinador::tecla(unsigned char key)
 			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
 			break;
 		}
+		case 'A':
+		{
+			destruirContenido();
+			mundo.nivel.pantalla--;
+			if (mundo.nivel.pantalla > 1)
+			{
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+			else
+			{
+				mundo.nivel.pantalla = 1;
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+			}
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+			break;
+		}
 		case 't':
 		{
 			if (mundo.nivel.pantallas_completada >= mundo.nivel.pantallas_max)
@@ -347,14 +396,25 @@ void Coordinador::tecla(unsigned char key)
 			}
 			break;
 		}
+		case 'T':
+		{
+			if (mundo.nivel.pantallas_completada >= mundo.nivel.pantallas_max)
+			{
+				mundo.nivel.crear();
+				mundo.nivel.seleccion(mundo.nivel.pantalla);
+				mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+			}
+			break;
+		}
 		case 'f': estado = INICIO; break;
+		case 'F': estado = INICIO; break;
 		}
 		break;
 	}
 	case JUEGO:
 	{
 		mundo.tecla(key);
-		if (key == 'p')
+		if (key == 'p' || key == 'P')
 		{
 			estado = PAUSA;
 		}
@@ -362,7 +422,7 @@ void Coordinador::tecla(unsigned char key)
 	}
 	case GAMEOVER:
 	{
-		if (key == 'c')
+		if (key == 'c' || key == 'C')
 		{
 			destruirContenido();
 			mundo.personaje.setPos(2, 4);
@@ -377,7 +437,7 @@ void Coordinador::tecla(unsigned char key)
 	case FIN:
 	{
 		mundo.nivel.sumaPantallaCompletada();
-		if (key == 'c')
+		if (key == 'c' || key == 'C')
 		{
 			if (mundo.nivel.pantallas_completada == mundo.nivel.pantallas_max)
 			{
@@ -394,7 +454,7 @@ void Coordinador::tecla(unsigned char key)
 	}
 	case PAUSA:
 	{
-		if (key == 'c')
+		if (key == 'c' || key == 'C')
 		{
 			estado = JUEGO;
 		}
@@ -405,7 +465,16 @@ void Coordinador::tecla(unsigned char key)
 		switch (key)
 		{
 		case 'c': exit(0);
+		case 'C': exit(0);
 		case 's':
+		{
+			mundo.nivel.seleccion(mundo.nivel.pantalla - 1);
+			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
+			mundo.dibuja();
+			estado = SELECCION_NIVEL;
+			break;
+		}
+		case 'S':
 		{
 			mundo.nivel.seleccion(mundo.nivel.pantalla - 1);
 			mundo.nivel.inicia(mundo.bonus, mundo.enemigos);
